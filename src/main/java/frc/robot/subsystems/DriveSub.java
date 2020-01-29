@@ -10,6 +10,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
 
+
+
 public class DriveSub extends SubsystemBase {
   /**
    * Creates a new DriveSub.
@@ -19,12 +21,12 @@ public class DriveSub extends SubsystemBase {
     RobotIO.rightMotor3.follow(RobotIO.rightMotor1);
     RobotIO.leftMotor2.follow(RobotIO.leftMotor1);
     RobotIO.leftMotor3.follow(RobotIO.leftMotor1);
-
-
-  }
-
+}
+   
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
+  
+  
 }

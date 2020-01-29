@@ -9,6 +9,7 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 
@@ -17,11 +18,5 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  * Add your docs here.
  */
 public class RobotIO {
-    public static final WPI_TalonFX rightMotor1 = new WPI_TalonFX(RobotSettings.RIGHT_MOTOR_1_ID);
-    public static final WPI_TalonFX rightMotor2 = new WPI_TalonFX(RobotSettings.RIGHT_MOTOR_2_ID);
-    public static final WPI_TalonFX rightMotor3 = new WPI_TalonFX(RobotSettings.RIGHT_MOTOR_3_ID);
-    public static final WPI_TalonFX leftMotor1 = new WPI_TalonFX(RobotSettings.LEFT_MOTOR_1_ID);
-    public static final WPI_TalonFX leftMotor2 = new WPI_TalonFX(RobotSettings.LEFT_MOTOR_2_ID);
-    public static final WPI_TalonFX leftMotor3 = new WPI_TalonFX(RobotSettings.LEFT_MOTOR_3_ID);
-    public static final DifferentialDrive difDrive = new DifferentialDrive(leftMotor1, rightMotor1);
+   public static WPI_TalonFX = new WPI_TalonFX
 }
