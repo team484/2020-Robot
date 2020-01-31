@@ -28,5 +28,11 @@ public class DriveSub extends SubsystemBase {
     // This method will be called once per scheduler run
   }
   
+public static void set(double speed, double rot)
+ {
+RobotIO.difDrive.arcadeDrive(speed, rot);
+//Speed and rotation
+}
+
   
 }

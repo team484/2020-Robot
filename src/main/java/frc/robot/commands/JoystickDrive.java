@@ -12,10 +12,12 @@ import frc.robot.RobotIO;
 import frc.robot.subsystems.DriveSub;
 
 public class JoystickDrive extends CommandBase {
+
   /**
    * Creates a new JoystickDrive.
    */
-  public JoystickDrive() {
+  public JoystickDrive(DriveSub subsystem) {
+    addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -25,9 +27,12 @@ public class JoystickDrive extends CommandBase {
   }
 
   // Called every time the scheduler runs while the command is scheduled.
+
   @Override
-  public void execute() {
-  }
+  public void execute()
+ {
+DriveSub.set(-RobotIO.driveStick.getY(), -RobotIO.driveStick.getX() );
+ }
 
   // Called once the command ends or is interrupted.
   @Override
