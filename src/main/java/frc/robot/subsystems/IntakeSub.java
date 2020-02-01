@@ -7,7 +7,10 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotIO;
 
 public class IntakeSub extends SubsystemBase {
   /**
@@ -23,15 +26,15 @@ public class IntakeSub extends SubsystemBase {
   }
 
   public static void intakeSpinWheels() {
-
+    RobotIO.intakeAndControl.set(1.0);
   }
 
   public static void intakeLower() {
-
+    RobotIO.intakeArm.set(1.0);
   }
 
   public static void intakeRaise() {
-
+    RobotIO.intakeArm.set(-1.0);
   }
 
 }

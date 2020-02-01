@@ -42,9 +42,9 @@ public class RobotIO {
    public static WPI_TalonFX ballConveyerHorizontal = new WPI_TalonFX(RobotSettings.HORIZONTAL_BALL_CONVEYOR_MOTOR_ID);
    public static WPI_TalonFX ballConveyerVertical = new WPI_TalonFX(RobotSettings.VERTICAL_BALL_CONVEYOR_MOTOR_ID);
    
-   public static VictorSPX climberWheels = new VictorSPX(RobotSettings.CLIMBER_WHEELS_MOTOR_ID);
+   public static WPI_VictorSPX climberWheels = new WPI_VictorSPX(RobotSettings.CLIMBER_WHEELS_MOTOR_ID);
 
-   public static VictorSPX intakeAndControl = new VictorSPX(RobotSettings.INTAKE_AND_CONTROL_PANEL_MOTOR_ID);
+   public static WPI_VictorSPX intakeAndControl = new WPI_VictorSPX(RobotSettings.INTAKE_AND_CONTROL_PANEL_MOTOR_ID);
 
    public static CANSparkMax intakeArm = new CANSparkMax(RobotSettings.INTAKE_ARM_MOTOR_ID, MotorType.kBrushless);
 
