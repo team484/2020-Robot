@@ -8,21 +8,23 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotIO;
 
 public class ElevatorSub extends SubsystemBase {
   /**
    * Creates a new Elevator.
    */
   public ElevatorSub() {
-
+    RobotIO.rightElevatorMotor.follow(RobotIO.leftElevatorMotor, true);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  public static void Set(){
-
+  public static void Set(double speed) {
+    RobotIO.leftElevatorMotor.setVoltage(speed);
+  
   }
   
 }
