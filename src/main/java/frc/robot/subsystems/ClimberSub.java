@@ -21,4 +21,12 @@ public class ClimberSub extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public static void climberUp(){
+
+  }
+
+  public static void climberRetract() {
+
+  }
 }
