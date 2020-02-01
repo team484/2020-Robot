@@ -8,13 +8,14 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotIO;
 
 public class ClimberSub extends SubsystemBase {
   /**
    * Creates a new ClimberSub.
    */
   public ClimberSub() {
-
+  
   }
 
   @Override
@@ -22,11 +23,10 @@ public class ClimberSub extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public static void climberUp(){
+  public static void set(double speed){
+    RobotIO.climberWheels.set(speed);
+  }
+
 
   }
 
-  public static void climberRetract() {
-
-  }
-}
