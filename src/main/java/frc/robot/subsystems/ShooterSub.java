@@ -12,7 +12,7 @@ public class ShooterSub extends SubsystemBase {
   /**
    * Creates a new Shooter.
    */
-  public static void shooterSpinWheels()   
+  public static void shooterSpinWheels();  
   }
   public ShooterSub() {
 
