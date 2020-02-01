@@ -8,12 +8,16 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 public class ShooterSub extends SubsystemBase {
   /**
    * Creates a new Shooter.
    */
-  public ShooterSub() {
+  public static void shooterSpinWheels()
+  {
+
+  }
+  public ShooterSub()
+  {
 
   }
 
