@@ -24,7 +24,8 @@ public class ElevatorSub extends SubsystemBase {
   }
   public static void Set(double speed) {
     RobotIO.leftElevatorMotor.setVoltage(speed);
-  
   }
-  
+  public static void engageClutch(){
+    
+  }
 }

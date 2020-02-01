@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
+import frc.robot.RobotSettings;
 
 public class ClimberSub extends SubsystemBase {
   /**
@@ -26,7 +27,11 @@ public class ClimberSub extends SubsystemBase {
   public static void set(double speed){
     RobotIO.climberWheels.set(speed);
   }
-
-
+  public static void engageClutch(){
+    RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_ENGAGE_ANGLE);
   }
+  public static void disengageCluth(){
+    RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_DISENGAGE_ANGLE);
+  }
+}
 

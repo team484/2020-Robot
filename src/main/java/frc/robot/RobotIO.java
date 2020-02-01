@@ -16,6 +16,7 @@ import com.revrobotics.SparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -53,6 +54,8 @@ public class RobotIO {
 
    public static DifferentialDrive difDrive = new DifferentialDrive(leftMotor1, rightMotor1);
    public static Joystick driveStick = new Joystick(RobotSettings.DRIVE_PORT);
+
+   public static Servo clutchServo = new Servo(RobotSettings.CLUTCH_SERVO_CHANNEL);
    
 
 }

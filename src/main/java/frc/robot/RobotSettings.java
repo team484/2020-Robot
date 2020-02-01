@@ -39,8 +39,11 @@ public final class RobotSettings {
     
     public static final int LEFT_ELEVATOR_MOTOR_ID = 14;
     public static final int RIGHT_ELEVATOR_MOTOR_ID = 15;
+    public static final int CLUTCH_SERVO_CHANNEL = 1;
 
-    
+    // Angles for engaging and disengaging climber clutch. Make final when assigning a value.
+    public static int CLUTCH_DISENGAGE_ANGLE;
+    public static int CLUTCH_ENGAGE_ANGLE;
 
 
 
