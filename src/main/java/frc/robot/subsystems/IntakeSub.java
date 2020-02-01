@@ -23,7 +23,7 @@ public class IntakeSub extends SubsystemBase {
   }
 
   public static void intakeSpinWheels() {
-
+    
   }
 
   public static void intakeLower() {
