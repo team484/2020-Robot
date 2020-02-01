@@ -7,19 +7,30 @@
 
 package frc.robot.subsystems;
 
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotIO;
 public class ShooterSub extends SubsystemBase {
   /**
    * Creates a new Shooter.
    */
+<<<<<<< HEAD
   public static void shooterSpinWheels();  
   }
+=======
+  
+>>>>>>> b4100d95dc374c4f7ed66895d1ca73c40886cdb2
   public ShooterSub() {
-
+    RobotIO.shooterMotor2.follow(RobotIO.shooterMotor1);
+                                                                
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public static void shooterSpinWheels(double speed) {
+    RobotIO.shooterMotor1.set(speed);
   }
 }
