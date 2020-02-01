@@ -30,7 +30,7 @@ public class ClimberSub extends SubsystemBase {
   public static void engageClutch(){
     RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_ENGAGE_ANGLE);
   }
-  public static void disengageCluth(){
+  public static void disengageClutch(){
     RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_DISENGAGE_ANGLE);
   }
 }
