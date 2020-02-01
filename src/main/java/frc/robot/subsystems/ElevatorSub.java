@@ -20,7 +20,7 @@ public class ElevatorSub extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    // This method will be called once per blah blah blah blah blah
   }
   public static void Set(double speed) {
     RobotIO.leftElevatorMotor.setVoltage(speed);

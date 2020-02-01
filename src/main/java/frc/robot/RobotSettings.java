@@ -50,6 +50,7 @@ public final class RobotSettings {
 
 
     public static final int DRIVE_PORT = 1;
+    public static final int DRIVE_PORT_2 = 2;
 
 
     

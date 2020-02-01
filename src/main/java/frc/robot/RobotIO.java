@@ -54,6 +54,7 @@ public class RobotIO {
 
    public static DifferentialDrive difDrive = new DifferentialDrive(leftMotor1, rightMotor1);
    public static Joystick driveStick = new Joystick(RobotSettings.DRIVE_PORT);
+   public static Joystick operatorStick = new Joystick(RobotSettings.DRIVE_PORT_2);
 
    public static Servo clutchServo = new Servo(RobotSettings.CLUTCH_SERVO_CHANNEL);
    
