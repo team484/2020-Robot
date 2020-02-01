@@ -9,7 +9,17 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+<<<<<<< HEAD
 import frc.robot.subsystems.DriveSub;
+=======
+<<<<<<< HEAD
+import frc.robot.subsystems.DriveSub;
+=======
+
+import frc.robot.subsystems.DriveSub;
+
+>>>>>>> 0a4addffd5e3ade100c95edd5382da2a207a4de6
+>>>>>>> 2d147dcb1b872be69d994285c040e06c841198ed
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -20,8 +30,16 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+<<<<<<< HEAD
   private final DriveSub m_drivesub = new DriveSub();
 
+=======
+<<<<<<< HEAD
+  private final DriveSub m_drivesub = new DriveSub();
+=======
+  
+>>>>>>> 0a4addffd5e3ade100c95edd5382da2a207a4de6
+>>>>>>> 2d147dcb1b872be69d994285c040e06c841198ed
 
 
   /**
@@ -47,6 +65,16 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
+<<<<<<< HEAD
 
   }
 
+=======
+  
+<<<<<<< HEAD
+}
+=======
+  }
+
+>>>>>>> 0a4addffd5e3ade100c95edd5382da2a207a4de6
+>>>>>>> 2d147dcb1b872be69d994285c040e06c841198ed
