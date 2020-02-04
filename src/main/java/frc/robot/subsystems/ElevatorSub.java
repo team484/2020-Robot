@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotSettings;
 import frc.robot.RobotIO;
 
 public class ElevatorSub extends SubsystemBase {
@@ -23,7 +24,7 @@ public class ElevatorSub extends SubsystemBase {
     // This method will be called once per blah blah blah blah blah
   }
   public static void Set(double speed) {
-    RobotIO.leftElevatorMotor.setVoltage(speed);
+    RobotIO.leftElevatorMotor.set(speed);
   }
   public static void engageClutch(){
     RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_ENGAGE_ANGLE);

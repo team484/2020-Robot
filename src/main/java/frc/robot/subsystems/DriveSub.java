@@ -31,7 +31,6 @@ public class DriveSub extends SubsystemBase {
 public static void set(double speed, double rot)
  {
 RobotIO.difDrive.arcadeDrive(speed, rot);
-//Speed and rotation
 }
 
   
