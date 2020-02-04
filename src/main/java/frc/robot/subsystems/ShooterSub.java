@@ -8,15 +8,11 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotIO;
 public class ShooterSub extends SubsystemBase {
   /**
    * Creates a new Shooter.
    */
-  public static void shooterSpinWheels()
-  {
-    
-  }  
-  
   public ShooterSub() {
 
   }
@@ -25,4 +21,11 @@ public class ShooterSub extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public static void shooterSpinWheels()
+  {
+    RobotIO.shooterMotor1.set(1);
+    RobotIO.shooterMotor2.set(1);
+  }  
+
 }

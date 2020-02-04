@@ -7,8 +7,10 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotIO;
+import frc.robot.subsystems.ElevatorSub;
 
 public class JoystickElevator extends CommandBase {
   /**
@@ -27,7 +29,7 @@ public class JoystickElevator extends CommandBase {
   @Override
   public void execute() 
   {
-    RobotIO.operatorStick.
+    ElevatorSub.Set(RobotIO.operatorStick.getY());
   }
 
   // Called once the command ends or is interrupted.
