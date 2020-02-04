@@ -26,7 +26,6 @@ public class ShooterSub extends SubsystemBase {
   {
     RobotIO.shooterMotor1.set(1);
     RobotIO.shooterMotor2.set(1);
-    // speen
   }  
 
 }
