@@ -26,6 +26,10 @@ public class ElevatorSub extends SubsystemBase {
     RobotIO.leftElevatorMotor.setVoltage(speed);
   }
   public static void engageClutch(){
-    
+    RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_ENGAGE_ANGLE);
   }
+  public static void disengageClutch(){
+    RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_DISENGAGE_ANGLE);
+  }
+  
 }
