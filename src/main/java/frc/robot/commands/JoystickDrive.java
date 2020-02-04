@@ -31,12 +31,13 @@ public class JoystickDrive extends CommandBase {
   @Override
   public void execute()
  {
-DriveSub.set(-RobotIO.driveStick.getY(), -RobotIO.driveStick.getX() );
+  DriveSub.set(-RobotIO.driveStick.getY(), -RobotIO.driveStick.getX());
  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    DriveSub.set(0.0, 0.0);
   }
 
   // Returns true when the command should end.
