@@ -23,11 +23,8 @@ public class VerticalConveyer extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public static void conveyerUp(){
-    RobotIO.ballConveyerVertical.set(1.0);
+  public static void set(double speed){
+    RobotIO.ballConveyerVertical.set(speed);
   }
-
-  public static void conveyerDown(){
-    RobotIO.ballConveyerVertical.set(-1.0);
-  }
+  
 }
