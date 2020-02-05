@@ -8,15 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotIO;
-import frc.robot.subsystems.ClimberSub;
 
-public class Joystickclimber extends CommandBase {
+public class DriveUntilDistance extends CommandBase {
   /**
-   * Creates a new Joystickclimber.
+   * Creates a new DriveUntilDistance.
    */
-  public Joystickclimber(ClimberSub subsystem) {
-    addRequirements(subsystem);
+  public DriveUntilDistance() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -28,7 +25,6 @@ public class Joystickclimber extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ClimberSub.set(RobotIO.operatorStick.getX());
   }
 
   // Called once the command ends or is interrupted.
