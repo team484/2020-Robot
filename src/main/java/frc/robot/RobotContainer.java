@@ -9,7 +9,17 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.subsystems.ClimberSub;
+import frc.robot.subsystems.ControlPanelSpinner;
+import frc.robot.subsystems.ControlPanelSpinnerSub;
 import frc.robot.subsystems.DriveSub;
+import frc.robot.subsystems.ElevatorSub;
+import frc.robot.subsystems.HorizontalConveyor;
+import frc.robot.subsystems.HorizontalConveyorSub;
+import frc.robot.subsystems.IntakeArmSub;
+import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.ShooterSub;
+import frc.robot.subsystems.VerticalConveyerSub;
 
 
 /**
@@ -21,8 +31,23 @@ import frc.robot.subsystems.DriveSub;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-  private final DriveSub driveSub = new DriveSub();
+  private final ClimberSub climberSub = new ClimberSub();
+
+  private final ControlPanelSpinnerSub controlPanelSpinner = new ControlPanelSpinnerSub();
   
+  private final DriveSub driveSub = new DriveSub();
+
+  private final ElevatorSub elevatorSub = new ElevatorSub();
+  
+  private final HorizontalConveyorSub horizotalConveyer = new HorizontalConveyorSub();
+
+  private final IntakeArmSub intakeArmSub = new IntakeArmSub();
+
+  private final IntakeSub intakeSub = new IntakeSub();
+
+  private final ShooterSub shooterSub = new ShooterSub();
+
+  private final VerticalConveyerSub verticalConveyerSub = new VerticalConveyerSub();
 
 
   /**
