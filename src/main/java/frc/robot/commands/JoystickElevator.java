@@ -15,7 +15,8 @@ public class JoystickElevator extends CommandBase {
   /**
    * Creates a new JoystickElevator.
    */
-  public JoystickElevator() {
+  public JoystickElevator(ElevatorSub subsystem) {
+    addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

@@ -9,13 +9,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotIO;
+import frc.robot.subsystems.ClimberSub;
 import frc.robot.subsystems.ElevatorSub;
 
 public class Joystickclimber extends CommandBase {
   /**
    * Creates a new Joystickclimber.
    */
-  public Joystickclimber() {
+  public Joystickclimber(ClimberSub subsystem) {
+    addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

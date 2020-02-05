@@ -10,16 +10,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.ClimberSub;
-import frc.robot.subsystems.ControlPanelSpinner;
 import frc.robot.subsystems.ControlPanelSpinnerSub;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ElevatorSub;
-import frc.robot.subsystems.HorizontalConveyor;
 import frc.robot.subsystems.HorizontalConveyorSub;
 import frc.robot.subsystems.IntakeArmSub;
 import frc.robot.subsystems.IntakeSub;
 import frc.robot.subsystems.ShooterSub;
-import frc.robot.subsystems.VerticalConveyerSub;
+import frc.robot.subsystems.VerticalConveyer;
 
 
 /**
@@ -39,7 +37,7 @@ public class RobotContainer {
 
   private final ElevatorSub elevatorSub = new ElevatorSub();
   
-  private final HorizontalConveyorSub horizotalConveyer = new HorizontalConveyorSub();
+  private final HorizontalConveyorSub horizontalConveyer = new HorizontalConveyorSub();
 
   private final IntakeArmSub intakeArmSub = new IntakeArmSub();
 
@@ -47,7 +45,7 @@ public class RobotContainer {
 
   private final ShooterSub shooterSub = new ShooterSub();
 
-  private final VerticalConveyerSub verticalConveyerSub = new VerticalConveyerSub();
+  private final VerticalConveyer verticalConveyerSub = new VerticalConveyer();
 
 
   /**
