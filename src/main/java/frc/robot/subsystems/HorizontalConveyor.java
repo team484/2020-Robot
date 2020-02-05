@@ -7,25 +7,22 @@
 
 package frc.robot.subsystems;
 
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.RobotIO;
 
-public class IntakeSub extends SubsystemBase {
+public class HorizontalConveyor extends SubsystemBase {
   /**
-   * Creates a new IntakeSub.
+   * Creates a new HorizontalConveyor.
    */
-  public IntakeSub() {
-
+  public HorizontalConveyor() {
+    
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    
   }
-
-  public static void intakeSpinWheels() {
-    RobotIO.intakeAndControl.set(1.0);
-  }
+  public static void set(double speed){
   
+  }
 }

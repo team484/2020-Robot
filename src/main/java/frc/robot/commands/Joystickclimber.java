@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotIO;
 import frc.robot.subsystems.ElevatorSub;
 
-public class JoystickElevator extends CommandBase {
+public class Joystickclimber extends CommandBase {
   /**
-   * Creates a new JoystickElevator.
+   * Creates a new Joystickclimber.
    */
-  public JoystickElevator() {
+  public Joystickclimber() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -26,9 +26,8 @@ public class JoystickElevator extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() 
-  {
-    ElevatorSub.Set(RobotIO.operatorStick.getY());
+  public void execute() {
+    ElevatorSub.Set(RobotIO.operatorStick.getX());
   }
 
   // Called once the command ends or is interrupted.
