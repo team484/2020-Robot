@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotIO;
 
 public class HorizontalConveyorSub extends SubsystemBase {
   /**
@@ -23,6 +24,6 @@ public class HorizontalConveyorSub extends SubsystemBase {
     
   }
   public static void set(double speed){
-  
+    RobotIO.ballConveyerHorizontal.set(1.0);
   }
 }
