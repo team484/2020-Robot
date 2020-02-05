@@ -8,13 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveSub;
+import frc.robot.subsystems.HorizontalConveyorSub;
 
-public class DriveUntilDistance extends CommandBase {
+public class HorizontalConveyorSpin extends CommandBase {
   /**
-   * Creates a new DriveUntilDistance.
+   * Creates a new HorizontalConveyorSpin.
    */
-  public DriveUntilDistance(DriveSub subsystem) {
+  public HorizontalConveyorSpin(HorizontalConveyorSub subsystem) {
     addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }

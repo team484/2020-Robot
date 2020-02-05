@@ -8,13 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveSub;
+import frc.robot.subsystems.ControlPanelSpinnerSub;
 
-public class DriveUntilDistance extends CommandBase {
+public class ControlPanelSpin extends CommandBase {
   /**
-   * Creates a new DriveUntilDistance.
+   * Creates a new ControlPanelSpin.
    */
-  public DriveUntilDistance(DriveSub subsystem) {
+  public ControlPanelSpin(ControlPanelSpinnerSub subsystem) {
     addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }

@@ -8,14 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveSub;
+import frc.robot.subsystems.ElevatorSub;
 
-public class DriveUntilDistance extends CommandBase {
+public class RaiseToHeight extends CommandBase {
   /**
-   * Creates a new DriveUntilDistance.
+   * Creates a new RaiseToHeight.
    */
-  public DriveUntilDistance(DriveSub subsystem) {
-    addRequirements(subsystem);
+  public RaiseToHeight(ElevatorSub subsystem) {
+   addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

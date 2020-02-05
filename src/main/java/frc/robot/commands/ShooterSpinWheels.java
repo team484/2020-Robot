@@ -8,15 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveSub;
+import frc.robot.subsystems.ShooterSub;
 
-public class DriveUntilDistance extends CommandBase {
+public class ShooterSpinWheels extends CommandBase {
   /**
-   * Creates a new DriveUntilDistance.
+   * Creates a new ShooterSpinWheels.
    */
-  public DriveUntilDistance(DriveSub subsystem) {
-    addRequirements(subsystem);
+  public ShooterSpinWheels(ShooterSub subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
