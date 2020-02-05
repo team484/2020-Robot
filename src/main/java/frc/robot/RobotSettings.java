@@ -39,17 +39,17 @@ public final class RobotSettings {
     
     public static final int LEFT_ELEVATOR_MOTOR_ID = 14;
     public static final int RIGHT_ELEVATOR_MOTOR_ID = 15;
-    public static final int CLUTCH_SERVO_PORT = 0;
 
-    public static final double VERTICAL_CONVEYOR_SPEED = 1.0;
 
-    // Angles for engaging and disengaging climber clutch. Make final when assigning a value.
-    public static int CLUTCH_DISENGAGE_ANGLE = 90;
-    public static int CLUTCH_ENGAGE_ANGLE = 0;
-    //TO DO
 
-    public static final int DRIVE_STICK_PORT = 1;
-    public static final int OP_STICK_PORT = 2;
+    
+
+
+
+
+
+    public static final int DRIVE_PORT = 1;
+    public static final int DRIVE_PORT_2 = 2;
 
 
     
