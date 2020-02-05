@@ -14,7 +14,7 @@ public class ShooterSub extends SubsystemBase {
    * Creates a new Shooter.
    */
   public ShooterSub() {
-
+    RobotIO.shooterMotor2.follow(RobotIO.shooterMotor1);
   }
 
   @Override
@@ -24,8 +24,7 @@ public class ShooterSub extends SubsystemBase {
 
   public static void shooterSpinWheels()
   {
-    RobotIO.shooterMotor1.set(1);
-    RobotIO.shooterMotor2.set(1);
+    RobotIO.shooterMotor1.set(1.0);
   }  
 
 }
