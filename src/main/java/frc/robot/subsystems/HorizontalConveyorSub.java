@@ -9,13 +9,14 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
+import frc.robot.commands.HorizontalConveyorDoNothing;
 
 public class HorizontalConveyorSub extends SubsystemBase {
   /**
    * Creates a new HorizontalConveyor.
    */
   public HorizontalConveyorSub() {
-    
+    setDefaultCommand(new HorizontalConveyorDoNothing(this));
   }
 
   @Override

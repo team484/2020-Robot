@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
+import frc.robot.commands.IntakeArmDoNothing;
 /**
  * Add your docs here.
  */
@@ -17,7 +18,7 @@ public class IntakeArmSub extends SubsystemBase {
   // here. Call these from Commands.
 
   public IntakeArmSub() {
-
+    setDefaultCommand(new IntakeArmDoNothing(this));
   }
 
   @Override

@@ -9,11 +9,13 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
+import frc.robot.commands.ShooterWheelsDoNothing;
 public class ShooterSub extends SubsystemBase {
   /**
    * Creates a new Shooter.
    */
   public ShooterSub() {
+    setDefaultCommand(new ShooterWheelsDoNothing(this));
     RobotIO.shooterMotor2.follow(RobotIO.shooterMotor1);
   }
 

@@ -9,13 +9,14 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
+import frc.robot.commands.VerticalConveyorDoNothing;
 
 public class VerticalConveyer extends SubsystemBase {
   /**
    * Creates a new VerticalConveyer.
    */
   public VerticalConveyer() {
-
+    setDefaultCommand(new VerticalConveyorDoNothing(this));
   }
 
   @Override
