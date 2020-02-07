@@ -10,13 +10,14 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
+import frc.robot.commands.IntakeDoNothing;
 
 public class IntakeSub extends SubsystemBase {
   /**
    * Creates a new IntakeSub.
    */
   public IntakeSub() {
-
+    setDefaultCommand(new IntakeDoNothing(this));
   }
 
   @Override
@@ -24,8 +25,8 @@ public class IntakeSub extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public static void intakeSpinWheels() {
-    RobotIO.intakeAndControl.set(1.0);
+  public static void intakeSpinWheels(double speed) {
+    RobotIO.intakeAndControl.set(speed);
   }
   
 }

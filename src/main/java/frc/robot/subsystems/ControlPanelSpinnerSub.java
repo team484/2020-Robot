@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotIO;
+import frc.robot.commands.ControlPanelSpinDoNothing;
 
 /**
  * Add your docs here.
@@ -15,10 +17,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class ControlPanelSpinnerSub extends SubsystemBase {
 
     public ControlPanelSpinnerSub() {
-
+    setDefaultCommand(new ControlPanelSpinDoNothing(this));
     }
 
-    
+    public static void set(double speed){
+        RobotIO.intakeAndControl.set(speed);
+    }
 
 }
 

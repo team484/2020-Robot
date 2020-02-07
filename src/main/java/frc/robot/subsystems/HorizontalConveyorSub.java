@@ -25,6 +25,6 @@ public class HorizontalConveyorSub extends SubsystemBase {
     
   }
   public static void set(double speed){
-    RobotIO.ballConveyerHorizontal.set(1.0);
+    RobotIO.ballConveyerHorizontal.set(speed);
   }
 }

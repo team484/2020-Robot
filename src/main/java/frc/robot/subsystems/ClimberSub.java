@@ -9,13 +9,14 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
+import frc.robot.commands.ClimberDoNothing;
 
 public class ClimberSub extends SubsystemBase {
   /**
    * Creates a new ClimberSub.
    */
   public ClimberSub() {
-  
+  setDefaultCommand(new ClimberDoNothing(this));
   }
 
   @Override

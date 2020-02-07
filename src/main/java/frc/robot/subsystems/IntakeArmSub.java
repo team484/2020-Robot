@@ -30,8 +30,8 @@ public class IntakeArmSub extends SubsystemBase {
     RobotIO.intakeArm.set(1.0);
   }
 
-  public static void intakeRaise() {
-    RobotIO.intakeArm.set(-1.0);
+  public static void intakeRaise(double speed) {
+    RobotIO.intakeArm.set(speed);
   }
   
 }
