@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeArmSub;
+import frc.robot.RobotIO;
 
 public class IntakeArmRaise extends CommandBase {
   /**
@@ -19,9 +20,11 @@ public class IntakeArmRaise extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
+  
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.

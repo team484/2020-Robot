@@ -50,5 +50,19 @@ public final class RobotSettings {
 
     public static final int DRIVE_STICK_PORT = 1;
     public static final int OP_STICK_PORT = 2;
+
+    public static final int RIGHT_ENCODER_A_PORT = 0;
+    public static final int RIGHT_ENCODER_B_PORT = 1;
+    public static final int LEFT_ENCODER_A_PORT = 2;
+    public static final int LEFT_ENCODER_B_PORT = 3;
     
+
+    public static int INTAKE_ARM_UP_KP = 1;
+    public static int INTAKE_ARM_UP_KI = 1;
+    public static int INTAKE_ARM_UP_KD = 1;
+    public static double INTAKE_ARM_UP_SETPOINT = -1;
+    public static int INTAKE_ARM_DOWN_KP = 1;
+    public static int INTAKE_ARM_DOWN_KI = 1;
+    public static int INTAKE_ARM_DOWN_KD = 1;
+    public static int INTAKE_ARM_DOWN_SETPOINT = 0;
 }

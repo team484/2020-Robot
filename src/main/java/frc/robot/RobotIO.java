@@ -11,10 +11,12 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Victor;
@@ -47,15 +49,19 @@ public class RobotIO {
    public static final WPI_VictorSPX intakeAndControl = new WPI_VictorSPX(RobotSettings.INTAKE_AND_CONTROL_PANEL_MOTOR_ID);
 
    public static final CANSparkMax intakeArm = new CANSparkMax(RobotSettings.INTAKE_ARM_MOTOR_ID, MotorType.kBrushless);
-
    public static final CANSparkMax leftElevatorMotor = new CANSparkMax(RobotSettings.LEFT_ELEVATOR_MOTOR_ID, MotorType.kBrushless);
    public static final CANSparkMax rightElevatorMotor = new CANSparkMax(RobotSettings.RIGHT_ELEVATOR_MOTOR_ID, MotorType.kBrushless);
-
+   public static final CANPIDController intakeArmPID = new CANPIDController(intakeArm);
+   
    public static final DifferentialDrive difDrive = new DifferentialDrive(leftMotor1, rightMotor1);
 
    public static final Servo clutchServo = new Servo(RobotSettings.CLUTCH_SERVO_PORT);
 
    public static final Joystick driveStick = new Joystick(RobotSettings.DRIVE_STICK_PORT);
    public static final Joystick operatorStick = new Joystick(RobotSettings.OP_STICK_PORT);
+
+   public static final Encoder leftEncoder = new Encoder(RobotSettings.LEFT_ENCODER_A_PORT, RobotSettings.LEFT_ENCODER_B_PORT);
+   public static final Encoder rightEncoder = new Encoder(RobotSettings.RIGHT_ENCODER_A_PORT, RobotSettings.RIGHT_ENCODER_B_PORT);
+
    
 }

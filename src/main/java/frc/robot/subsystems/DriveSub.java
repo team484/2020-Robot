@@ -35,5 +35,13 @@ public static void set(double speed, double rot)
 RobotIO.difDrive.arcadeDrive(speed, rot);
 }
 
-  
+public static double getLeftDistance(){
+  return RobotIO.leftEncoder.getDistance();
+}
+public static double getRightDistance(){
+  return RobotIO.rightEncoder.getDistance();
+}
+public static double getDistance(){
+  return (getRightDistance() + getLeftDistance()) / 2;
+}
 }
