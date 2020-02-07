@@ -7,7 +7,9 @@
 
 package frc.robot.subsystems;
 
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotIO;
 
 /**
  * Add your docs here.
@@ -15,6 +17,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class ControlPanelSpinnerSub extends SubsystemBase {
 
     public ControlPanelSpinnerSub() {
+
+    }
+
+    public static void set(double speed) {
+RobotIO.intakeAndControl.set(speed);
 
     }
 

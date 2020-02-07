@@ -24,9 +24,9 @@ public class ShooterSub extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public static void shooterSpinWheels()
+  public static void shooterSpinWheels(double speed)
   {
-    RobotIO.shooterMotor1.set(1.0);
+    RobotIO.shooterMotor1.set(speed);
   }  
 
 }
