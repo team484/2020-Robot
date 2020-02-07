@@ -14,12 +14,6 @@ public class DriveUntilDistance extends CommandBase {
   /**
    * Creates a new DriveUntilDistance.
    */
-  private double speed;
-  private double distance;
-  public DriveUntilDistance(double speed, double distance){
-    this.speed = speed;
-    this.distance = distance;
-  }
   public DriveUntilDistance(DriveSub subsystem) {
     addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -33,7 +27,7 @@ public class DriveUntilDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    DriveSub.set(speed, 0);
+    
   }
 
   // Called once the command ends or is interrupted.
@@ -44,6 +38,6 @@ public class DriveUntilDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (DriveSub.getDistance() > distance && speed > 0) || (DriveSub.getDistance() < distance && speed < 0);
+    return false;
   }
 }
