@@ -9,6 +9,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+
+//Command Imports
+
+//Subsystem Imports
 import frc.robot.subsystems.ClimberSub;
 import frc.robot.subsystems.ControlPanelSpinnerSub;
 import frc.robot.subsystems.DriveSub;
