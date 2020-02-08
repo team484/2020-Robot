@@ -26,8 +26,8 @@ public class IntakeArmSub extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public static void intakeLower() {
-    RobotIO.intakeArm.set(1.0);
+  public static void intakeLower(double speed) {
+    RobotIO.intakeArm.set(speed);
   }
 
   public static void intakeRaise(double speed) {
