@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotIO;
 import frc.robot.subsystems.ClimberSub;
 
-public class Joystickclimber extends CommandBase {
+public class JoystickClimber extends CommandBase {
   /**
-   * Creates a new Joystickclimber.
+   * Creates a new JoystickClimber.
    */
-  public Joystickclimber(ClimberSub subsystem) {
+  public JoystickClimber(ClimberSub subsystem) {
     addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }

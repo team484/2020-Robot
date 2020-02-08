@@ -66,5 +66,20 @@ public final class RobotSettings {
     public static int INTAKE_ARM_DOWN_KD = 1;
     public static int INTAKE_ARM_DOWN_SETPOINT = 0;
 
-    
+    //Driver Stick Buttons
+    public static final int ELEVATOR_CONTROLS_BUTTON_ID = 1;
+
+    //Operator Stick Buttons
+    public static final int BALL_SHOOTER_BUTTON_ID = 1;
+    public static final int MANUAL_INTAKE_LOWER_BUTTON_ID = 3;
+    public static final int MANUAL_INTAKE_RAISE_BUTTON_ID = 5;
+    public static final int SHOOTER_AIM_DOWN_BUTTON_ID = 4;
+    public static final int SHOOTER_AIM_UP_BUTTON_ID = 6;
+    public static final int INTAKE_UPPER_LEVEL_BUTTON_ID = 7;
+    public static final int INTAKE_MIDDLE_LEVEL_BUTTON_ID = 9;
+    public static final int INTAKE_LOWER_LEVEL_BUTTON_ID = 11;
+    public static final int INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON_ID = 8;
+    public static final int POSITION_CONTROL_BUTTON_ID = 10;
+    public static final int ROTATION_CONTROL_BUTTON_ID = 12;
+
 }
