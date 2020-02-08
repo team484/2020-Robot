@@ -31,8 +31,8 @@ public class DriveSub extends SubsystemBase {
   }
   
 public static void set(double speed, double rot)
- {
-RobotIO.difDrive.arcadeDrive(speed, rot);
+{
+  RobotIO.difDrive.arcadeDrive(speed, rot);
 }
 
 public static double getLeftDistance(){

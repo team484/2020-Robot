@@ -27,12 +27,17 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
 //Command Imports
+import frc.robot.commands.ClimberDoNothing;
 import frc.robot.commands.CloseClutch;
 import frc.robot.commands.ControlPanelSpin;
+import frc.robot.commands.ControlPanelSpinDoNothing;
 import frc.robot.commands.DriveUntilDistance;
+import frc.robot.commands.HorizontalConveyorDoNothing;
 import frc.robot.commands.HorizontalConveyorSpin;
+import frc.robot.commands.IntakeArmDoNothing;
 import frc.robot.commands.IntakeArmLower;
 import frc.robot.commands.IntakeArmRaise;
+import frc.robot.commands.IntakeDoNothing;
 import frc.robot.commands.IntakeSpin;
 import frc.robot.commands.JoystickClimber;
 import frc.robot.commands.JoystickDrive;
@@ -40,6 +45,8 @@ import frc.robot.commands.JoystickElevator;
 import frc.robot.commands.OpenClutch;
 import frc.robot.commands.RaiseToHeight;
 import frc.robot.commands.ShooterSpinWheels;
+import frc.robot.commands.ShooterWheelsDoNothing;
+import frc.robot.commands.VerticalConveyorDoNothing;
 import frc.robot.commands.VerticalConveyorSpin;
 
 //Subsystem Imports
@@ -90,7 +97,18 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
+    //Driver Commands
+    new JoystickButton(RobotIO.driveStick, RobotSettings.ELEVATOR_CONTROLS_BUTTON_ID).whileHeld(new JoystickElevator(elevatorSub)).whileHeld(new JoystickClimber(climberSub));
+    
+    //Operator Commands
+    new JoystickButton(RobotIO.driveStick, RobotSettings.BALL_SHOOTER_BUTTON_ID).whileHeld(new ShooterSpinWheels(shooterSub));
+    new JoystickButton(RobotIO.driveStick, RobotSettings.MANUAL_INTAKE_LOWER_BUTTON_ID).whileHeld(new IntakeArmLower(intakeArmSub));
+    new JoystickButton(RobotIO.driveStick, RobotSettings.MANUAL_INTAKE_RAISE_BUTTON_ID).whileHeld(new IntakeArmRaise(intakeArmSub));
+    //Placeholder for shooter aiming buttons (buttons 3 and 5)
+    //Placeholder for the buttons that bring the intake arm to a specific height (buttons 7,9 and 11)
+    new JoystickButton(RobotIO.driveStick, RobotSettings.INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON_ID).whileHeld(new IntakeSpin(intakeSub));
+    //Placeholder for automated control panel button commands
+    
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
