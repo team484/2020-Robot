@@ -11,6 +11,20 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 
 //Command Imports
+import frc.robot.commands.CloseClutch;
+import frc.robot.commands.ControlPanelSpin;
+import frc.robot.commands.DriveUntilDistance;
+import frc.robot.commands.HorizontalConveyorSpin;
+import frc.robot.commands.IntakeArmLower;
+import frc.robot.commands.IntakeArmRaise;
+import frc.robot.commands.IntakeSpin;
+import frc.robot.commands.Joystickclimber;
+import frc.robot.commands.JoystickDrive;
+import frc.robot.commands.JoystickElevator;
+import frc.robot.commands.OpenClutch;
+import frc.robot.commands.RaiseToHeight;
+import frc.robot.commands.ShooterSpinWheels;
+import frc.robot.commands.VerticalConveyorSpin;
 
 //Subsystem Imports
 import frc.robot.subsystems.ClimberSub;
