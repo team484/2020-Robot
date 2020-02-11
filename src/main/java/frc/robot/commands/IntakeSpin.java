@@ -13,10 +13,11 @@ import frc.robot.subsystems.IntakeSub;
 public class IntakeSpin extends CommandBase {
   /**
    * Creates a new IntakeSpin.
-   */
+   */ 
   public IntakeSpin(IntakeSub subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
+
   }
 
   // Called when the command is initially scheduled.

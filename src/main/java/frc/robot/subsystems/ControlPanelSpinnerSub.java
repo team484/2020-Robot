@@ -18,12 +18,11 @@ import frc.robot.commands.ControlPanelSpinDoNothing;
 public class ControlPanelSpinnerSub extends SubsystemBase {
 
     public ControlPanelSpinnerSub() {
-    setDefaultCommand(new ControlPanelSpinDoNothing(this));
+        setDefaultCommand(new ControlPanelSpinDoNothing(this));
     }
 
     public static void set(double speed){
         RobotIO.intakeAndControl.set(speed);
     }
-
 }
 
