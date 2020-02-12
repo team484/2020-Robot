@@ -7,8 +7,11 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.ControlType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
+import frc.robot.RobotSettings;
 import frc.robot.commands.IntakeArmDoNothing;
 /**
  * Add your docs here.
@@ -31,6 +34,16 @@ public class IntakeArmSub extends SubsystemBase {
   }
 
   public static void intakeRaise(double speed) {
+    RobotIO.intakeArm.set(speed);
+  }
+  public static void setAngle(double angle){
+    RobotIO.intakeArmPID.setP(RobotSettings.INTAKE_KP);
+    RobotIO.intakeArmPID.setI(RobotSettings.INTAKE_KI);
+    RobotIO.intakeArmPID.setP(RobotSettings.INTAKE_KD);
+    RobotIO.intakeArmPID.setReference(angle, ControlType.kPosition);
+  }
+  public static void setSpeed(double speed)
+  {
     RobotIO.intakeArm.set(speed);
   }
   

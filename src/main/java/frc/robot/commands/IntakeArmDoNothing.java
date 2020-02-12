@@ -25,7 +25,7 @@ public class IntakeArmDoNothing extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    RobotIO.intakeAndControl.set(0.0);
+    IntakeArmSub.setSpeed(1.0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

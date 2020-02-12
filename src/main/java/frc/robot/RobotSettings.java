@@ -57,14 +57,12 @@ public final class RobotSettings {
     public static final int LEFT_ENCODER_B_PORT = 3;
     
 
-    public static int INTAKE_ARM_UP_KP = 1;
-    public static int INTAKE_ARM_UP_KI = 1;
-    public static int INTAKE_ARM_UP_KD = 1;
-    public static double INTAKE_ARM_UP_SETPOINT = -1;
-    public static int INTAKE_ARM_DOWN_KP = 1;
-    public static int INTAKE_ARM_DOWN_KI = 1;
-    public static int INTAKE_ARM_DOWN_KD = 1;
-    public static int INTAKE_ARM_DOWN_SETPOINT = 0;
+    public static final int INTAKE_UP_SETPOINT = -90;
+    public static final int INTAKE_MID_SETPOINT = 45;
+    public static final int INTAKE_DOWN_SETPOINT = 0;
+    public static final double INTAKE_KP = 1.0;
+    public static final double INTAKE_KI = 1.0;
+    public static final double INTAKE_KD = 1.0;
 
     //Driver Stick Buttons
     public static final int ELEVATOR_CONTROLS_BUTTON_ID = 1;
