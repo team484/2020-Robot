@@ -11,43 +11,16 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 
 //WPILib Imports
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Filesystem;
-import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.controller.RamseteController;
-import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.trajectory.Trajectory;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
 //Command Imports
-import frc.robot.commands.ClimberDoNothing;
-import frc.robot.commands.CloseClutch;
-import frc.robot.commands.ControlPanelSpin;
-import frc.robot.commands.ControlPanelSpinDoNothing;
-import frc.robot.commands.DriveUntilDistance;
-import frc.robot.commands.HorizontalConveyorDoNothing;
-import frc.robot.commands.HorizontalConveyorSpin;
-import frc.robot.commands.IntakeArmDoNothing;
 import frc.robot.commands.IntakeArmLower;
 import frc.robot.commands.IntakeArmRaise;
-import frc.robot.commands.IntakeDoNothing;
 import frc.robot.commands.IntakeSpin;
 import frc.robot.commands.JoystickClimber;
-import frc.robot.commands.JoystickDrive;
 import frc.robot.commands.JoystickElevator;
-import frc.robot.commands.OpenClutch;
-import frc.robot.commands.RaiseToHeight;
 import frc.robot.commands.ShooterSpinWheels;
-import frc.robot.commands.ShooterWheelsDoNothing;
-import frc.robot.commands.VerticalConveyorDoNothing;
-import frc.robot.commands.VerticalConveyorSpin;
 
 //Subsystem Imports
 import frc.robot.subsystems.ClimberSub;
@@ -60,8 +33,7 @@ import frc.robot.subsystems.IntakeSub;
 import frc.robot.subsystems.ShooterSub;
 import frc.robot.subsystems.VerticalConveyer;
 
-import java.io.IOException;
-import java.nio.file.Path;
+
 
 
 /**
