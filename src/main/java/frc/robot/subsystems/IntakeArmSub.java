@@ -39,7 +39,7 @@ public class IntakeArmSub extends SubsystemBase {
   public static void setAngle(double angle){
     RobotIO.intakeArmPID.setP(RobotSettings.INTAKE_KP);
     RobotIO.intakeArmPID.setI(RobotSettings.INTAKE_KI);
-    RobotIO.intakeArmPID.setP(RobotSettings.INTAKE_KD);
+    RobotIO.intakeArmPID.setD(RobotSettings.INTAKE_KD);
     RobotIO.intakeArmPID.setReference(angle, ControlType.kPosition);
   }
   public static void setSpeed(double speed)
