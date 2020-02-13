@@ -17,7 +17,7 @@ public class IntakeSpin extends CommandBase {
    */ 
   public double intakeSpin = RobotSettings.INTAKE_WHEELS_MOTOR_SPEED;
 
-  public IntakeSpin(IntakeSub subsystem, double speed) {
+  public IntakeSpin(IntakeSub subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -30,7 +30,7 @@ public class IntakeSpin extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    IntakeSub.intakeSpinWheels(intakeSpin);
+    IntakeSub.intakeSpinWheels(RobotSettings.INTAKE_WHEELS_MOTOR_SPEED);
   }
 
   // Called once the command ends or is interrupted.

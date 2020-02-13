@@ -15,8 +15,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
 //Command Imports
-import frc.robot.commands.IntakeArmLower;
-import frc.robot.commands.IntakeArmRaise;
+
 import frc.robot.commands.IntakeSpin;
 import frc.robot.commands.JoystickClimber;
 import frc.robot.commands.JoystickElevator;
@@ -74,8 +73,7 @@ public class RobotContainer {
     
     //Operator Commands
     new JoystickButton(RobotIO.driveStick, RobotSettings.BALL_SHOOTER_BUTTON_ID).whileHeld(new ShooterSpinWheels(shooterSub));
-    new JoystickButton(RobotIO.driveStick, RobotSettings.MANUAL_INTAKE_LOWER_BUTTON_ID).whileHeld(new IntakeArmLower(intakeArmSub));
-    new JoystickButton(RobotIO.driveStick, RobotSettings.MANUAL_INTAKE_RAISE_BUTTON_ID).whileHeld(new IntakeArmRaise(intakeArmSub));
+    
     //Placeholder for shooter aiming buttons (buttons 3 and 5)
     //Placeholder for the buttons that bring the intake arm to a specific height (buttons 7,9 and 11)
     new JoystickButton(RobotIO.driveStick, RobotSettings.INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON_ID).whileHeld(new IntakeSpin(intakeSub));
