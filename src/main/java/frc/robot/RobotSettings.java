@@ -80,4 +80,7 @@ public final class RobotSettings {
     public static final int POSITION_CONTROL_BUTTON_ID = 10;
     public static final int ROTATION_CONTROL_BUTTON_ID = 12;
 
+    //Motor Values
+    public static final double INTAKE_WHEELS_MOTOR_SPEED = 1.0;
+    public static final double CONTROL_PANEL_MOTOR_SPEED = 1.0;
 }
