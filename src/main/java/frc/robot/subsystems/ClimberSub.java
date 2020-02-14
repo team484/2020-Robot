@@ -9,7 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
-import frc.robot.commands.ClimberDoNothing;
+import frc.robot.commands.climber.ClimberDoNothing;
 
 public class ClimberSub extends SubsystemBase {
   /**

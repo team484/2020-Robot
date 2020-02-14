@@ -7,26 +7,31 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.commands.JoystickElevator;
+import frc.robot.commands.elevator.ElevatorDoNothing;
 import frc.robot.RobotIO;
 import frc.robot.RobotSettings;
 
 public class ElevatorSub extends SubsystemBase {
+  private static boolean wasClutchEverOpen = false;
   /**
    * Creates a new Elevator.
    */
   public ElevatorSub() {
     closeClutch();
-    setDefaultCommand(new JoystickElevator(this));
-    RobotIO.rightElevatorMotor.follow(RobotIO.leftElevatorMotor, true);
+    setDefaultCommand(new ElevatorDoNothing(this));
+    RobotIO.leftElevatorMotor.follow(RobotIO.rightElevatorMotor, true);
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    if (DriverStation.getInstance().getMatchTime() < 1 && DriverStation.getInstance().isOperatorControl()) {
+      openClutch();
+    }
   }
   public static void openClutch(){
+    wasClutchEverOpen = true;
     RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_ENGAGE_ANGLE);
   }
 
@@ -36,15 +41,15 @@ public class ElevatorSub extends SubsystemBase {
   
   public static void set(double speed) {
     double height = getHeight();
-    if (height > RobotSettings.ELEVATOR_MAX_HEIGHT && speed > 0) {
-      RobotIO.leftElevatorMotor.set(0);
+    if ((height > RobotSettings.ELEVATOR_MAX_HEIGHT || wasClutchEverOpen) && speed > 0) {
+      RobotIO.rightElevatorMotor.set(0);
       return;
     }
     if (height <= 0 && speed < 0) {
-      RobotIO.leftElevatorMotor.set(0);
+      RobotIO.rightElevatorMotor.set(0);
       return;
     }
-    RobotIO.leftElevatorMotor.set(speed);
+    RobotIO.rightElevatorMotor.set(speed);
   }
 
   public static double getrightHeight(){

@@ -12,19 +12,21 @@ import com.revrobotics.ControlType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
 import frc.robot.RobotSettings;
-import frc.robot.commands.IntakeArmDoNothing;
+import frc.robot.commands.intakearm.IntakeArmSetPower;
 /**
  * Add your docs here.
  */
 public class IntakeArmSub extends SubsystemBase {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  private static boolean lastRunSpeed = true;
+  private static double lastAngle = -1;
+  private static double lastSpeed = -2;
 
   public IntakeArmSub() {
-    setDefaultCommand(new IntakeArmDoNothing(this));
+    setDefaultCommand(new IntakeArmSetPower(this,RobotSettings.INTAKE_ARM_VERT_HOLD_POWER));
     RobotIO.intakeArmPID.setP(RobotSettings.INTAKE_KP);
     RobotIO.intakeArmPID.setI(RobotSettings.INTAKE_KI);
     RobotIO.intakeArmPID.setD(RobotSettings.INTAKE_KD);
+    RobotIO.intakeArm.setSmartCurrentLimit(RobotSettings.INTAKE_ARM_MAX_CURRENT);
   }
 
   @Override
@@ -33,15 +35,25 @@ public class IntakeArmSub extends SubsystemBase {
   }
 
   public static void setAngle(double angle){
+    if (angle == lastAngle && !lastRunSpeed) return;
+    lastRunSpeed = false;
     RobotIO.intakeArmPID.setReference(angle, ControlType.kPosition);
   }
-  private static double lastSpeed = -2;
-  public static void setSpeed(double speed)
-  {
-    if (speed == lastSpeed) return;
+
+  public static void setSpeed(double speed) {
+    if (speed == lastSpeed && lastRunSpeed) return;
     lastSpeed = speed;
+    lastRunSpeed = true;
     RobotIO.intakeArmPID.setReference(speed, ControlType.kDutyCycle);
     RobotIO.intakeArm.set(speed);
+  }
+
+  public static double getAngle() {
+    return RobotIO.intakeArm.getEncoder().getPosition();
+  }
+
+  public static double getVelocity() {
+    return RobotIO.intakeArm.getEncoder().getVelocity();
   }
   
 }

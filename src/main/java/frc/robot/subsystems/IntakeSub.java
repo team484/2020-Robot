@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
-import frc.robot.commands.IntakeDoNothing;
+import frc.robot.commands.intake.IntakeDoNothing;
 
 public class IntakeSub extends SubsystemBase {
   /**

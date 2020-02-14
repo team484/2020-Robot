@@ -9,7 +9,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
-import frc.robot.commands.VerticalConveyorDoNothing;
+import frc.robot.RobotSettings;
+import frc.robot.commands.verticalconveyor.VerticalConveyorDoNothing;
 
 public class VerticalConveyer extends SubsystemBase {
   /**
@@ -26,6 +27,10 @@ public class VerticalConveyer extends SubsystemBase {
 
   public static void set(double speed){
     RobotIO.ballConveyerVertical.set(speed);
+  }
+
+  public static boolean isBallPresent() {
+    return RobotIO.horizontalBallSensor.get() == RobotSettings.HORIZONTAL_SENSOR_NORMAL_STATE;
   }
   
 }

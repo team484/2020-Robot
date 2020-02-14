@@ -35,7 +35,7 @@ public class Vision {
             if (eventVal.length < 3) return;
             Vision.targetTVec = eventVal;
             Vision.oneFrameOldAngle = Vision.zeroFrameOldAngle;
-            Vision.zeroFrameOldAngle = DriveSub.getAngle();
+            Vision.zeroFrameOldAngle = DriveSub.getGyroAngle();
         }, EntryListenerFlags.kUpdate | EntryListenerFlags.kNew | EntryListenerFlags.kImmediate);
     }
 
@@ -59,7 +59,7 @@ public class Vision {
     public static double getAngle() {
         double[] tVec = getRotatedTVec(Math.toRadians(-20));
         double frameAngle = Math.atan(-tVec[2]/tVec[0]);
-        double gyroAngleChange = DriveSub.getAngle() - Vision.oneFrameOldAngle;
+        double gyroAngleChange = DriveSub.getGyroAngle() - Vision.oneFrameOldAngle;
         return frameAngle-gyroAngleChange;
     }
 
