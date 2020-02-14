@@ -22,6 +22,9 @@ public class IntakeArmSub extends SubsystemBase {
 
   public IntakeArmSub() {
     setDefaultCommand(new IntakeArmDoNothing(this));
+    RobotIO.intakeArmPID.setP(RobotSettings.INTAKE_KP);
+    RobotIO.intakeArmPID.setI(RobotSettings.INTAKE_KI);
+    RobotIO.intakeArmPID.setD(RobotSettings.INTAKE_KD);
   }
 
   @Override
@@ -29,21 +32,15 @@ public class IntakeArmSub extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public static void intakeLower(double speed) {
-    RobotIO.intakeArm.set(speed);
-  }
-
-  public static void intakeRaise(double speed) {
-    RobotIO.intakeArm.set(speed);
-  }
   public static void setAngle(double angle){
-    RobotIO.intakeArmPID.setP(RobotSettings.INTAKE_KP);
-    RobotIO.intakeArmPID.setI(RobotSettings.INTAKE_KI);
-    RobotIO.intakeArmPID.setD(RobotSettings.INTAKE_KD);
     RobotIO.intakeArmPID.setReference(angle, ControlType.kPosition);
   }
+  private static double lastSpeed = -2;
   public static void setSpeed(double speed)
   {
+    if (speed == lastSpeed) return;
+    lastSpeed = speed;
+    RobotIO.intakeArmPID.setReference(speed, ControlType.kDutyCycle);
     RobotIO.intakeArm.set(speed);
   }
   

@@ -7,8 +7,6 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
 import edu.wpi.first.wpilibj.SpeedController;
 
 import java.lang.Math;
@@ -20,8 +18,8 @@ public class DoubleSpeedController {
 
     //two variables, one for each set method
     public static SpeedController speedController;
-    public static double speedIntake = 0;
-    public static double speedControlPanel = 0;
+    public static double speed1 = 0;
+    public static double speed2 = 0;
     // constructor that takes in the speed controller
     public DoubleSpeedController(SpeedController controller){
         speedController = controller;
@@ -30,23 +28,23 @@ public class DoubleSpeedController {
     //two set methods:
 
     //set 1 : takes in a speed, saves it to the variable, then compares abs(var1, var2) , sets the speed controller output to the largest one
-    public static void set1(double speed){
-        speedIntake = speed;
-        if (Math.abs(speedIntake) > Math.abs(speedControlPanel)){
-            speedController.set(speedIntake);
+    public void set1(double speed){
+        speed1 = speed;
+        if (Math.abs(speed1) > Math.abs(speed2)){
+            speedController.set(speed1);
         }
         else{
-            speedController.set(speedControlPanel);
+            speedController.set(speed2);
         }
     }
 
     public void set2(double speed){
-        speedControlPanel = speed;
-        if (Math.abs(speedControlPanel) > Math.abs(speedIntake)){
-            speedController.set(speedControlPanel);
+        speed2 = speed;
+        if (Math.abs(speed2) > Math.abs(speed1)){
+            speedController.set(speed2);
         }
         else{
-            speedController.set(speedIntake);
+            speedController.set(speed1);
         }
     }
 

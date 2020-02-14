@@ -22,7 +22,7 @@ public class ControlPanelSpinnerSub extends SubsystemBase {
     }
 
     public static void set(double speed){
-        RobotIO.intakeAndControl.set(speed);
+        RobotIO.intakeAndcontrolDoubleSpeedController.set2(speed);
     }
 }
 

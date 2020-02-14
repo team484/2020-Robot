@@ -26,7 +26,7 @@ public class IntakeSub extends SubsystemBase {
   }
 
   public static void intakeSpinWheels(double speed) {
-    RobotIO.intakeAndControl.set(speed);
+    RobotIO.intakeAndcontrolDoubleSpeedController.set1(speed);
   }
   
 }

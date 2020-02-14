@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
+import frc.robot.RobotSettings;
 import frc.robot.commands.JoystickDrive;
 
 
@@ -23,6 +24,8 @@ public class DriveSub extends SubsystemBase {
     RobotIO.rightMotor3.follow(RobotIO.rightMotor1);
     RobotIO.leftMotor2.follow(RobotIO.leftMotor1);
     RobotIO.leftMotor3.follow(RobotIO.leftMotor1);
+    RobotIO.leftEncoder.setDistancePerPulse(RobotSettings.LEFT_ENCODER_DPP);
+    RobotIO.rightEncoder.setDistancePerPulse(RobotSettings.RIGHT_ENCODER_DPP);
 }
    
   @Override
@@ -32,7 +35,7 @@ public class DriveSub extends SubsystemBase {
   
 public static void set(double speed, double rot)
 {
-  RobotIO.difDrive.arcadeDrive(speed, rot);
+  RobotIO.difDrive.arcadeDrive(speed, -rot);
 }
 
 public static double getLeftDistance(){
@@ -43,5 +46,10 @@ public static double getRightDistance(){
 }
 public static double getDistance(){
   return (getRightDistance() + getLeftDistance()) / 2;
+}
+
+public static double getAngle() {
+  //TODO: Make this a thing
+  return 0;
 }
 }

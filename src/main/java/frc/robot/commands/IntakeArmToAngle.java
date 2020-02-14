@@ -14,11 +14,13 @@ public class IntakeArmToAngle extends CommandBase {
   /**
    * Creates a new toAngle.
    */
-  
-   public IntakeArmToAngle(IntakeArmSub subsystem) {
+   private double angle;
+   private boolean exitWhenReached;
+   public IntakeArmToAngle(IntakeArmSub subsystem, double angle, boolean exitWhenReached) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
-    IntakeArmSub.setAngle(0);
+    this.angle = angle;
+    this.exitWhenReached = exitWhenReached;
   }
 
   // Called when the command is initially scheduled.
@@ -29,7 +31,8 @@ public class IntakeArmToAngle extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    }
+    IntakeArmSub.setAngle(angle);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
@@ -39,6 +42,7 @@ public class IntakeArmToAngle extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //return true if arm is at desired angle and exitWhenReached is true
     return false;
   }
 }

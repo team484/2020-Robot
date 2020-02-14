@@ -36,17 +36,17 @@ public class RobotIO {
    public static final WPI_TalonSRX shooterMotor1 = new WPI_TalonSRX(RobotSettings.SHOOTER_MOTOR_1_ID);
    public static final WPI_TalonSRX shooterMotor2 = new WPI_TalonSRX(RobotSettings.SHOOTER_MOTOR_2_ID);
 
-   public static final WPI_TalonFX ballConveyerHorizontal = new WPI_TalonFX(RobotSettings.HORIZONTAL_BALL_CONVEYOR_MOTOR_ID);
-   public static final WPI_TalonFX ballConveyerVertical = new WPI_TalonFX(RobotSettings.VERTICAL_BALL_CONVEYOR_MOTOR_ID);
+   public static final WPI_VictorSPX ballConveyerHorizontal = new WPI_VictorSPX(RobotSettings.HORIZONTAL_BALL_CONVEYOR_MOTOR_ID);
+   public static final WPI_VictorSPX ballConveyerVertical = new WPI_VictorSPX(RobotSettings.VERTICAL_BALL_CONVEYOR_MOTOR_ID);
    
    public static final WPI_VictorSPX climberWheels = new WPI_VictorSPX(RobotSettings.CLIMBER_WHEELS_MOTOR_ID);
 
-   public static final WPI_VictorSPX intakeAndControl = new WPI_VictorSPX(RobotSettings.INTAKE_AND_CONTROL_PANEL_MOTOR_ID);
+   private static final WPI_VictorSPX intakeAndControl = new WPI_VictorSPX(RobotSettings.INTAKE_AND_CONTROL_PANEL_MOTOR_ID);
 
    public static final CANSparkMax intakeArm = new CANSparkMax(RobotSettings.INTAKE_ARM_MOTOR_ID, MotorType.kBrushless);
    public static final CANSparkMax leftElevatorMotor = new CANSparkMax(RobotSettings.LEFT_ELEVATOR_MOTOR_ID, MotorType.kBrushless);
    public static final CANSparkMax rightElevatorMotor = new CANSparkMax(RobotSettings.RIGHT_ELEVATOR_MOTOR_ID, MotorType.kBrushless);
-   public static final CANPIDController intakeArmPID = new CANPIDController(intakeArm);
+   public static final CANPIDController intakeArmPID = intakeArm.getPIDController();
    
    public static final DifferentialDrive difDrive = new DifferentialDrive(leftMotor1, rightMotor1);
 
@@ -58,5 +58,5 @@ public class RobotIO {
    public static final Encoder leftEncoder = new Encoder(RobotSettings.LEFT_ENCODER_A_PORT, RobotSettings.LEFT_ENCODER_B_PORT);
    public static final Encoder rightEncoder = new Encoder(RobotSettings.RIGHT_ENCODER_A_PORT, RobotSettings.RIGHT_ENCODER_B_PORT);
 
-   public static final DoubleSpeedController doubleSpeedController = new DoubleSpeedController(intakeAndControl);
+   public static final DoubleSpeedController intakeAndcontrolDoubleSpeedController = new DoubleSpeedController(intakeAndControl);
 }

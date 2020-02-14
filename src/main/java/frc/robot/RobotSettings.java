@@ -52,10 +52,15 @@ public final class RobotSettings {
     public static final int DRIVE_STICK_PORT = 1;
     public static final int OP_STICK_PORT = 2;
 
-    public static final int RIGHT_ENCODER_A_PORT = 0;
-    public static final int RIGHT_ENCODER_B_PORT = 1;
+    public static final int RIGHT_ENCODER_A_PORT = 6;
+    public static final int RIGHT_ENCODER_B_PORT = 7;
     public static final int LEFT_ENCODER_A_PORT = 2;
     public static final int LEFT_ENCODER_B_PORT = 3;
+    public static final double LEFT_ENCODER_DPP = 0.000243519452; //meters per pulse
+    public static final double RIGHT_ENCODER_DPP = -LEFT_ENCODER_DPP;
+
+    public static final int HORIZONTAL_BALL_SENSOR_PORT = 0;
+    public static final int VERTICAL_BALL_SeNSOR_PORT = 1;
     
 
     public static final int INTAKE_UP_SETPOINT = -90;
@@ -84,5 +89,6 @@ public final class RobotSettings {
     //Motor Values
     public static final double INTAKE_WHEELS_MOTOR_SPEED = 1.0;
     public static final double CONTROL_PANEL_MOTOR_SPEED = 1.0;
+    public static final double SHOOTER_TARGET_RPM = 12000;
     public static int ELEVATOR_MAX_HEIGHT;
 }

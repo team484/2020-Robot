@@ -29,28 +29,34 @@ public class ElevatorSub extends SubsystemBase {
   public static void openClutch(){
     RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_ENGAGE_ANGLE);
   }
+
   public static void closeClutch(){
     RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_DISENGAGE_ANGLE);
   }
   
   public static void set(double speed) {
+    double height = getHeight();
+    if (height > RobotSettings.ELEVATOR_MAX_HEIGHT && speed > 0) {
+      RobotIO.leftElevatorMotor.set(0);
+      return;
+    }
+    if (height <= 0 && speed < 0) {
+      RobotIO.leftElevatorMotor.set(0);
+      return;
+    }
     RobotIO.leftElevatorMotor.set(speed);
   }
+
   public static double getrightHeight(){
     return RobotIO.rightElevatorMotor.getEncoder().getPosition();
-    }
+  }
   
   public static double getleftHeight(){
   return RobotIO.leftElevatorMotor.getEncoder().getPosition();
   }
+
   public static double getHeight(){
   return Math.max(getleftHeight(), getrightHeight());
-  }
-  public static void limitHeight(){
-    if (getHeight() >= RobotSettings.ELEVATOR_MAX_HEIGHT)
-    {
-      set(0);
-    }
   }
   
 }

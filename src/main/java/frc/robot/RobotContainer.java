@@ -9,7 +9,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 //WPILib Imports
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -53,14 +56,31 @@ public class RobotContainer {
   private final ShooterSub shooterSub = new ShooterSub();
   private final VerticalConveyer verticalConveyerSub = new VerticalConveyer();
 
+  public static final Vision vision = new Vision();
+  private final SendableChooser<Command> autoChooser = new SendableChooser<>();
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    autoChooser.setDefaultOption("Do Nothing", new WaitCommand(0));
+    autoChooser.addOption("Also Do Nothing", new WaitCommand(0));
+    SmartDashboard.putData(autoChooser);
   }
-
+  
+  /**
+   * Use this to pass the autonomous command to the main {@link Robot} class.
+   *
+   * @return the command to run in autonomous
+   */
+  public Command getAutonomousCommand() {
+    if (autoChooser.getSelected() != null) {
+      return autoChooser.getSelected();
+    } else {
+      return new WaitCommand(0);
+    }
+  }
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -69,23 +89,19 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Driver Commands
-    new JoystickButton(RobotIO.driveStick, RobotSettings.ELEVATOR_CONTROLS_BUTTON_ID).whileHeld(new JoystickElevator(elevatorSub)).whileHeld(new JoystickClimber(climberSub));
+    //-----control elevator-----
+    new JoystickButton(RobotIO.driveStick, RobotSettings.ELEVATOR_CONTROLS_BUTTON_ID)
+    .whileHeld(new JoystickElevator(elevatorSub))
+    .whileHeld(new JoystickClimber(climberSub));
     
     //Operator Commands
-    new JoystickButton(RobotIO.driveStick, RobotSettings.BALL_SHOOTER_BUTTON_ID).whileHeld(new ShooterSpinWheels(shooterSub));
+    //-----shoot ball-----
+    new JoystickButton(RobotIO.driveStick, RobotSettings.BALL_SHOOTER_BUTTON_ID)
+    .whileHeld(new ShooterSpinWheels(shooterSub));
     
     //Placeholder for shooter aiming buttons (buttons 3 and 5)
     //Placeholder for the buttons that bring the intake arm to a specific height (buttons 7,9 and 11)
     new JoystickButton(RobotIO.driveStick, RobotSettings.INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON_ID).whileHeld(new IntakeSpin(intakeSub, 1.0));
     //Placeholder for automated control panel button commands
-    
-
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-
-    // An ExampleCommand will run in autonomous
   }
 }
