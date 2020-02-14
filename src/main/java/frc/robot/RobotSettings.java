@@ -45,6 +45,7 @@ public final class RobotSettings {
     // Angles for engaging and disengaging climber clutch. Make final when assigning a value.
     public static int CLUTCH_DISENGAGE_ANGLE = 90;
     public static int CLUTCH_ENGAGE_ANGLE = 0;
+    public static boolean CLUTCH_EGAGED = false;
     
     public static final double VERTICAL_CONVEYOR_SPEED = 1.0;
 
@@ -83,4 +84,5 @@ public final class RobotSettings {
     //Motor Values
     public static final double INTAKE_WHEELS_MOTOR_SPEED = 1.0;
     public static final double CONTROL_PANEL_MOTOR_SPEED = 1.0;
+    public static int ELEVATOR_MAX_HEIGHT;
 }

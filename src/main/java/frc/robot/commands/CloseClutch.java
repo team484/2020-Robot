@@ -14,9 +14,8 @@ public class CloseClutch extends CommandBase {
   /**
    * Creates a new CloseClutch.
    */
-  public CloseClutch(ElevatorSub subsystem) {
+  public CloseClutch() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +26,7 @@ public class CloseClutch extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ElevatorSub.engageClutch();
+    ElevatorSub.closeClutch();
   }
 
   // Called once the command ends or is interrupted.
@@ -38,6 +37,6 @@ public class CloseClutch extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

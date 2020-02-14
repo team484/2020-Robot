@@ -29,12 +29,13 @@ public class JoystickElevator extends CommandBase {
   @Override
   public void execute() 
   {
-    ElevatorSub.set(RobotIO.operatorStick.getY());
+    ElevatorSub.set(RobotIO.driveStick.getY());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+  ElevatorSub.set(0);
   }
 
   // Returns true when the command should end.

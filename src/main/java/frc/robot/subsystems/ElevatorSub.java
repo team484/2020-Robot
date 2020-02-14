@@ -17,6 +17,7 @@ public class ElevatorSub extends SubsystemBase {
    * Creates a new Elevator.
    */
   public ElevatorSub() {
+    closeClutch();
     setDefaultCommand(new JoystickElevator(this));
     RobotIO.rightElevatorMotor.follow(RobotIO.leftElevatorMotor, true);
   }
@@ -25,15 +26,31 @@ public class ElevatorSub extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  public static void engageClutch(){
+  public static void openClutch(){
     RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_ENGAGE_ANGLE);
   }
-  public static void disengageClutch(){
+  public static void closeClutch(){
     RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_DISENGAGE_ANGLE);
   }
   
   public static void set(double speed) {
     RobotIO.leftElevatorMotor.set(speed);
+  }
+  public static double getrightHeight(){
+    return RobotIO.rightElevatorMotor.getEncoder().getPosition();
+    }
+  
+  public static double getleftHeight(){
+  return RobotIO.leftElevatorMotor.getEncoder().getPosition();
+  }
+  public static double getHeight(){
+  return Math.max(getleftHeight(), getrightHeight());
+  }
+  public static void limitHeight(){
+    if (getHeight() >= RobotSettings.ELEVATOR_MAX_HEIGHT)
+    {
+      set(0);
+    }
   }
   
 }

@@ -17,7 +17,7 @@ public class IntakeSpin extends CommandBase {
    */ 
   public double intakeSpin = RobotSettings.INTAKE_WHEELS_MOTOR_SPEED;
 
-  public IntakeSpin(IntakeSub subsystem) {
+  public IntakeSpin(IntakeSub subsystem, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }

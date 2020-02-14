@@ -76,7 +76,7 @@ public class RobotContainer {
     
     //Placeholder for shooter aiming buttons (buttons 3 and 5)
     //Placeholder for the buttons that bring the intake arm to a specific height (buttons 7,9 and 11)
-    new JoystickButton(RobotIO.driveStick, RobotSettings.INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON_ID).whileHeld(new IntakeSpin(intakeSub));
+    new JoystickButton(RobotIO.driveStick, RobotSettings.INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON_ID).whileHeld(new IntakeSpin(intakeSub, 1.0));
     //Placeholder for automated control panel button commands
     
 
