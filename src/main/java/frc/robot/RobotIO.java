@@ -7,15 +7,16 @@
 
 package frc.robot;
 
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ColorSensorV3;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -60,5 +61,8 @@ public class RobotIO {
    public static final Encoder rightEncoder = new Encoder(RobotSettings.RIGHT_ENCODER_A_PORT, RobotSettings.RIGHT_ENCODER_B_PORT);
 
    public static final DoubleSpeedController intakeAndcontrolDoubleSpeedController = new DoubleSpeedController(intakeAndControl);
+   
+   private static final I2C.Port i2cPort = I2C.Port.kOnboard;
+   public static final ColorSensorV3 colorSensor = new ColorSensorV3(i2cPort);
    
 }
