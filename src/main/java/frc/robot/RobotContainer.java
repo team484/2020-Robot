@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
 //Command Imports
-
 import frc.robot.commands.IntakeSpin;
 import frc.robot.commands.JoystickClimber;
 import frc.robot.commands.JoystickElevator;
