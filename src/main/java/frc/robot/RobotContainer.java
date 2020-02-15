@@ -15,14 +15,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 //WPILib Imports
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-
+import frc.robot.commands.HorizontalConveyorSpin;
+import frc.robot.commands.intakearm.IntakeArmToAngle;
 //Command Imports
-import frc.robot.commands.IntakeSpin;
+import frc.robot.commands.intake.IntakeSpin;
 import frc.robot.commands.JoystickClimber;
 import frc.robot.commands.JoystickElevator;
 import frc.robot.commands.ShooterSpinWheels;
-
+import frc.robot.commands.VerticalConveyorSpin;
 //Subsystem Imports
 import frc.robot.subsystems.ClimberSub;
 import frc.robot.subsystems.ControlPanelSpinnerSub;
@@ -95,7 +95,7 @@ public class RobotContainer {
     
     //Operator Commands
     //-----shoot ball-----
-    new JoystickButton(RobotIO.driveStick, RobotSettings.BALL_SHOOTER_BUTTON_ID)
+    new JoystickButton(RobotIO.operatorStick, RobotSettings.BALL_SHOOTER_BUTTON_ID)
     .whileHeld(new ShooterSpinWheels(shooterSub));
     
     //Placeholder for shooter aiming buttons (buttons 3 and 5)

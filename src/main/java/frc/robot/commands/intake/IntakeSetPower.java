@@ -5,21 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.IntakeSub;
 
-public class IntakeSpin extends CommandBase {
+public class IntakeSetPower extends CommandBase {
   /**
-   * Creates a new IntakeSpin.
-   */ 
-  private double intakeSpin;
-
-  public IntakeSpin(IntakeSub subsystem, double speed) {
+   * Creates a new IntakeSetPower.
+   */
+  public IntakeSetPower(DriveSub subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
-    intakeSpin = speed;
   }
 
   // Called when the command is initially scheduled.
@@ -30,13 +28,12 @@ public class IntakeSpin extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    IntakeSub.intakeSpinWheels(intakeSpin);
+    IntakeSub.intakeSpinWheels(1.0);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    IntakeSub.intakeSpinWheels(0.0);
   }
 
   // Returns true when the command should end.
