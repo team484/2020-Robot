@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -59,4 +60,5 @@ public class RobotIO {
    public static final Encoder rightEncoder = new Encoder(RobotSettings.RIGHT_ENCODER_A_PORT, RobotSettings.RIGHT_ENCODER_B_PORT);
 
    public static final DoubleSpeedController intakeAndcontrolDoubleSpeedController = new DoubleSpeedController(intakeAndControl);
+   
 }
