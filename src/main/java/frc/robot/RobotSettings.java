@@ -71,20 +71,21 @@ public final class RobotSettings {
     public static final double INTAKE_KD = 1.0;
 
     //Driver Stick Buttons
-    public static final int ELEVATOR_CONTROLS_BUTTON_ID = 1;
-
+    public static final int ELEVATOR_CONTROLS_BUTTON = 1;
+    public static final int DRIVER_AIM_BUTTON = 2;
+    public static final int OPEN_CLUTCH_BUTTON = 6;
     //Operator Stick Buttons
-    public static final int BALL_SHOOTER_BUTTON_ID = 1;
-    public static final int MANUAL_INTAKE_LOWER_BUTTON_ID = 3;
-    public static final int MANUAL_INTAKE_RAISE_BUTTON_ID = 5;
-    public static final int SHOOTER_AIM_DOWN_BUTTON_ID = 4;
-    public static final int SHOOTER_AIM_UP_BUTTON_ID = 6;
-    public static final int INTAKE_UPPER_LEVEL_BUTTON_ID = 7;
-    public static final int INTAKE_MIDDLE_LEVEL_BUTTON_ID = 9;
-    public static final int INTAKE_LOWER_LEVEL_BUTTON_ID = 11;
-    public static final int INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON_ID = 8;
-    public static final int POSITION_CONTROL_BUTTON_ID = 10;
-    public static final int ROTATION_CONTROL_BUTTON_ID = 12;
+    public static final int BALL_SHOOTER_BUTTON = 1;
+    public static final int MANUAL_INTAKE_LOWER_BUTTON = 3;
+    public static final int MANUAL_INTAKE_RAISE_BUTTON = 5;
+    public static final int SHOOTER_AIM_DOWN_BUTTON = 4;
+    public static final int SHOOTER_AIM_UP_BUTTON = 6;
+    public static final int INTAKE_UPPER_LEVEL_BUTTON = 7;
+    public static final int INTAKE_MIDDLE_LEVEL_BUTTON = 9;
+    public static final int INTAKE_LOWER_LEVEL_BUTTON = 11;
+    public static final int INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON = 8;
+    public static final int POSITION_CONTROL_BUTTON = 10;
+    public static final int ROTATION_CONTROL_BUTTON = 12;
 
     //Motor Values
     public static final double INTAKE_WHEELS_MOTOR_SPEED = 1.0;

@@ -20,6 +20,7 @@ import frc.robot.commands.intakearm.IntakeArmToAngle;
 //Command Imports
 import frc.robot.commands.intake.IntakeSpin;
 import frc.robot.commands.climber.JoystickClimber;
+import frc.robot.commands.climber.OpenClutch;
 import frc.robot.commands.elevator.JoystickElevator;
 import frc.robot.commands.shooter.ShooterSpinWheels;
 import frc.robot.commands.verticalconveyer.VerticalConveyorSpin;
@@ -89,18 +90,24 @@ public class RobotContainer {
   private void configureButtonBindings() {
     //Driver Commands
     //-----control elevator-----
-    new JoystickButton(RobotIO.driveStick, RobotSettings.ELEVATOR_CONTROLS_BUTTON_ID)
+    new JoystickButton(RobotIO.driveStick, RobotSettings.ELEVATOR_CONTROLS_BUTTON)
     .whileHeld(new JoystickElevator(elevatorSub))
     .whileHeld(new JoystickClimber(climberSub));
+
+    //-----open clutch-----
+    new JoystickButton(RobotIO.driveStick, RobotSettings.OPEN_CLUTCH_BUTTON)
+    .whenPressed(new OpenClutch());
     
+    //-----driver aim-----
+    new JoystickButton(RobotIO.driveStick, RobotSettings.DRIVER_AIM_BUTTON);
+
     //Operator Commands
     //-----shoot ball-----
-    new JoystickButton(RobotIO.operatorStick, RobotSettings.BALL_SHOOTER_BUTTON_ID)
+    new JoystickButton(RobotIO.operatorStick, RobotSettings.BALL_SHOOTER_BUTTON)
     .whileHeld(new ShooterSpinWheels(shooterSub));
+
     
-    //Placeholder for shooter aiming buttons (buttons 3 and 5)
-    //Placeholder for the buttons that bring the intake arm to a specific height (buttons 7,9 and 11)
-    new JoystickButton(RobotIO.driveStick, RobotSettings.INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON_ID).whileHeld(new IntakeSpin(intakeSub, 1.0));
-    //Placeholder for automated control panel button commands
+    new JoystickButton(RobotIO.driveStick, RobotSettings.INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON).whileHeld(new IntakeSpin(intakeSub, 1.0));
+
   }
 }
