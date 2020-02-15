@@ -5,19 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.horizontalconveyer;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotSettings;
-import frc.robot.subsystems.ControlPanelSpinnerSub;
+import frc.robot.subsystems.HorizontalConveyorSub;
 
-public class ControlPanelSpin extends CommandBase {
+public class HorizontalConveyorSpin extends CommandBase {
   /**
-   * Creates a new ControlPanelSpin.
+   * Creates a new HorizontalConveyorSpin.
    */
-  public double controlPanelSpin = RobotSettings.CONTROL_PANEL_MOTOR_SPEED;
-
-  public ControlPanelSpin(ControlPanelSpinnerSub subsystem, double speed) {
+  public HorizontalConveyorSpin(HorizontalConveyorSub subsystem) {
     addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -30,13 +27,13 @@ public class ControlPanelSpin extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ControlPanelSpinnerSub.set(controlPanelSpin);
+    HorizontalConveyorSub.set(1.0);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    ControlPanelSpinnerSub.set(0.0);
+    HorizontalConveyorSub.set(0.0);
   }
 
   // Returns true when the command should end.

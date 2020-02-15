@@ -5,14 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.horizontalconveyer;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotIO;
-import frc.robot.subsystems.ShooterSub;
+import frc.robot.subsystems.HorizontalConveyorSub;;
 
-public class ShooterWheelsDoNothing extends CommandBase {
-  public ShooterWheelsDoNothing(ShooterSub subsystem) {
+public class HorizontalConveyorDoNothing extends CommandBase {
+  public HorizontalConveyorDoNothing(HorizontalConveyorSub subsystem) {
     // Use addRequirements() here to declare subsystem dependencies
     addRequirements(subsystem);
   }
@@ -25,8 +24,7 @@ public class ShooterWheelsDoNothing extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    RobotIO.shooterMotor2.follow(RobotIO.shooterMotor1);
-    RobotIO.shooterMotor1.set(0.0);
+    HorizontalConveyorSub.set(0.0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

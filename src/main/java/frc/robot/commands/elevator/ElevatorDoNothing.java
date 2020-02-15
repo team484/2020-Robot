@@ -5,18 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ControlPanelSpinnerSub;
+import frc.robot.subsystems.ElevatorSub;
 
-public class ControlPanelSpinDoNothing extends CommandBase {
+public class ElevatorDoNothing extends CommandBase {
   /**
-   * Creates a new ControlPanelSpinDoNothing.
+   * Creates a new ElevatorDoNothing.
    */
-  public ControlPanelSpinDoNothing(ControlPanelSpinnerSub subsystem) {
+  public ElevatorDoNothing() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +26,7 @@ public class ControlPanelSpinDoNothing extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ControlPanelSpinnerSub.set(0.0);
+    ElevatorSub.set(0.0);
   }
 
   // Called once the command ends or is interrupted.

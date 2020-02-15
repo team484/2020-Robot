@@ -5,18 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drive;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotIO;
 import frc.robot.subsystems.DriveSub;
 
-public class JoystickDrive extends CommandBase {
-
+public class DriveUntilDistance extends CommandBase {
   /**
-   * Creates a new JoystickDrive.
+   * Creates a new DriveUntilDistance.
    */
-  public JoystickDrive(DriveSub subsystem) {
+  private double speed;
+  private double distance;
+  public DriveUntilDistance(double speed, double distance){
+  this.speed = speed;
+  this.distance = distance;
+  }
+  public DriveUntilDistance(DriveSub subsystem) {
     addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -27,22 +31,19 @@ public class JoystickDrive extends CommandBase {
   }
 
   // Called every time the scheduler runs while the command is scheduled.
-
   @Override
-  public void execute()
- {
-  DriveSub.set(-RobotIO.driveStick.getY(), -RobotIO.driveStick.getX());
- }
+  public void execute() {
+    DriveSub.set(speed, 0);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    DriveSub.set(0.0, 0.0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return (DriveSub.getDistance() > distance && speed > 0) || (DriveSub.getDistance() < distance && speed < 0);
   }
 }

@@ -5,19 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.VerticalConveyer;
-import frc.robot.RobotSettings;
+import frc.robot.subsystems.ElevatorSub;
 
-public class VerticalConveyorSpin extends CommandBase {
-
+public class RaiseToHeight extends CommandBase {
   /**
-   * Creates a new JoystickDrive.
+   * Creates a new RaiseToHeight.
    */
-  public VerticalConveyorSpin(VerticalConveyer subsystem) {
-    addRequirements(subsystem);
+  public RaiseToHeight(ElevatorSub subsystem) {
+   addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -27,16 +25,13 @@ public class VerticalConveyorSpin extends CommandBase {
   }
 
   // Called every time the scheduler runs while the command is scheduled.
-
   @Override
   public void execute() {
-    VerticalConveyer.set(RobotSettings.VERTICAL_CONVEYOR_SPEED);
- }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    VerticalConveyer.set(0.0);
   }
 
   // Returns true when the command should end.

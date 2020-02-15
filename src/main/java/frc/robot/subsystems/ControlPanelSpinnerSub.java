@@ -13,7 +13,7 @@ import com.revrobotics.ColorMatchResult;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
-import frc.robot.commands.ControlPanelSpinDoNothing;
+import frc.robot.commands.controlpanel.ControlPanelSpinDoNothing;
 
 /**
  * Add your docs here.

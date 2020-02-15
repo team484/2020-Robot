@@ -5,16 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ElevatorSub;
+import frc.robot.RobotIO;
+import frc.robot.subsystems.ClimberSub;
 
-public class ElevatorDoNothing extends CommandBase {
+public class JoystickClimber extends CommandBase {
   /**
-   * Creates a new ElevatorDoNothing.
+   * Creates a new JoystickClimber.
    */
-  public ElevatorDoNothing() {
+  public JoystickClimber(ClimberSub subsystem) {
+    addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -26,12 +28,13 @@ public class ElevatorDoNothing extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ElevatorSub.set(0.0);
+    ClimberSub.set(RobotIO.driveStick.getY());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    ClimberSub.set(0);
   }
 
   // Returns true when the command should end.

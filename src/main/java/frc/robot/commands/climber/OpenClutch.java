@@ -5,17 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ElevatorSub;
 
-public class RaiseToHeight extends CommandBase {
+public class OpenClutch extends CommandBase {
   /**
-   * Creates a new RaiseToHeight.
+   * Creates a new OpenClutch.
    */
-  public RaiseToHeight(ElevatorSub subsystem) {
-   addRequirements(subsystem);
+  public OpenClutch() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -27,6 +26,7 @@ public class RaiseToHeight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    ElevatorSub.closeClutch();
   }
 
   // Called once the command ends or is interrupted.
@@ -37,6 +37,6 @@ public class RaiseToHeight extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

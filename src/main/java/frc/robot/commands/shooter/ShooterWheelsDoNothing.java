@@ -1,44 +1,44 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotIO;
 import frc.robot.subsystems.ShooterSub;
 
-public class ShooterSpinWheels extends CommandBase {
-  /**
-   * Creates a new ShooterSpinWheels.
-   */
-  public ShooterSpinWheels(ShooterSub subsystem) {
-    // Use addRequirements() here to declare subsystem dependencies.
+public class ShooterWheelsDoNothing extends CommandBase {
+  public ShooterWheelsDoNothing(ShooterSub subsystem) {
+    // Use addRequirements() here to declare subsystem dependencies
     addRequirements(subsystem);
   }
 
-  // Called when the command is initially scheduled.
+  // Called just before this Command runs the first time
   @Override
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    ShooterSub.shooterSpinWheels(1.0);
+    RobotIO.shooterMotor2.follow(RobotIO.shooterMotor1);
+    RobotIO.shooterMotor1.set(0.0);
   }
 
-  // Called once the command ends or is interrupted.
+  // Make this return true when this Command no longer needs to run execute()
   @Override
   public void end(boolean interrupted) {
     
   }
 
-  // Returns true when the command should end.
+  // Called once after isFinished returns true
   @Override
   public boolean isFinished() {
     return false;
   }
+
 }

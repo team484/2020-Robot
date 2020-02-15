@@ -9,7 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
-import frc.robot.commands.ShooterWheelsDoNothing;
+import frc.robot.commands.shooter.ShooterWheelsDoNothing;
 public class ShooterSub extends SubsystemBase {
   /**
    * Creates a new Shooter.

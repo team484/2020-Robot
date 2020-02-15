@@ -5,17 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.controlpanel;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ElevatorSub;
+import frc.robot.subsystems.ControlPanelSpinnerSub;
 
-public class OpenClutch extends CommandBase {
+public class ControlPanelSpinDoNothing extends CommandBase {
   /**
-   * Creates a new OpenClutch.
+   * Creates a new ControlPanelSpinDoNothing.
    */
-  public OpenClutch() {
+  public ControlPanelSpinDoNothing(ControlPanelSpinnerSub subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -26,7 +27,7 @@ public class OpenClutch extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ElevatorSub.closeClutch();
+    ControlPanelSpinnerSub.set(0.0);
   }
 
   // Called once the command ends or is interrupted.
@@ -37,6 +38,6 @@ public class OpenClutch extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }
