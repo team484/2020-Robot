@@ -28,7 +28,7 @@ public class JoystickClimber extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ClimberSub.set(RobotIO.driveStick.getY());
+    ClimberSub.set(RobotIO.driveStick.getX());
   }
 
   // Called once the command ends or is interrupted.

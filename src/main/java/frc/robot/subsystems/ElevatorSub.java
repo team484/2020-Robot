@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.elevator.ElevatorDoNothing;
 import frc.robot.RobotIO;
@@ -21,14 +22,19 @@ public class ElevatorSub extends SubsystemBase {
   public ElevatorSub() {
     closeClutch();
     setDefaultCommand(new ElevatorDoNothing(this));
-    RobotIO.leftElevatorMotor.follow(RobotIO.rightElevatorMotor, true);
+    RobotIO.leftElevatorMotor.restoreFactoryDefaults();
+    RobotIO.rightElevatorMotor.restoreFactoryDefaults();
+    RobotIO.leftElevatorMotor.setSmartCurrentLimit(RobotSettings.ELEVATOR_MAX_CURRENT);
+    RobotIO.rightElevatorMotor.setSmartCurrentLimit(RobotSettings.ELEVATOR_MAX_CURRENT);
   }
 
   @Override
   public void periodic() {
-    if (DriverStation.getInstance().getMatchTime() < 1 && DriverStation.getInstance().isOperatorControl()) {
+    if (DriverStation.getInstance().getMatchTime() < 1 && DriverStation.getInstance().getMatchTime() > 0 && DriverStation.getInstance().isOperatorControl()) {
       openClutch();
     }
+    SmartDashboard.putNumber("Match time", DriverStation.getInstance().getMatchTime());
+    SmartDashboard.putNumber("elevator", getHeight());
   }
   public static void openClutch(){
     wasClutchEverOpen = true;
@@ -40,16 +46,18 @@ public class ElevatorSub extends SubsystemBase {
   }
   
   public static void set(double speed) {
+    SmartDashboard.putBoolean("Was Clutch Open", wasClutchEverOpen);
+    SmartDashboard.putNumber("ElevatorSpeed", speed);
     double height = getHeight();
     if ((height > RobotSettings.ELEVATOR_MAX_HEIGHT || wasClutchEverOpen) && speed > 0) {
-      RobotIO.rightElevatorMotor.set(0);
+      setSc(0);
       return;
     }
-    if (height <= 0 && speed < 0) {
-      RobotIO.rightElevatorMotor.set(0);
+    if (height < 1 && speed < 0) {
+      setSc(0);
       return;
     }
-    RobotIO.rightElevatorMotor.set(speed);
+    setSc(speed);
   }
 
   public static double getrightHeight(){
@@ -62,6 +70,11 @@ public class ElevatorSub extends SubsystemBase {
 
   public static double getHeight(){
   return Math.max(getleftHeight(), getrightHeight());
+  }
+
+  private static void setSc(double speed) {
+    RobotIO.leftElevatorMotor.set(speed);
+    RobotIO.rightElevatorMotor.set(-speed);
   }
   
 }

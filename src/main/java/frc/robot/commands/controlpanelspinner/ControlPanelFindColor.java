@@ -44,7 +44,7 @@ public class ControlPanelFindColor extends CommandBase {
       ControlPanelSpinnerSub.set(0);
     } else {
       colorsSeenFor = 0;
-      ControlPanelSpinnerSub.set(RobotSettings.CONTROL_PANEL_MOTOR_SPEED/2.0);
+      ControlPanelSpinnerSub.set(RobotSettings.CONTROL_PANEL_MOTOR_SPEED/4.0);
     }
   }
 
@@ -65,11 +65,11 @@ public class ControlPanelFindColor extends CommandBase {
     switch (gameData.toLowerCase()) {
       case "y":
         return WheelColor.YELLOW;
-      case "B":
+      case "b":
         return WheelColor.BLUE;
-      case "G":
+      case "g":
         return WheelColor.GREEN;
-      case "R":
+      case "r":
         return WheelColor.RED;
       default:
         return WheelColor.UNKNOWN;

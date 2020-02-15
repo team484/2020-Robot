@@ -34,6 +34,7 @@ public class Vision {
             double[] eventVal = event.value.getDoubleArray();
             if (eventVal.length < 3) return;
             Vision.targetTVec = eventVal;
+            Vision.targetTVec[1] = -Vision.targetTVec[1];
             Vision.oneFrameOldAngle = Vision.zeroFrameOldAngle;
             Vision.zeroFrameOldAngle = DriveSub.getGyroAngle();
         }, EntryListenerFlags.kUpdate | EntryListenerFlags.kNew | EntryListenerFlags.kImmediate);
@@ -47,9 +48,9 @@ public class Vision {
         return Math.sqrt(sqVal);
     }
 
-    private static double[] getRotatedTVec(double angle) {
-        double cosA = Math.cos(angle);
-        double sinA = Math.sin(angle);
+    public static double[] getRotatedTVec(double angle) {
+        double cosA = Math.cos(-angle);
+        double sinA = Math.sin(-angle);
         double newY = Vision.targetTVec[1] * cosA - Vision.targetTVec[2]*sinA;
         double newZ = Vision.targetTVec[2] * cosA + Vision.targetTVec[1]*sinA;
         double[] result = {Vision.targetTVec[0], newY, newZ};
@@ -57,8 +58,11 @@ public class Vision {
     }
 
     public static double getAngle() {
-        double[] tVec = getRotatedTVec(Math.toRadians(-20));
-        double frameAngle = Math.atan(-tVec[2]/tVec[0]);
+        double[] tVec = getRotatedTVec(Math.toRadians(17));
+        double frameAngle = 90+Math.toDegrees(Math.atan(-tVec[2]/tVec[0]));
+        if (frameAngle > 90) {
+            frameAngle -= 180.0;
+        }
         double gyroAngleChange = DriveSub.getGyroAngle() - Vision.oneFrameOldAngle;
         return frameAngle-gyroAngleChange;
     }

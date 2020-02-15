@@ -11,8 +11,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.StatusFrame;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
 import frc.robot.RobotSettings;
@@ -30,7 +30,6 @@ public class ShooterSub extends SubsystemBase {
     RobotIO.shooterMotor2.setNeutralMode(NeutralMode.Coast);
     RobotIO.shooterMotor1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotSettings.CAN_TIMEOUT_INTERVAL);
     RobotIO.shooterMotor1.setSensorPhase(true);
-    RobotIO.shooterMotor1.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 5, RobotSettings.CAN_TIMEOUT_INTERVAL);
     RobotIO.shooterMotor1.configPeakOutputForward(+1.0, RobotSettings.CAN_TIMEOUT_INTERVAL);
     RobotIO.shooterMotor1.configPeakOutputReverse(-1.0, RobotSettings.CAN_TIMEOUT_INTERVAL);
     RobotIO.shooterMotor1.configSelectedFeedbackCoefficient( 1.0/1024.0, 0, RobotSettings.CAN_TIMEOUT_INTERVAL);
@@ -43,23 +42,39 @@ public class ShooterSub extends SubsystemBase {
     RobotIO.shooterMotor1.configClosedLoopPeriod(RobotSettings.SHOOTER_SLOT, 1, RobotSettings.CAN_TIMEOUT_INTERVAL);
     RobotIO.shooterMotor1.selectProfileSlot(RobotSettings.SHOOTER_SLOT, 0);
 
+    RobotIO.shooterMotor1.enableCurrentLimit(true);
+    RobotIO.shooterMotor1.configContinuousCurrentLimit(RobotSettings.SHOOTER_MAX_CONTINUOUS_CURRENT);
+    RobotIO.shooterMotor1.configPeakCurrentLimit(RobotSettings.SHOOTER_MAX_PEAK_CURRENT);
+    RobotIO.shooterMotor2.enableCurrentLimit(true);
+    RobotIO.shooterMotor2.configContinuousCurrentLimit(RobotSettings.SHOOTER_MAX_CONTINUOUS_CURRENT);
+    RobotIO.shooterMotor2.configPeakCurrentLimit(RobotSettings.SHOOTER_MAX_PEAK_CURRENT);
+
+
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    SmartDashboard.putNumber("RPM", getSpeed());
   }
 
   public static void setPercent(double speed) {
+    wasRPMMode = false;
+    lastRPM = -1;
     RobotIO.shooterMotor1.set(ControlMode.PercentOutput, speed);
   }  
 
+  static double lastRPM = -1;
+  static boolean wasRPMMode = false;
   public static void setRPM(double rpm) {
-    RobotIO.shooterMotor1.set(ControlMode.Velocity, rpm / 600.0);
+    if (!wasRPMMode || lastRPM != rpm) {
+      wasRPMMode = true;
+      lastRPM = rpm;
+   RobotIO.shooterMotor1.set(ControlMode.Velocity, rpm / 600.0);
+    }
   }
 
   public static double getSpeed() {
-    return RobotIO.shooterMotor1.getSensorCollection().getQuadratureVelocity()*600.0;
+    return RobotIO.shooterMotor1.getSensorCollection().getQuadratureVelocity()*600.0/1024.0;
   }
 
 }

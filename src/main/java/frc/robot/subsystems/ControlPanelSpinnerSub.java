@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 

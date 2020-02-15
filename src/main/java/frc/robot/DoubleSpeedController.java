@@ -17,9 +17,9 @@ import java.lang.Math;
 public class DoubleSpeedController {
 
     //two variables, one for each set method
-    public static SpeedController speedController;
-    public static double speed1 = 0;
-    public static double speed2 = 0;
+    public SpeedController speedController;
+    public double speed1 = 0;
+    public double speed2 = 0;
     // constructor that takes in the speed controller
     public DoubleSpeedController(SpeedController controller){
         speedController = controller;

@@ -29,7 +29,7 @@ public class VerticalConveyorRunWhenBall extends CommandBase {
   @Override
   public void execute() {
     if (HorizontalConveyorSub.isBallPresent() && !VerticalConveyer.isBallPresent()) {
-      VerticalConveyer.set(RobotSettings.VERTICAL_CONVEYOR_SPEED);
+      VerticalConveyer.set(RobotSettings.VERTICAL_CONVEYOR_SPEED/2.0);
     } else {
       VerticalConveyer.set(0);
     }

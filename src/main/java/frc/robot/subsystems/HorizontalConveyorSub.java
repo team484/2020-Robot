@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.StatusFrame;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
 import frc.robot.RobotSettings;
@@ -18,6 +20,9 @@ public class HorizontalConveyorSub extends SubsystemBase {
    */
   public HorizontalConveyorSub() {
     setDefaultCommand(new HorizontalConveyorDoNothing(this));
+    RobotIO.ballConveyerHorizontal.setStatusFramePeriod(StatusFrame.Status_1_General,2000);
+    RobotIO.ballConveyerHorizontal.setStatusFramePeriod(StatusFrame.Status_2_Feedback0,2000);
+    RobotIO.ballConveyerHorizontal.setStatusFramePeriod(StatusFrame.Status_6_Misc,2000);
   }
 
   @Override
@@ -34,6 +39,6 @@ public class HorizontalConveyorSub extends SubsystemBase {
   }
 
   public static boolean isBallPresent() {
-    return RobotIO.horizontalBallSensor.get() == RobotSettings.HORIZONTAL_SENSOR_NORMAL_STATE;
+    return RobotIO.horizontalBallSensor.get() != RobotSettings.HORIZONTAL_SENSOR_NORMAL_STATE;
   }
 }

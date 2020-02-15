@@ -26,6 +26,7 @@ public class IntakeArmSub extends SubsystemBase {
     RobotIO.intakeArmPID.setP(RobotSettings.INTAKE_KP);
     RobotIO.intakeArmPID.setI(RobotSettings.INTAKE_KI);
     RobotIO.intakeArmPID.setD(RobotSettings.INTAKE_KD);
+    RobotIO.intakeArmPID.setOutputRange(-0.3, 0.3);
     RobotIO.intakeArm.setSmartCurrentLimit(RobotSettings.INTAKE_ARM_MAX_CURRENT);
   }
 

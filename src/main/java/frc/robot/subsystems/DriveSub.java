@@ -16,9 +16,11 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
 import frc.robot.RobotSettings;
+import frc.robot.Vision;
 import frc.robot.commands.drivetrain.JoystickDrive;
 
 public class DriveSub extends SubsystemBase {
@@ -36,8 +38,10 @@ public class DriveSub extends SubsystemBase {
     RobotIO.rightMotor1.configFactoryDefault();
     RobotIO.rightMotor2.configFactoryDefault();
     RobotIO.rightMotor3.configFactoryDefault();
+
     RobotIO.rightMotor2.follow(RobotIO.rightMotor1);
     RobotIO.rightMotor3.follow(RobotIO.rightMotor1);
+
     RobotIO.leftMotor2.follow(RobotIO.leftMotor1);
     RobotIO.leftMotor3.follow(RobotIO.leftMotor1);
     RobotIO.leftMotor1.configMotorCommutation(MotorCommutation.Trapezoidal, RobotSettings.CAN_TIMEOUT_INTERVAL);
@@ -52,12 +56,14 @@ public class DriveSub extends SubsystemBase {
     RobotIO.difDrive.setDeadband(0);
     driveOdometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()));
 
-    RobotIO.imu.setYawAxis(IMUAxis.kX);
+    RobotIO.imu.setYawAxis(IMUAxis.kY);
   }
 
   @Override
   public void periodic() {
     driveOdometry.update(Rotation2d.fromDegrees(getGyroAngle()), getLeftDistance(), getRightDistance());
+    SmartDashboard.putNumber("Target Angle", Vision.getAngle());
+    SmartDashboard.putNumber("gyro", getGyroAngle());
   }
 
   public static void set(double speed, double rot) {
@@ -65,7 +71,7 @@ public class DriveSub extends SubsystemBase {
   }
 
   public static void set(double speed, double rotation, boolean squareInputs) {
-    RobotIO.difDrive.arcadeDrive(speed, rotation, squareInputs);
+    RobotIO.difDrive.arcadeDrive(speed, -rotation, squareInputs);
   }
 
   public static void tankDrive(double leftSpeed, double rightSpeed) {

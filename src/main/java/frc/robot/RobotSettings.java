@@ -54,7 +54,7 @@ public final class RobotSettings {
     //Drivetrain Subsystem
     public static final double LEFT_ENCODER_DPP = 0.000243519452; //meters per pulse
     public static final double RIGHT_ENCODER_DPP = -LEFT_ENCODER_DPP;
-    public static final double JOYSTICK_ROTATION_MULTIPLIER = 0.7; //Set to <1 to make robot turn slower
+    public static final double JOYSTICK_ROTATION_MULTIPLIER = 0.5; //Set to <1 to make robot turn slower
     public static final double DRIVEBASE_WIDTH = 0.60325; //meters
     public static final double DRIVE_VOLTAGE_COMPENSATION_TARGET = 11.0;
         //Drivetrain characterization
@@ -70,7 +70,7 @@ public final class RobotSettings {
     public static final double DRIVE_RAMSETE_B = 2;
     public static final double DRIVE_RAMSETE_Z = 0.7;
 
-    public static final double DRIVE_ROTATE_KP = 0.1;
+    public static final double DRIVE_ROTATE_KP = 0.03;
     public static final double DRIVE_ROTATE_KI = 0.0;
     public static final double DRIVE_ROTATE_KD = 0.0;
 
@@ -78,9 +78,9 @@ public final class RobotSettings {
     //Elevator Subsystem
     public static int CLUTCH_DISENGAGE_ANGLE = 90;
     public static int CLUTCH_ENGAGE_ANGLE = 0;
-    public static double ELEVATOR_MAX_HEIGHT = 1.0;
+    public static double ELEVATOR_MAX_HEIGHT = 66.0;
     public static double ELEVATOR_DPP = 1; //Encoder DPP
-    public static double ELEVATOR_MAX_CURRENT = 50; //Amps
+    public static int ELEVATOR_MAX_CURRENT = 50; //Amps
     
 
     // Horizontal Conveyor Subsystem
@@ -88,42 +88,44 @@ public final class RobotSettings {
 
     // Intake Arm Subsystem
     public static final double INTAKE_UP_SETPOINT = 0;
-    public static final double INTAKE_MID_SETPOINT = -40;
-    public static final double INTAKE_DOWN_SETPOINT = -80;
+    public static final double INTAKE_MID_SETPOINT = -20;
+    public static final double INTAKE_DOWN_SETPOINT = -46;
     public static final double INTAKE_KP = 0.05;
     public static final double INTAKE_KI = 0.0;
-    public static final double INTAKE_KD = 0.01;
+    public static final double INTAKE_KD = 0.04;
     public static final double INTAKE_ARM_ANGLE_ERROR = 3;
-    public static final double INTAKE_ARM_VELOCITY_ERROR = 0.5;
-    public static final int INTAKE_ARM_MAX_CURRENT = 20; //amps
-    public static final double INTAKE_ARM_VERT_HOLD_POWER = 0.03;
-    public static final double INTAKE_ARM_HORIZ_HOLD_POWER = -0.03;
+    public static final double INTAKE_ARM_VELOCITY_ERROR = 3;
+    public static final int INTAKE_ARM_MAX_CURRENT = 6; //amps
+    public static final double INTAKE_ARM_VERT_HOLD_POWER = 0.02;
+    public static final double INTAKE_ARM_HORIZ_HOLD_POWER = -0.02;
 
     // Intake Wheel Subsystem
     public static final double INTAKE_WHEELS_MOTOR_SPEED = 1.0;
 
     // Shooter subsystem
-    public static final double SHOOTER_TARGET_RPM = 12000;
-    public static final double SHOOTER_KP = 1.0;
-    public static final double SHOOTER_KI = 0.0;
+    public static final double SHOOTER_TARGET_RPM = 13000;
+    public static final double SHOOTER_KP = 100.0;
+    public static final double SHOOTER_KI = 0.05;
     public static final double SHOOTER_KD = 0.0;
-    public static final double SHOOTER_KF = 1023.0/25.0;
-    public static final int SHOOTER_IZ = 400;
+    public static final double SHOOTER_KF = 20.0;//20
+    public static final int SHOOTER_IZ = 5;
     public static final int SHOOTER_SLOT = 0;
-    public static final double ALLOWABLE_ERROR = 100;
+    public static final double ALLOWABLE_ERROR = 350;
+    public static final int SHOOTER_MAX_PEAK_CURRENT = 70;
+    public static final int SHOOTER_MAX_CONTINUOUS_CURRENT = 50;
     
     // Vertical Conveyor Subsystem
-    public static final double VERTICAL_CONVEYOR_SPEED = 1.0;
+    public static final double VERTICAL_CONVEYOR_SPEED = 0.5;
     public static boolean VERTICAL_SENSOR_NORMAL_STATE = false; //the state of the sensor when no ball is present
 
 
     // Joysticks
-    public static final int DRIVE_STICK_PORT = 1;
-    public static final int OP_STICK_PORT = 2;
+    public static final int DRIVE_STICK_PORT = 0;
+    public static final int OP_STICK_PORT = 1;
         //Driver Stick Buttons
-        public static final int ELEVATOR_CONTROLS_BUTTON = 1;
+        public static final int ELEVATOR_CONTROLS_BUTTON = 2;
         public static final int OPEN_CLUTCH_BUTTON = 6;
-        public static final int DRIVER_AIM_BUTTON = 2;
+        public static final int DRIVER_AIM_BUTTON = 1;
 
         //Operator Stick Buttons
         public static final int BALL_SHOOTER_BUTTON = 1;

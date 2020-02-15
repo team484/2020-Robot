@@ -32,13 +32,13 @@ public class ControlPanelRotate3x extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    ControlPanelSpinnerSub.set(RobotSettings.CONTROL_PANEL_MOTOR_SPEED);
+
     if (lastSeenColor == WheelColor.UNKNOWN) {
       lastSeenColor = ControlPanelSpinnerSub.getColor();
       // Spin slowly while waiting to see a color
-      ControlPanelSpinnerSub.set(RobotSettings.CONTROL_PANEL_MOTOR_SPEED/2.0);
       return;
     }
-    ControlPanelSpinnerSub.set(RobotSettings.CONTROL_PANEL_MOTOR_SPEED);
     WheelColor newColor = ControlPanelSpinnerSub.getColor();
     if (newColor == lastSeenColor || newColor == WheelColor.UNKNOWN) {
       return;

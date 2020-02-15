@@ -9,14 +9,15 @@ package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotIO;
+import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ElevatorSub;
 
 public class JoystickElevator extends CommandBase {
   /**
    * Creates a new JoystickElevator.
    */
-  public JoystickElevator(ElevatorSub subsystem) {
-    addRequirements(subsystem);
+  public JoystickElevator(ElevatorSub elevatorSub, DriveSub driveSub) {
+    addRequirements(elevatorSub, driveSub);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -30,6 +31,7 @@ public class JoystickElevator extends CommandBase {
   public void execute() 
   {
     ElevatorSub.set(RobotIO.driveStick.getY());
+    DriveSub.set(0, 0);
   }
 
   // Called once the command ends or is interrupted.

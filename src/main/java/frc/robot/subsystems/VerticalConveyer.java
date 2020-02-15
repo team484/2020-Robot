@@ -7,17 +7,20 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
 import frc.robot.RobotSettings;
-import frc.robot.commands.verticalconveyor.VerticalConveyorDoNothing;
+import frc.robot.commands.verticalconveyor.VerticalConveyorRunWhenBall;
 
 public class VerticalConveyer extends SubsystemBase {
   /**
    * Creates a new VerticalConveyer.
    */
   public VerticalConveyer() {
-    setDefaultCommand(new VerticalConveyorDoNothing(this));
+    setDefaultCommand(new VerticalConveyorRunWhenBall(this));
+    RobotIO.ballConveyerVertical.setNeutralMode(NeutralMode.Brake);
   }
 
   @Override
@@ -30,7 +33,7 @@ public class VerticalConveyer extends SubsystemBase {
   }
 
   public static boolean isBallPresent() {
-    return RobotIO.horizontalBallSensor.get() == RobotSettings.HORIZONTAL_SENSOR_NORMAL_STATE;
+    return RobotIO.verticalBallSensor.get() != RobotSettings.VERTICAL_SENSOR_NORMAL_STATE;
   }
   
 }

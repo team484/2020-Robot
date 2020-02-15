@@ -34,6 +34,8 @@ import frc.robot.commands.controlpanelspinner.ControlPanelRotate3x;
 import frc.robot.commands.controlpanelspinner.ControlPanelSpin;
 import frc.robot.commands.controlpanelspinner.ControlPanelSpinDoNothing;
 import frc.robot.commands.drivetrain.CharacterizeDrivetrain;
+import frc.robot.commands.drivetrain.JoystickDrive;
+import frc.robot.commands.drivetrain.RotateToTarget;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.horizontalconveyor.*;
 import frc.robot.commands.intake.*;
@@ -109,34 +111,39 @@ public class RobotContainer {
     //Driver Commands
     //-----control elevator-----
     new JoystickButton(RobotIO.driveStick, RobotSettings.ELEVATOR_CONTROLS_BUTTON)
-    .whileHeld(new JoystickElevator(elevatorSub))
-    .whileHeld(new JoystickClimber(climberSub));
+    .whileHeld(new JoystickElevator(elevatorSub, driveSub))
+    .whileHeld(new JoystickClimber(climberSub))
+    .whenReleased(new JoystickDrive(driveSub))
+    .whenReleased(new ElevatorDoNothing(elevatorSub))
+    .whenReleased(new ClimberDoNothing(climberSub));
 
     //-----open clutch-----
     new JoystickButton(RobotIO.driveStick, RobotSettings.OPEN_CLUTCH_BUTTON)
     .whenPressed(new OpenClutch());
 
     //-----Driver Aim-----
-    new JoystickButton(RobotIO.driveStick, RobotSettings.DRIVER_AIM_BUTTON);
+    new JoystickButton(RobotIO.driveStick, RobotSettings.DRIVER_AIM_BUTTON)
+    .whenPressed(new RotateToTarget(driveSub))
+    .whenReleased(new JoystickDrive(driveSub));
     
     //Operator Commands
     //-----shoot ball-----
     new JoystickButton(RobotIO.operatorStick, RobotSettings.BALL_SHOOTER_BUTTON)
-    .whileHeld(new PIDShooter(shooterSub, RobotSettings.SHOOTER_TARGET_RPM))
-    .whileHeld(new FeedWhenShooterReady(verticalConveyerSub, RobotSettings.SHOOTER_TARGET_RPM))
+    .whenPressed(new PIDShooter(shooterSub, RobotSettings.SHOOTER_TARGET_RPM))
+    .whenPressed(new FeedWhenShooterReady(verticalConveyerSub, RobotSettings.SHOOTER_TARGET_RPM))
     .whenReleased(new ShooterWheelsDoNothing(shooterSub))
     .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub));
 
     //-----pickup ball (automatic ball intake)-----
     new JoystickButton(RobotIO.operatorStick, RobotSettings.PICKUP_BALL_BUTTON)
-    .whileHeld(new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED))
-    .whileHeld(new HorizontalConveyorSpin(horizontalConveyerSub))
-    .whileHeld((new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_DOWN_SETPOINT, true))
-    .andThen(new IntakeArmSetPower(intakeArmSub, RobotSettings.INTAKE_ARM_HORIZ_HOLD_POWER)))
+    .whenPressed(new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED))
+    .whenPressed(new HorizontalConveyorSpin(horizontalConveyerSub))
+    .whenPressed((new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_DOWN_SETPOINT, true)
+    .andThen(new IntakeArmSetPower(intakeArmSub, RobotSettings.INTAKE_ARM_HORIZ_HOLD_POWER))))
     .whenReleased(new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_UP_SETPOINT, true))
-    .whenReleased(new WaitCommand(1.5)
+    .whenReleased((new WaitCommand(1.5))
     .andThen(new IntakeDoNothing(intakeSub)))
-    .whenReleased(new WaitCommand(4.0)
+    .whenReleased((new WaitCommand(4.0))
     .andThen(new HorizontalConveyorDoNothing(horizontalConveyerSub)));
 
     //-----lower intake-----
