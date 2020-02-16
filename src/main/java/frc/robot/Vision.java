@@ -11,6 +11,7 @@ import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveSub;
 
 /**
@@ -64,11 +65,22 @@ public class Vision {
             frameAngle -= 180.0;
         }
         double gyroAngleChange = DriveSub.getGyroAngle() - Vision.oneFrameOldAngle;
-        return frameAngle-gyroAngleChange;
+        return frameAngle+gyroAngleChange;
     }
 
     public static boolean isTarget() {
         return Vision.table.getEntry("isTarget").getBoolean(false);
+    }
+
+    public static double[] getAngleDistance() {
+        double[] tVec = getRotatedTVec(Math.toRadians(17));
+        double frameAngle = 90+Math.toDegrees(Math.atan(-tVec[2]/tVec[0]));
+        if (frameAngle > 90) {
+            frameAngle -= 180.0;
+        }
+        double gyroAngleChange = DriveSub.getGyroAngle() - Vision.oneFrameOldAngle;
+        double[] result = {frameAngle+gyroAngleChange, tVec[2]};
+        return result;
     }
 
 }

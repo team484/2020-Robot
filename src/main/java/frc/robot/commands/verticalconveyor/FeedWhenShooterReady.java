@@ -9,6 +9,7 @@ package frc.robot.commands.verticalconveyor;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotSettings;
+import frc.robot.Vision;
 import frc.robot.subsystems.ShooterSub;
 import frc.robot.subsystems.VerticalConveyer;
 
@@ -30,7 +31,11 @@ public class FeedWhenShooterReady extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Math.abs(ShooterSub.getSpeed() - rpm) < RobotSettings.ALLOWABLE_ERROR) {
+    double[] angDist = Vision.getAngleDistance();
+    double errorAllowed = angDist[1]*(-0.26471)+353.23;
+    double rpm = angDist[1]*10.968+8922.6;
+
+    if (Math.abs(ShooterSub.getSpeed() - rpm) < errorAllowed) {
       VerticalConveyer.set(RobotSettings.VERTICAL_CONVEYOR_SPEED);
     } else {
       VerticalConveyer.set(0);

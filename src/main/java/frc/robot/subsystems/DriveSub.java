@@ -62,8 +62,12 @@ public class DriveSub extends SubsystemBase {
   @Override
   public void periodic() {
     driveOdometry.update(Rotation2d.fromDegrees(getGyroAngle()), getLeftDistance(), getRightDistance());
-    SmartDashboard.putNumber("Target Angle", Vision.getAngle());
+    double[] angledist = Vision.getAngleDistance();
+    SmartDashboard.putNumber("Target Angle", angledist[0]);
+    SmartDashboard.putNumber("Target Dist", angledist[1]);
     SmartDashboard.putNumber("gyro", getGyroAngle());
+    SmartDashboard.putNumber("Left Encoder Distance", getLeftDistance());
+    SmartDashboard.putNumber("Right Encoder Distance", getRightDistance());
   }
 
   public static void set(double speed, double rot) {
@@ -81,6 +85,7 @@ public class DriveSub extends SubsystemBase {
   public static void tankDriveWithVolts(double leftVolts, double rightVolts) {
     RobotIO.leftMotor1.setVoltage(leftVolts);
     RobotIO.rightMotor1.setVoltage(-rightVolts);
+    RobotIO.difDrive.feed();
   }
 
   public static Pose2d getPose() {
@@ -126,7 +131,7 @@ public class DriveSub extends SubsystemBase {
   }
 
   public static double getGyroAngle() {
-    return -RobotIO.imu.getAngle();
+    return RobotIO.imu.getAngle();
   }
 
   public static double getRotRate() {
@@ -171,10 +176,10 @@ public class DriveSub extends SubsystemBase {
   public static void setBrakeMode(boolean brake) {
     RobotIO.leftMotor1.setNeutralMode(brake ? NeutralMode.Brake : NeutralMode.Coast);
     RobotIO.leftMotor2.setNeutralMode(brake ? NeutralMode.Brake : NeutralMode.Coast);
-    RobotIO.leftMotor3.setNeutralMode(brake ? NeutralMode.Brake : NeutralMode.Coast);
+    RobotIO.leftMotor3.setNeutralMode(NeutralMode.Coast);
     RobotIO.rightMotor1.setNeutralMode(brake ? NeutralMode.Brake : NeutralMode.Coast);
     RobotIO.rightMotor2.setNeutralMode(brake ? NeutralMode.Brake : NeutralMode.Coast);
-    RobotIO.rightMotor3.setNeutralMode(brake ? NeutralMode.Brake : NeutralMode.Coast);
+    RobotIO.rightMotor3.setNeutralMode(NeutralMode.Coast);
   }
 
 }

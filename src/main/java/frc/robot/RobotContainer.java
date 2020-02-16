@@ -199,7 +199,6 @@ public class RobotContainer {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, e.getStackTrace());
       return new WaitCommand(0); // Command to do nothing
     }
-    
     RamseteCommand ramseteCommand = new RamseteCommand(
       trajectory, 
       DriveSub::getPose, 
@@ -216,6 +215,6 @@ public class RobotContainer {
       driveSub
       );
 
-      return ramseteCommand.andThen(() -> DriveSub.tankDrive(0, 0));
+      return ramseteCommand;//.andThen(() -> DriveSub.tankDrive(0, 0));
   }
 }

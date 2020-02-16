@@ -11,6 +11,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSub;;
 
@@ -33,6 +34,8 @@ public class CharacterizeDrivetrain extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    SmartDashboard.putBoolean("Running", false);
+
     autoSpeedEntry =
       NetworkTableInstance.getDefault().getEntry("/robot/autospeed");
     telemetryEntry =
@@ -50,11 +53,16 @@ public class CharacterizeDrivetrain extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    SmartDashboard.putNumber("l_encoder_pos", DriveSub.getLeftDistance());
+    SmartDashboard.putNumber("l_encoder_rate", DriveSub.getLeftSpeed());
+    SmartDashboard.putNumber("r_encoder_pos", -DriveSub.getRightDistance());
+    SmartDashboard.putNumber("r_encoder_rate", -DriveSub.getRightSpeed());
+    SmartDashboard.putBoolean("Running", true);
     double now = Timer.getFPGATimestamp();
     double leftPosition = DriveSub.getLeftDistance();
     double leftRate = DriveSub.getLeftSpeed();
-    double rightPosition = DriveSub.getRightDistance();
-    double rightRate = DriveSub.getRightSpeed();
+    double rightPosition = -DriveSub.getRightDistance();
+    double rightRate = -DriveSub.getRightSpeed();
     double battery = RobotController.getBatteryVoltage();
     double leftMotorVolts = DriveSub.getLeftMotorVoltage();
     double rightMotorVolts = DriveSub.getRightMotorVoltage();
@@ -81,6 +89,8 @@ public class CharacterizeDrivetrain extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     DriveSub.tankDrive(0, 0);
+    SmartDashboard.putBoolean("Running", false);
+
   }
 
   // Returns true when the command should end.

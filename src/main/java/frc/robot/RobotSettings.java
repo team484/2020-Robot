@@ -38,10 +38,10 @@ public final class RobotSettings {
     // Digital IO
     public static final int HORIZONTAL_BALL_SENSOR_PORT = 0;
     public static final int VERTICAL_BALL_SENSOR_PORT = 1;
-    public static final int LEFT_ENCODER_A_PORT = 2;
-    public static final int LEFT_ENCODER_B_PORT = 3;
-    public static final int RIGHT_ENCODER_A_PORT = 6;
-    public static final int RIGHT_ENCODER_B_PORT = 7;
+    public static final int LEFT_ENCODER_A_PORT = 3;
+    public static final int LEFT_ENCODER_B_PORT = 4;
+    public static final int RIGHT_ENCODER_A_PORT = 7;
+    public static final int RIGHT_ENCODER_B_PORT = 8;
 
 
     // PWM IO
@@ -52,26 +52,26 @@ public final class RobotSettings {
 
 
     //Drivetrain Subsystem
-    public static final double LEFT_ENCODER_DPP = 0.000243519452; //meters per pulse
+    public static final double LEFT_ENCODER_DPP = -0.000243519452; //meters per pulse
     public static final double RIGHT_ENCODER_DPP = -LEFT_ENCODER_DPP;
-    public static final double JOYSTICK_ROTATION_MULTIPLIER = 0.5; //Set to <1 to make robot turn slower
+    public static final double JOYSTICK_ROTATION_MULTIPLIER = 0.7; //Set to <1 to make robot turn slower
     public static final double DRIVEBASE_WIDTH = 0.60325; //meters
     public static final double DRIVE_VOLTAGE_COMPENSATION_TARGET = 11.0;
         //Drivetrain characterization
-    public static final double DRIVE_KS = 0.22; //volts
-    public static final double DRIVE_KV = 1.98; //volt seconds per meter
-    public static final double DRIVE_KA = 0.2; //volt seconds^2 per meter
+    public static final double DRIVE_KS = 0.326; //volts
+    public static final double DRIVE_KV = 1.52; //volt seconds per meter
+    public static final double DRIVE_KA = 0.0; //volt seconds^2 per meter
 
-    public static final double DRIVE_KP = 8.5; //drive velocity
+    public static final double DRIVE_KP = 0.0;
 
-    public static final double DRIVE_MAX_SPEED = 3; // meters per second
-    public static final double DRIVE_MAX_ACCEL = 3; // meters/second^2
+    public static final double DRIVE_MAX_SPEED = 3.0; // meters per second
+    public static final double DRIVE_MAX_ACCEL = 1.0; // meters/second^2
 
-    public static final double DRIVE_RAMSETE_B = 2;
+    public static final double DRIVE_RAMSETE_B = 3;
     public static final double DRIVE_RAMSETE_Z = 0.7;
 
-    public static final double DRIVE_ROTATE_KP = 0.03;
-    public static final double DRIVE_ROTATE_KI = 0.0;
+    public static final double DRIVE_ROTATE_KP = 0.06;
+    public static final double DRIVE_ROTATE_KI = 0.2;
     public static final double DRIVE_ROTATE_KD = 0.0;
 
 
@@ -103,14 +103,14 @@ public final class RobotSettings {
     public static final double INTAKE_WHEELS_MOTOR_SPEED = 1.0;
 
     // Shooter subsystem
-    public static final double SHOOTER_TARGET_RPM = 13000;
+    public static final double SHOOTER_TARGET_RPM = 13300; //13300 for far 11500 for close 8000 for lob
     public static final double SHOOTER_KP = 100.0;
-    public static final double SHOOTER_KI = 0.05;
+    public static final double SHOOTER_KI = 0.06;
     public static final double SHOOTER_KD = 0.0;
-    public static final double SHOOTER_KF = 20.0;//20
-    public static final int SHOOTER_IZ = 5;
+    public static final double SHOOTER_KF = 21.0;//20
+    public static final int SHOOTER_IZ = 4;
     public static final int SHOOTER_SLOT = 0;
-    public static final double ALLOWABLE_ERROR = 350;
+    public static final double ALLOWABLE_ERROR = 250; //250 for far 700 for close
     public static final int SHOOTER_MAX_PEAK_CURRENT = 70;
     public static final int SHOOTER_MAX_CONTINUOUS_CURRENT = 50;
     

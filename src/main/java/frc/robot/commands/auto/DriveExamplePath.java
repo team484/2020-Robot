@@ -21,6 +21,6 @@ public class DriveExamplePath extends SequentialCommandGroup {
   public DriveExamplePath(DriveSub subsystem) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(RobotContainer.generateTrajectoryCommand("example", subsystem));
+    super(RobotContainer.generateTrajectoryCommand("test", subsystem));
   }
 }

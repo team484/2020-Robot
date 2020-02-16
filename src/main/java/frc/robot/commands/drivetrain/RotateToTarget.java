@@ -33,7 +33,9 @@ public class RotateToTarget extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rot = pid.calculate(-Vision.getAngle());
+    double rot = pid.calculate(Vision.getAngle());
+    if (rot > 0.3) rot = 0.3;
+    if (rot < -0.3) rot = -0.3;
     DriveSub.set(0, rot);
   }
 

@@ -32,7 +32,7 @@ public class JoystickDrive extends CommandBase {
   @Override
   public void execute()
  {
-  DriveSub.set(-RobotIO.driveStick.getY() * RobotSettings.JOYSTICK_ROTATION_MULTIPLIER, -RobotIO.driveStick.getX());
+  DriveSub.set(-RobotIO.driveStick.getY(), -RobotIO.driveStick.getX() * RobotSettings.JOYSTICK_ROTATION_MULTIPLIER);
  }
 
   // Called once the command ends or is interrupted.
