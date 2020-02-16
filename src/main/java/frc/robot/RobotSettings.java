@@ -93,4 +93,5 @@ public final class RobotSettings {
     public static final double SHOOTER_TARGET_RPM = 12000;
     public static int ELEVATOR_MAX_HEIGHT;
     public static final double HORIZONTAL_CONVEYER_SPEED = 1.0;
+    public static final double INTAKE_ARM_HORIZ_SET_POWER = -0.02;
 }

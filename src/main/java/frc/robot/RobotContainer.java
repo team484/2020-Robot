@@ -16,7 +16,9 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 //WPILib Imports
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.horizontalconveyer.HorizontalConveyorSpin;
+import frc.robot.commands.intakearm.IntakeArmSetPower;
 import frc.robot.commands.intakearm.IntakeArmToAngle;
+import frc.robot.commands.intake.IntakeSetPower;
 //Command Imports
 import frc.robot.commands.intake.IntakeSpin;
 import frc.robot.commands.climber.JoystickClimber;
@@ -102,12 +104,17 @@ public class RobotContainer {
     new JoystickButton(RobotIO.driveStick, RobotSettings.DRIVER_AIM_BUTTON);
 
     //Operator Commands
+
     //-----shoot ball-----
     new JoystickButton(RobotIO.operatorStick, RobotSettings.BALL_SHOOTER_BUTTON)
     .whileHeld(new ShooterSpinWheels(shooterSub));
 
-    
-    new JoystickButton(RobotIO.driveStick, RobotSettings.INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON).whileHeld(new IntakeSpin(intakeSub, 1.0));
+    //-----pick up balls-----
+    new JoystickButton(RobotIO.driveStick, RobotSettings.INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON)
+    .whenPressed(new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED))
+    .whenPressed(new HorizontalConveyorSpin(horizontalConveyerSub, RobotSettings.HORIZONTAL_CONVEYER_SPEED))
+    .whenPressed(new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_DOWN_SETPOINT, true))
+    .
 
   }
 }

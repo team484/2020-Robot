@@ -5,20 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.horizontalconveyer;
+package frc.robot.commands.intakearm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.HorizontalConveyorSub;
+import frc.robot.subsystems.IntakeArmSub;
 
-public class HorizontalConveyorSpin extends CommandBase {
+public class IntakeArmSetPower extends CommandBase {
   /**
-   * Creates a new HorizontalConveyorSpin.
+   * Creates a new IntakeArmSetPower.
    */
-  public static double speed;
 
-  public HorizontalConveyorSpin(HorizontalConveyorSub subsystem, double input) {
-    addRequirements(subsystem);
+  private double speed;
+
+  public IntakeArmSetPower(IntakeArmSub subsystem, double input) {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(subsystem);
     speed = input;
   }
 
@@ -30,13 +31,13 @@ public class HorizontalConveyorSpin extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    HorizontalConveyorSub.set(speed);
+    IntakeArmSub.setSpeed(speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    HorizontalConveyorSub.set(0.0);
+    IntakeArmSub.setSpeed(0.0);
   }
 
   // Returns true when the command should end.
