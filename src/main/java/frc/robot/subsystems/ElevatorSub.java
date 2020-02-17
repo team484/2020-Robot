@@ -16,6 +16,8 @@ public class ElevatorSub extends SubsystemBase {
   /**
    * Creates a new Elevator.
    */
+  private static boolean clutchEngaged = true;
+
   public ElevatorSub() {
     closeClutch();
     setDefaultCommand(new JoystickElevator(this));
@@ -27,16 +29,18 @@ public class ElevatorSub extends SubsystemBase {
     // This method will be called once per scheduler run
   }
   public static void openClutch(){
-    RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_ENGAGE_ANGLE);
+    clutchEngaged = false;
+    RobotIO.clutchServo.set(RobotSettings.CLUTCH_DISENGAGE_ANGLE);
   }
 
   public static void closeClutch(){
-    RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_DISENGAGE_ANGLE);
+    if(clutchEngaged)
+      RobotIO.clutchServo.set(RobotSettings.CLUTCH_ENGAGE_ANGLE);
   }
   
   public static void set(double speed) {
     double height = getHeight();
-    if (height > RobotSettings.ELEVATOR_MAX_HEIGHT && speed > 0) {
+    if ((height > RobotSettings.ELEVATOR_MAX_HEIGHT || !clutchEngaged) && speed > 0) {
       RobotIO.leftElevatorMotor.set(0);
       return;
     }
