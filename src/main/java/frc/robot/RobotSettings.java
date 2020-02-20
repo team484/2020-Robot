@@ -76,8 +76,8 @@ public final class RobotSettings {
 
 
     //Elevator Subsystem
-    public static int CLUTCH_DISENGAGE_ANGLE = 90;
-    public static int CLUTCH_ENGAGE_ANGLE = 0;
+    public static double CLUTCH_CLOSE_ANGLE = 0;
+    public static double CLUTCH_OPEN_ANGLE = 0.5;
     public static double ELEVATOR_MAX_HEIGHT = 66.0;
     public static double ELEVATOR_DPP = 1; //Encoder DPP
     public static int ELEVATOR_MAX_CURRENT = 50; //Amps
@@ -135,7 +135,9 @@ public final class RobotSettings {
         public static final int INTAKE_LOWER_LEVEL_BUTTON = 7;
         public static final int INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON = 8;
         public static final int POSITION_CONTROL_BUTTON = 10;
-        public static final int ROTATION_CONTROL_BUTTON = 12;    
+        public static final int ROTATION_CONTROL_BUTTON = 12;  
+        public static final int EJECT_BUTTON = 3;
+        public static final int SPIT_BUTTON = 5;  
     
 
 }

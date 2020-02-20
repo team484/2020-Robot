@@ -11,7 +11,6 @@ import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveSub;
 
 /**
@@ -41,7 +40,7 @@ public class Vision {
         }, EntryListenerFlags.kUpdate | EntryListenerFlags.kNew | EntryListenerFlags.kImmediate);
     }
 
-    public static double getDistanceToTarget() {
+    public static double getAngluarDistanceToTarget() {
         double sqVal = 0;
         sqVal += Math.pow(Vision.targetTVec[0], 2);
         sqVal += Math.pow(Vision.targetTVec[1], 2);

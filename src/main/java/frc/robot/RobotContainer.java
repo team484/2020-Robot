@@ -43,6 +43,7 @@ import frc.robot.commands.intakearm.*;
 import frc.robot.commands.shooter.*;
 import frc.robot.commands.verticalconveyor.FeedWhenShooterReady;
 import frc.robot.commands.verticalconveyor.VerticalConveyorRunWhenBall;
+import frc.robot.commands.verticalconveyor.VerticalConveyorSpin;
 //Subsystem Imports
 import frc.robot.subsystems.ClimberSub;
 import frc.robot.subsystems.ControlPanelSpinnerSub;
@@ -51,6 +52,7 @@ import frc.robot.subsystems.ElevatorSub;
 import frc.robot.subsystems.HorizontalConveyorSub;
 import frc.robot.subsystems.IntakeArmSub;
 import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.LEDSub;
 import frc.robot.subsystems.ShooterSub;
 import frc.robot.subsystems.VerticalConveyer;
 
@@ -74,6 +76,7 @@ public class RobotContainer {
   private final IntakeSub intakeSub = new IntakeSub();
   private final ShooterSub shooterSub = new ShooterSub();
   private final VerticalConveyer verticalConveyerSub = new VerticalConveyer();
+  private final LEDSub ledSub = new LEDSub();
 
   public static final Vision vision = new Vision();
   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -129,8 +132,8 @@ public class RobotContainer {
     //Operator Commands
     //-----shoot ball-----
     new JoystickButton(RobotIO.operatorStick, RobotSettings.BALL_SHOOTER_BUTTON)
-    .whenPressed(new PIDShooter(shooterSub, RobotSettings.SHOOTER_TARGET_RPM))
-    .whenPressed(new FeedWhenShooterReady(verticalConveyerSub, RobotSettings.SHOOTER_TARGET_RPM))
+    .whenPressed(new ShooterShootBalls(shooterSub))
+    .whenPressed(new FeedWhenShooterReady(verticalConveyerSub))
     .whenReleased(new ShooterWheelsDoNothing(shooterSub))
     .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub));
 
@@ -140,7 +143,6 @@ public class RobotContainer {
     .whenPressed(new HorizontalConveyorSpin(horizontalConveyerSub))
     .whenPressed((new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_DOWN_SETPOINT, true)
     .andThen(new IntakeArmSetPower(intakeArmSub, RobotSettings.INTAKE_ARM_HORIZ_HOLD_POWER))))
-    .whenReleased(new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_UP_SETPOINT, true))
     .whenReleased((new WaitCommand(1.5))
     .andThen(new IntakeDoNothing(intakeSub)))
     .whenReleased((new WaitCommand(4.0))
@@ -177,6 +179,22 @@ public class RobotContainer {
     new JoystickButton(RobotIO.operatorStick, RobotSettings.POSITION_CONTROL_BUTTON)
     .whenPressed(new ControlPanelFindColor(controlPanelSpinner))
     .whenReleased(new ControlPanelSpinDoNothing(controlPanelSpinner));
+
+    //-----EJECT BALLS-----
+    new JoystickButton(RobotIO.operatorStick, RobotSettings.EJECT_BUTTON)
+    .whileHeld(new HorizontalConveyorSpin(horizontalConveyerSub, -1))
+    .whileHeld(new VerticalConveyorSpin(verticalConveyerSub, -0.3))
+    .whileHeld(new IntakeSpin(intakeSub, -1))
+    .whenReleased(new HorizontalConveyorDoNothing(horizontalConveyerSub))
+    .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub))
+    .whenReleased(new IntakeDoNothing(intakeSub));
+
+    //-----SPIT BALLS-----
+    new JoystickButton(RobotIO.operatorStick, RobotSettings.SPIT_BUTTON)
+    .whenPressed(new PIDShooter(shooterSub, 8000))
+    .whenPressed(new FeedWhenShooterReady(verticalConveyerSub, 8000))
+    .whenReleased(new ShooterWheelsDoNothing(shooterSub))
+    .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub));
   }
 
 

@@ -32,7 +32,9 @@ public class IntakeArmSub extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    if (getAngle() > 0) {
+      RobotIO.intakeArm.getEncoder().setPosition(0);
+    }
   }
 
   public static void setAngle(double angle){

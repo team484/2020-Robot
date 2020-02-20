@@ -11,14 +11,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShooterSub;
 
 public class SpinShooterUntilRPM extends CommandBase {
-  private double RPM;
+  private double m_rpm = 0;
   /**
    * Creates a new SpinShooterUntilRPM.
    */
-  public SpinShooterUntilRPM(ShooterSub subsystem, double RPM) {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public SpinShooterUntilRPM(ShooterSub subsystem, double rpm) {
     addRequirements(subsystem);
-    this.RPM = RPM;
+    m_rpm = rpm;
+  }
+
+  public SpinShooterUntilRPM(ShooterSub subsystem) {
+    addRequirements(subsystem);
+    m_rpm = 0;
   }
 
   // Called when the command is initially scheduled.
@@ -41,6 +45,9 @@ public class SpinShooterUntilRPM extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (ShooterSub.getSpeed() >= RPM);
+    if (m_rpm > 0) {
+      return (ShooterSub.getInstantSpeed() >= m_rpm);
+    }
+    return (ShooterSub.getInstantSpeed() >= ShooterSub.getDesiredRPM());
   }
 }

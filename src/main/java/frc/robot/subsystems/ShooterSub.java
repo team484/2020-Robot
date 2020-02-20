@@ -11,11 +11,13 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.VelocityMeasPeriod;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotIO;
 import frc.robot.RobotSettings;
+import frc.robot.Vision;
 import frc.robot.commands.shooter.ShooterWheelsDoNothing;
 public class ShooterSub extends SubsystemBase {
   /**
@@ -50,14 +52,46 @@ public class ShooterSub extends SubsystemBase {
     RobotIO.shooterMotor2.configPeakCurrentLimit(RobotSettings.SHOOTER_MAX_PEAK_CURRENT);
 
 
+    RobotIO.shooterMotor1.configPeakOutputReverse(0);
+    RobotIO.shooterMotor1.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms);
+    RobotIO.shooterMotor1.configVelocityMeasurementWindow(32);
+
+    RobotIO.shooterMotor1.configNominalOutputForward(0.3);
   }
 
+  
+  private static double[] lastNSpeeds = new double[5];
+  private static int lastNSpeedPos = 0;
+  private static double lastSpeed = 0;
+  private static double desiredRPM = 0;
+  private static double[] lastNDesiredRPMs = new double[5];
+  private static int lastNDesiredRPMsPos = 0;
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("RPM", getSpeed());
+    lastSpeed = RobotIO.shooterMotor1.getSensorCollection().getQuadratureVelocity()*600.0/1024.0;
+    lastNSpeedPos++;
+    if (lastNSpeedPos >= lastNSpeeds.length) {
+      lastNSpeedPos = 0;
+    }
+    lastNSpeeds[lastNSpeedPos] = lastSpeed;
+    SmartDashboard.putNumber("RPM", getAveragedSpeed());
+
+    double visionRPM = Vision.getAngleDistance()[1]*10.968+8922.6;
+    lastNDesiredRPMsPos++;
+    if (lastNDesiredRPMsPos >= lastNDesiredRPMs.length) {
+      lastNDesiredRPMsPos = 0;
+    }
+    lastNDesiredRPMs[lastNDesiredRPMsPos] = visionRPM;
+    double total = 0;
+    for (double rpm : lastNDesiredRPMs) {
+      total += rpm;
+    }
+    desiredRPM = total / lastNDesiredRPMs.length;
   }
 
+  private static double lastPercent = 0;
   public static void setPercent(double speed) {
+    lastPercent = speed;
     wasRPMMode = false;
     lastRPM = -1;
     RobotIO.shooterMotor1.set(ControlMode.PercentOutput, speed);
@@ -73,8 +107,24 @@ public class ShooterSub extends SubsystemBase {
     }
   }
 
-  public static double getSpeed() {
-    return RobotIO.shooterMotor1.getSensorCollection().getQuadratureVelocity()*600.0/1024.0;
+  public static double getInstantSpeed() {
+    return lastSpeed;
+  }
+
+  public static double getAveragedSpeed() {
+    double total = 0;
+    for (double speed : lastNSpeeds) {
+      total += speed;
+    }
+    return total / lastNSpeeds.length;
+  }
+
+  public static double getDesiredRPM() {
+    return Math.max(desiredRPM,10000);
+  }
+
+  public static boolean isActive() {
+    return (lastRPM > 0 && wasRPMMode) || (!wasRPMMode && lastPercent > 0);
   }
 
 }

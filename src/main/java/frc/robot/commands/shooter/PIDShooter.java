@@ -8,17 +8,21 @@
 package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Vision;
 import frc.robot.subsystems.ShooterSub;
 
 public class PIDShooter extends CommandBase {
-  private double RPM;
+  private double m_rpm = 0;
   /**
    * Creates a new PIDShooter.
    */
-  public PIDShooter(ShooterSub subsystem, double RPM) {
+  public PIDShooter(ShooterSub subsystem, double rpm) {
     addRequirements(subsystem);
-    this.RPM = RPM;
+    m_rpm = rpm;
+  }
+
+  public PIDShooter(ShooterSub subsystem) {
+    addRequirements(subsystem);
+    m_rpm = 0;
   }
 
   // Called when the command is initially scheduled.
@@ -29,8 +33,12 @@ public class PIDShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rpm = Vision.getAngleDistance()[1]*10.968+8922.6;
-    ShooterSub.setRPM(rpm);
+    if (m_rpm == 0) {
+      double rpm = ShooterSub.getDesiredRPM();
+      ShooterSub.setRPM(rpm);
+      return;
+    }
+    ShooterSub.setRPM(m_rpm);
   }
 
   // Called once the command ends or is interrupted.

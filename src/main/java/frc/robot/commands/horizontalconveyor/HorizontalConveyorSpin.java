@@ -11,12 +11,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.HorizontalConveyorSub;
 
 public class HorizontalConveyorSpin extends CommandBase {
+  public double speed = 1.0;
   /**
    * Creates a new HorizontalConveyorSpin.
    */
   public HorizontalConveyorSpin(HorizontalConveyorSub subsystem) {
     addRequirements(subsystem);
-    // Use addRequirements() here to declare subsystem dependencies.
+  }
+
+  public HorizontalConveyorSpin(HorizontalConveyorSub subsystem, double speed) {
+    addRequirements(subsystem);
+    this.speed = speed;
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +32,7 @@ public class HorizontalConveyorSpin extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    HorizontalConveyorSub.set(1.0);
+    HorizontalConveyorSub.set(speed);
   }
 
   // Called once the command ends or is interrupted.

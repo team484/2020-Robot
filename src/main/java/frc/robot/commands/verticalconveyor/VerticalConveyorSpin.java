@@ -12,15 +12,18 @@ import frc.robot.subsystems.VerticalConveyer;
 import frc.robot.RobotSettings;
 
 public class VerticalConveyorSpin extends CommandBase {
-
+  public double speed = RobotSettings.VERTICAL_CONVEYOR_SPEED;
   /**
    * Creates a new JoystickDrive.
    */
   public VerticalConveyorSpin(VerticalConveyer subsystem) {
     addRequirements(subsystem);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
+  public VerticalConveyorSpin(VerticalConveyer subsystem, double speed) {
+    addRequirements(subsystem);
+    this.speed = speed;
+  }
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -30,7 +33,7 @@ public class VerticalConveyorSpin extends CommandBase {
 
   @Override
   public void execute() {
-    VerticalConveyer.set(RobotSettings.VERTICAL_CONVEYOR_SPEED);
+    VerticalConveyer.set(speed);
  }
 
   // Called once the command ends or is interrupted.

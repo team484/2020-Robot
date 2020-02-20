@@ -8,7 +8,6 @@
 package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotIO;
 import frc.robot.subsystems.ShooterSub;
 
 public class ShooterWheelsDoNothing extends CommandBase {
@@ -25,8 +24,7 @@ public class ShooterWheelsDoNothing extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    RobotIO.shooterMotor2.follow(RobotIO.shooterMotor1);
-    RobotIO.shooterMotor1.set(0.0);
+    ShooterSub.setPercent(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

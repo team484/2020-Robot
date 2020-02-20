@@ -14,7 +14,7 @@ import frc.robot.subsystems.ShooterSub;
 import frc.robot.subsystems.VerticalConveyer;
 
 public class FeedWhenShooterReady extends CommandBase {
-  private double rpm;
+  private double rpm = 0;
   /**
    * Creates a new FeedWhenShooterReady.
    */
@@ -23,6 +23,10 @@ public class FeedWhenShooterReady extends CommandBase {
     this.rpm = rpm;
   }
 
+  public FeedWhenShooterReady(VerticalConveyer subsystem) {
+    addRequirements(subsystem);
+    this.rpm = 0;
+  }
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -33,12 +37,19 @@ public class FeedWhenShooterReady extends CommandBase {
   public void execute() {
     double[] angDist = Vision.getAngleDistance();
     double errorAllowed = angDist[1]*(-0.26471)+353.23;
-    double rpm = angDist[1]*10.968+8922.6;
 
-    if (Math.abs(ShooterSub.getSpeed() - rpm) < errorAllowed) {
-      VerticalConveyer.set(RobotSettings.VERTICAL_CONVEYOR_SPEED);
+    if (rpm == 0) {
+      if (Math.abs(ShooterSub.getAveragedSpeed() - ShooterSub.getDesiredRPM()) < errorAllowed) {
+        VerticalConveyer.set(RobotSettings.VERTICAL_CONVEYOR_SPEED);
+      } else {
+        VerticalConveyer.set(0);
+      }
     } else {
-      VerticalConveyer.set(0);
+      if (Math.abs(ShooterSub.getAveragedSpeed() - rpm) < errorAllowed) {
+        VerticalConveyer.set(RobotSettings.VERTICAL_CONVEYOR_SPEED);
+      } else {
+        VerticalConveyer.set(0);
+      }
     }
 
   }

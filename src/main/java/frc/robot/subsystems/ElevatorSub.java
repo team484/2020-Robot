@@ -38,11 +38,11 @@ public class ElevatorSub extends SubsystemBase {
   }
   public static void openClutch(){
     wasClutchEverOpen = true;
-    RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_ENGAGE_ANGLE);
+    RobotIO.clutchServo.set(RobotSettings.CLUTCH_OPEN_ANGLE);
   }
 
   public static void closeClutch(){
-    RobotIO.clutchServo.setAngle(RobotSettings.CLUTCH_DISENGAGE_ANGLE);
+    RobotIO.clutchServo.set(RobotSettings.CLUTCH_CLOSE_ANGLE);
   }
   
   public static void set(double speed) {
