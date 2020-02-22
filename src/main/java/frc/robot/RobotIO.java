@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-
+import edu.wpi.first.wpilibj.DigitalInput;
 
 
 
@@ -65,4 +65,6 @@ public class RobotIO {
    private static final I2C.Port i2cPort = I2C.Port.kOnboard;
    public static final ColorSensorV3 colorSensor = new ColorSensorV3(i2cPort);
    
+   public static final DigitalInput horizontalBallSensor = new DigitalInput(RobotSettings.HORIZONTAL_BALL_SENSOR_PORT);
+   public static final DigitalInput verticalBallSensor = new DigitalInput(RobotSettings.VERTICAL_BALL_SENSOR_PORT);
 }

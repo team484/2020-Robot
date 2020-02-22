@@ -60,7 +60,7 @@ public final class RobotSettings {
     public static final double RIGHT_ENCODER_DPP = -LEFT_ENCODER_DPP;
 
     public static final int HORIZONTAL_BALL_SENSOR_PORT = 0;
-    public static final int VERTICAL_BALL_SeNSOR_PORT = 1;
+    public static final int VERTICAL_BALL_SENSOR_PORT = 1;
     
 
     public static final int INTAKE_UP_SETPOINT = -90;

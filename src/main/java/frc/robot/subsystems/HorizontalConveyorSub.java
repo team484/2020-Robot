@@ -25,6 +25,14 @@ public class HorizontalConveyorSub extends SubsystemBase {
     
   }
   public static void set(double speed){
-    RobotIO.ballConveyerHorizontal.set(speed);
+    if (isBallIn() && VerticalConveyer.isBallIn()) {
+      RobotIO.ballConveyerVertical.set(0);
+      return;
+    }
+    RobotIO.ballConveyerVertical.set(speed);
+  }
+
+  public static boolean isBallIn() {
+    return RobotIO.horizontalBallSensor.get();
   }
 }
