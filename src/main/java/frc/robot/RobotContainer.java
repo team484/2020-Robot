@@ -111,10 +111,7 @@ public class RobotContainer {
 
     //-----pick up balls-----
     new JoystickButton(RobotIO.driveStick, RobotSettings.INTAKE_WHEELS_AND_CONTROL_SPIN_BUTTON)
-    .whenPressed(new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED))
-    .whenPressed(new HorizontalConveyorSpin(horizontalConveyerSub, RobotSettings.HORIZONTAL_CONVEYER_SPEED))
-    .whenPressed(new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_DOWN_SETPOINT, true))
-    .
+
 
   }
 }
