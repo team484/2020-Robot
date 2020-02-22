@@ -9,6 +9,7 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.RobotSettings;
 import frc.robot.Vision;
 import frc.robot.subsystems.DriveSub;
@@ -28,6 +29,7 @@ public class RotateToTarget extends CommandBase {
   public void initialize() {
     pid.setSetpoint(0);
     pid.reset();
+    Robot.driveSubVision = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -43,6 +45,7 @@ public class RotateToTarget extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     DriveSub.set(0, 0);
+    Robot.driveSubVision = false;
   }
 
   // Returns true when the command should end.

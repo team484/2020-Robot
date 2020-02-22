@@ -27,12 +27,11 @@ public final class RobotSettings {
     public static final int SHOOTER_MOTOR_2_ID = 8;
     public static final int HORIZONTAL_BALL_CONVEYOR_MOTOR_ID = 9;
     public static final int VERTICAL_BALL_CONVEYOR_MOTOR_ID = 10;
-    public static final int CLIMBER_WHEELS_MOTOR_ID = 11;
     public static final int INTAKE_AND_CONTROL_PANEL_MOTOR_ID = 12;
     public static final int INTAKE_ARM_MOTOR_ID = 13;
     public static final int LEFT_ELEVATOR_MOTOR_ID = 14;
     public static final int RIGHT_ELEVATOR_MOTOR_ID = 15;
-    public static final int CAN_TIMEOUT_INTERVAL = 10;
+    public static final int CAN_TIMEOUT_INTERVAL = 50;
 
 
     // Digital IO
@@ -46,6 +45,10 @@ public final class RobotSettings {
 
     // PWM IO
     public static final int CLUTCH_SERVO_PORT = 0;
+    public static final int LED_PORT = 2;
+
+    // Relay IO
+    public static final int VISION_LED_PORT = 0;
 
     // Control Panel Spinner Subsystem
     public static final double CONTROL_PANEL_MOTOR_SPEED = 1.0;
@@ -137,7 +140,5 @@ public final class RobotSettings {
         public static final int POSITION_CONTROL_BUTTON = 10;
         public static final int ROTATION_CONTROL_BUTTON = 12;  
         public static final int EJECT_BUTTON = 3;
-        public static final int SPIT_BUTTON = 5;  
-    
-
+        public static final int SPIT_BUTTON = 5;
 }

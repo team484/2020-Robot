@@ -17,11 +17,15 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SendableRegistry;
 
 
 
@@ -44,8 +48,6 @@ public class RobotIO {
    public static final WPI_VictorSPX ballConveyerHorizontal = new WPI_VictorSPX(RobotSettings.HORIZONTAL_BALL_CONVEYOR_MOTOR_ID);
    public static final WPI_VictorSPX ballConveyerVertical = new WPI_VictorSPX(RobotSettings.VERTICAL_BALL_CONVEYOR_MOTOR_ID);
    
-   public static final WPI_VictorSPX climberWheels = new WPI_VictorSPX(RobotSettings.CLIMBER_WHEELS_MOTOR_ID);
-
    private static final WPI_VictorSPX intakeAndControl = new WPI_VictorSPX(RobotSettings.INTAKE_AND_CONTROL_PANEL_MOTOR_ID);
 
    public static final CANSparkMax intakeArm = new CANSparkMax(RobotSettings.INTAKE_ARM_MOTOR_ID, MotorType.kBrushless);
@@ -71,4 +73,38 @@ public class RobotIO {
    public static final DigitalInput horizontalBallSensor = new DigitalInput(RobotSettings.HORIZONTAL_BALL_SENSOR_PORT);
    public static final DigitalInput verticalBallSensor = new DigitalInput(RobotSettings.VERTICAL_BALL_SENSOR_PORT);
    public static final ADIS16448_IMU imu = new ADIS16448_IMU();
+
+   public static final AddressableLED leds = new AddressableLED(RobotSettings.LED_PORT);
+   public static final Relay visionLEDs = new Relay(RobotSettings.VISION_LED_PORT);
+
+   public static final PowerDistributionPanel pdp = new PowerDistributionPanel();
+
+   static {
+      SendableRegistry.setName(leftMotor1, "DriveSub", "Left Motor 1");
+      SendableRegistry.setName(leftMotor2, "DriveSub", "Left Motor 2");
+      SendableRegistry.setName(leftMotor3, "DriveSub", "Left Motor 3");
+      SendableRegistry.setName(rightMotor1, "DriveSub", "Right Motor 1");
+      SendableRegistry.setName(rightMotor2, "DriveSub", "Right Motor 2");
+      SendableRegistry.setName(rightMotor3, "DriveSub", "Right Motor 3");
+      SendableRegistry.setName(leftEncoder, "DriveSub", "Left Encoder");
+      SendableRegistry.setName(rightEncoder, "DriveSub", "Right Encoder");
+      SendableRegistry.setName(difDrive, "DriveSub", "Diff Drive");
+
+      SendableRegistry.setName(shooterMotor1, "ShooterSub", "Shooter Motor 1");
+      SendableRegistry.setName(shooterMotor2, "ShooterSub", "Shooter Motor 2");
+      SendableRegistry.setName(visionLEDs, "ShooterSub", "Vision LED");
+
+      SendableRegistry.setName(horizontalBallSensor, "HorizontalConveyorSub", "Horiz Ball Sensor");
+      SendableRegistry.setName(ballConveyerHorizontal, "HorizontalConveyorSub", "Horiz Conveyor");
+
+      SendableRegistry.setName(verticalBallSensor, "VerticalConveyorSub", "Vert Ball Sensor");
+      SendableRegistry.setName(ballConveyerVertical, "VerticalConveyorSub", "Vert Conveyor");
+
+      SendableRegistry.setName(intakeAndControl, "IntakeSub", "Intake/Ctrl Spinner");
+
+      SendableRegistry.setName(clutchServo, "ElevatorSub", "Clutch");
+      
+
+   }
+
 }

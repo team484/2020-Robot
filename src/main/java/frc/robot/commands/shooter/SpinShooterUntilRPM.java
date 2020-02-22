@@ -8,6 +8,7 @@
 package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.subsystems.ShooterSub;
 
 public class SpinShooterUntilRPM extends CommandBase {
@@ -28,6 +29,9 @@ public class SpinShooterUntilRPM extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.shooterSubVision = true;
+    lastRPM = 0;
+    twoRPMsAgo = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -39,15 +43,21 @@ public class SpinShooterUntilRPM extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    
+    Robot.shooterSubVision = false;
   }
 
+  private double lastRPM = 0;
+  private double twoRPMsAgo = 0;
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    double speed = ShooterSub.getInstantSpeed();
+    double rpmDelta = speed - twoRPMsAgo;
+    twoRPMsAgo = lastRPM;
+    lastRPM = speed;
     if (m_rpm > 0) {
-      return (ShooterSub.getInstantSpeed() >= m_rpm);
+      return (speed+rpmDelta >= m_rpm);
     }
-    return (ShooterSub.getInstantSpeed() >= ShooterSub.getDesiredRPM());
+    return (speed+rpmDelta >= ShooterSub.getDesiredRPM());
   }
 }

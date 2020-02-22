@@ -12,8 +12,6 @@ import java.nio.file.Path;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.RamseteController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
@@ -26,26 +24,16 @@ import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 //WPILib Imports
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.auto.DoNothing;
-import frc.robot.commands.auto.DriveExamplePath;
-import frc.robot.commands.climber.*;
-import frc.robot.commands.controlpanelspinner.ControlPanelFindColor;
-import frc.robot.commands.controlpanelspinner.ControlPanelRotate3x;
-import frc.robot.commands.controlpanelspinner.ControlPanelSpin;
-import frc.robot.commands.controlpanelspinner.ControlPanelSpinDoNothing;
-import frc.robot.commands.drivetrain.CharacterizeDrivetrain;
-import frc.robot.commands.drivetrain.JoystickDrive;
-import frc.robot.commands.drivetrain.RotateToTarget;
+import frc.robot.commands.auto.*;
+import frc.robot.commands.controlpanelspinner.*;
+import frc.robot.commands.drivetrain.*;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.horizontalconveyor.*;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.intakearm.*;
 import frc.robot.commands.shooter.*;
-import frc.robot.commands.verticalconveyor.FeedWhenShooterReady;
-import frc.robot.commands.verticalconveyor.VerticalConveyorRunWhenBall;
-import frc.robot.commands.verticalconveyor.VerticalConveyorSpin;
+import frc.robot.commands.verticalconveyor.*;
 //Subsystem Imports
-import frc.robot.subsystems.ClimberSub;
 import frc.robot.subsystems.ControlPanelSpinnerSub;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ElevatorSub;
@@ -67,7 +55,6 @@ import frc.robot.subsystems.VerticalConveyer;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ClimberSub climberSub = new ClimberSub();
   private final ControlPanelSpinnerSub controlPanelSpinner = new ControlPanelSpinnerSub();
   private final DriveSub driveSub = new DriveSub();
   private final ElevatorSub elevatorSub = new ElevatorSub();
@@ -115,10 +102,8 @@ public class RobotContainer {
     //-----control elevator-----
     new JoystickButton(RobotIO.driveStick, RobotSettings.ELEVATOR_CONTROLS_BUTTON)
     .whileHeld(new JoystickElevator(elevatorSub, driveSub))
-    .whileHeld(new JoystickClimber(climberSub))
     .whenReleased(new JoystickDrive(driveSub))
-    .whenReleased(new ElevatorDoNothing(elevatorSub))
-    .whenReleased(new ClimberDoNothing(climberSub));
+    .whenReleased(new ElevatorDoNothing(elevatorSub));
 
     //-----open clutch-----
     new JoystickButton(RobotIO.driveStick, RobotSettings.OPEN_CLUTCH_BUTTON)

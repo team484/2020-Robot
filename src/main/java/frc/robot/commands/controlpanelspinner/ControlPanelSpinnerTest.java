@@ -5,36 +5,37 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.climber;
+package frc.robot.commands.controlpanelspinner;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotIO;
-import frc.robot.subsystems.ClimberSub;
+import frc.robot.subsystems.ControlPanelSpinnerSub;
+import frc.robot.subsystems.IntakeSub;
 
-public class JoystickClimber extends CommandBase {
+public class ControlPanelSpinnerTest extends CommandBase {
+  private int testStage = 0;
   /**
-   * Creates a new JoystickClimber.
+   * Creates a new ControlPanelSpinnerTest.
    */
-  public JoystickClimber(ClimberSub subsystem) {
-    addRequirements(subsystem);
-    // Use addRequirements() here to declare subsystem dependencies.
+  public ControlPanelSpinnerTest(ControlPanelSpinnerSub cpsSub, IntakeSub iSub) {
+    addRequirements(cpsSub,iSub);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    testStage = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ClimberSub.set(RobotIO.driveStick.getX());
+    
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    ClimberSub.set(0);
   }
 
   // Returns true when the command should end.
@@ -42,4 +43,5 @@ public class JoystickClimber extends CommandBase {
   public boolean isFinished() {
     return false;
   }
+
 }

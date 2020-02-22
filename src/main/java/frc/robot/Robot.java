@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Relay.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -23,7 +25,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   public Robot() {
-    super(0.04);
+    super(0.03);
   }
 
   /**
@@ -37,6 +39,9 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
   }
 
+
+  public static boolean driveSubVision = false;
+  public static boolean shooterSubVision = false;
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like
    * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
@@ -46,6 +51,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    if (driveSubVision || shooterSubVision) {
+      RobotIO.visionLEDs.set(Value.kForward);
+    } else {
+      RobotIO.visionLEDs.set(Value.kOff);
+    }
+
+    SmartDashboard.putString("Energy Left", String.format("%.2f%%", 100-((100*RobotIO.pdp.getTotalEnergy()/20.0)/729000)));
+    SmartDashboard.putNumber("Current", RobotIO.pdp.getTotalCurrent());
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
@@ -58,6 +71,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    RobotIO.visionLEDs.set(Value.kOff);
   }
 
   @Override
@@ -113,5 +127,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+    RobotIO.visionLEDs.set(Value.kForward);
   }
 }

@@ -8,6 +8,7 @@
 package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.subsystems.ShooterSub;
 
 public class PIDShooter extends CommandBase {
@@ -28,6 +29,7 @@ public class PIDShooter extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.shooterSubVision = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -45,6 +47,7 @@ public class PIDShooter extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     ShooterSub.setPercent(0);
+    Robot.shooterSubVision = false;
   }
 
   // Returns true when the command should end.

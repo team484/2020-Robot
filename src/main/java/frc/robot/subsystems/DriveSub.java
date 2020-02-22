@@ -11,6 +11,7 @@ import com.analog.adis16448.frc.ADIS16448_IMU.IMUAxis;
 import com.ctre.phoenix.motorcontrol.MotorCommutation;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
@@ -66,8 +67,7 @@ public class DriveSub extends SubsystemBase {
     SmartDashboard.putNumber("Target Angle", angledist[0]);
     SmartDashboard.putNumber("Target Dist", angledist[1]);
     SmartDashboard.putNumber("gyro", getGyroAngle());
-    SmartDashboard.putNumber("Left Encoder Distance", getLeftDistance());
-    SmartDashboard.putNumber("Right Encoder Distance", getRightDistance());
+    SmartDashboard.putNumber("Match time", DriverStation.getInstance().getMatchTime());
   }
 
   public static void set(double speed, double rot) {

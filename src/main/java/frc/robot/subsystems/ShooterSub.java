@@ -54,7 +54,7 @@ public class ShooterSub extends SubsystemBase {
 
     RobotIO.shooterMotor1.configPeakOutputReverse(0);
     RobotIO.shooterMotor1.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms);
-    RobotIO.shooterMotor1.configVelocityMeasurementWindow(32);
+    RobotIO.shooterMotor1.configVelocityMeasurementWindow(16);
 
     RobotIO.shooterMotor1.configNominalOutputForward(0.3);
   }
@@ -87,6 +87,7 @@ public class ShooterSub extends SubsystemBase {
       total += rpm;
     }
     desiredRPM = total / lastNDesiredRPMs.length;
+    SmartDashboard.putNumber("Desired RPM", desiredRPM);
   }
 
   private static double lastPercent = 0;
@@ -120,7 +121,7 @@ public class ShooterSub extends SubsystemBase {
   }
 
   public static double getDesiredRPM() {
-    return Math.max(desiredRPM,10000);
+    return Math.max(desiredRPM,9000);
   }
 
   public static boolean isActive() {
