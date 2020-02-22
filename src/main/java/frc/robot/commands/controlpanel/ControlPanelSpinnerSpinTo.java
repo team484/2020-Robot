@@ -7,19 +7,19 @@
 
 package frc.robot.commands.controlpanel;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotSettings;
 import frc.robot.subsystems.ControlPanelSpinnerSub;
 import frc.robot.subsystems.ControlPanelSpinnerSub.WheelColor;
 
-public class ControlPanelSpin3 extends CommandBase {
-  WheelColor startColor = WheelColor.UNKNOWN;
-  WheelColor compareColor = WheelColor.UNKNOWN;
-  int hits = 0;
+public class ControlPanelSpinnerSpinTo extends CommandBase {
+  WheelColor desired = WheelColor.UNKNOWN;
+  int timeSeen = 0;
   /**
-   * Creates a new ControlPanelSpin3.
+   * Creates a new ControlPanelSpinnerSpinTo.
    */
-  public ControlPanelSpin3(ControlPanelSpinnerSub subsystem) {
+  public ControlPanelSpinnerSpinTo(ControlPanelSpinnerSub subsystem) {
     addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -27,20 +27,22 @@ public class ControlPanelSpin3 extends CommandBase {
   // Called when the command is initially scheduled .
   @Override
   public void initialize() {
-    startColor = ControlPanelSpinnerSub.getColor();
+    desired = receiveColor();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (startColor == WheelColor.UNKNOWN)
+    if (desired == WheelColor.UNKNOWN) {
+      ControlPanelSpinnerSub.set(0);
       return;
-    else if (startColor != compareColor) {
-      hits++;
-      startColor = compareColor;
+    } else if (desired == ControlPanelSpinnerSub.getColor()) {
+      timeSeen++;
+      ControlPanelSpinnerSub.set(0);
+    } else {
+      ControlPanelSpinnerSub.set(RobotSettings.CONTROL_PANEL_MOTOR_SPEED/2.0);
+      timeSeen = 0;
     }
-    ControlPanelSpinnerSub.set(RobotSettings.CONTROL_PANEL_MOTOR_SPEED);
-    compareColor = ControlPanelSpinnerSub.getColor();
   }
 
   // Called once the command ends or is interrupted.
@@ -52,6 +54,23 @@ public class ControlPanelSpin3 extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return hits >= 24;
+    return timeSeen > 100;
   }
+
+  public static WheelColor receiveColor() {
+    String gameMessage = DriverStation.getInstance().getGameSpecificMessage();
+    switch (gameMessage.toLowerCase()) {
+      case "r":
+        return WheelColor.RED;
+      case "g":
+        return WheelColor.GREEN;
+      case "b":
+        return WheelColor.BLUE;
+      case "y":
+        return WheelColor.YELLOW;
+      default:
+        return WheelColor.UNKNOWN;
+    }
+  }
+
 }
