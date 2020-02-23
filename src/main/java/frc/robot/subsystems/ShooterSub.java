@@ -26,6 +26,7 @@ public class ShooterSub extends SubsystemBase {
    */
   public ShooterSub() {
     setDefaultCommand(new ShooterWheelsDoNothing(this));
+    RobotIO.shooterMotor1.setInverted(InvertedType.InvertMotorOutput);
     RobotIO.shooterMotor2.follow(RobotIO.shooterMotor1);
   }
 
@@ -62,6 +63,37 @@ public class ShooterSub extends SubsystemBase {
   public static void setPercent(double speed){
     lastPercent = speed;
     wasRPMMode = false;
-    
+    lastRPM = -1;
+    RobotIO.shooterMotor1.set(ControlMode.PercentOutput, speed);
+  }
+
+  static double lastRPM = -1;
+  static boolean wasRPMMode = false;
+  public static void setRPM(double rpm){
+    if(!wasRPMMode || lastRPM != rpm){
+      wasRPMMode = true;
+      lastRPM = rpm;
+      RobotIO.shooterMotor1.set(ControlMode.Velocity, rpm/600.0);
+    }
+  }
+
+  public static double getInstantSpeed(){
+    return lastSpeed;
+  }
+
+  public static double getAveragedSpeed(){
+    double total = 0;
+    for(double speed: lastNSpeeds){
+      total += speed;
+    }
+    return total/lastNSpeeds.length;
+  }
+
+  public static double getDesiredRPM(){
+    return Math.max(desiredRPM, 9000);
+  }
+
+  public static boolean isActive(){
+    return(lastRPM > 0 && wasRPMMode) || (!wasRPMMode && lastPercent > 0);
   }
 }
