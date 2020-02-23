@@ -76,6 +76,7 @@ public class RobotContainer {
     autoChooser.setDefaultOption("Do Nothing", new DoNothing());
     autoChooser.addOption("Example Auto", new DriveExamplePath(driveSub));
     autoChooser.addOption("Characterize Drivetrain", new CharacterizeDrivetrain(driveSub));
+    autoChooser.addOption("(1) Trench", new AutoTrench(driveSub, intakeArmSub, intakeSub, horizontalConveyerSub, verticalConveyerSub, shooterSub));
     SmartDashboard.putData(autoChooser);
   }
   
@@ -119,8 +120,11 @@ public class RobotContainer {
     new JoystickButton(RobotIO.operatorStick, RobotSettings.BALL_SHOOTER_BUTTON)
     .whenPressed(new ShooterShootBalls(shooterSub))
     .whenPressed(new FeedWhenShooterReady(verticalConveyerSub))
+    .whenPressed(new HorizontalConveyorSpin(horizontalConveyerSub))
     .whenReleased(new ShooterWheelsDoNothing(shooterSub))
-    .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub));
+    .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub))
+    .whenReleased(new HorizontalConveyorDoNothing(horizontalConveyerSub));
+
 
     //-----pickup ball (automatic ball intake)-----
     new JoystickButton(RobotIO.operatorStick, RobotSettings.PICKUP_BALL_BUTTON)

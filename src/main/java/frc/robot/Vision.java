@@ -21,6 +21,7 @@ public class Vision {
     private static NetworkTableInstance inst;
     private static NetworkTable table;
     protected static double zeroFrameOldAngle = 0;
+    protected static double oneFrameOldAngle = 0;
     protected static double[] targetTVec = {0,0,0};
     private static boolean isTarget = false;
     public Vision() {
@@ -43,13 +44,10 @@ public class Vision {
             double[] rotatedVec = eventVal;
             rotatedVec[1] = -rotatedVec[1];
             rotatedVec = Vision.getRotatedTVec(Math.toRadians(17), rotatedVec);
-            if (Math.abs(rotatedVec[1] - 17) < 30) {
-                Vision.targetTVec = rotatedVec;
-                Vision.zeroFrameOldAngle = DriveSub.getGyroAngle();
-                Vision.isTarget = true;
-            } else {
-                Vision.isTarget = false;
-            }
+            Vision.targetTVec = rotatedVec;
+            Vision.oneFrameOldAngle = Vision.zeroFrameOldAngle;
+            Vision.zeroFrameOldAngle = DriveSub.getGyroAngle();
+            Vision.isTarget = true;
         }, EntryListenerFlags.kUpdate | EntryListenerFlags.kNew | EntryListenerFlags.kImmediate);
     }
 
@@ -88,7 +86,7 @@ public class Vision {
         if (frameAngle > 90) {
             frameAngle -= 180.0;
         }
-        double gyroAngleChange = DriveSub.getGyroAngle() - Vision.zeroFrameOldAngle;
+        double gyroAngleChange = DriveSub.getGyroAngle() - Vision.oneFrameOldAngle;
         double[] result = {frameAngle+gyroAngleChange, Vision.targetTVec[2]};
         return result;
     }

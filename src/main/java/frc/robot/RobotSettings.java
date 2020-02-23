@@ -73,9 +73,9 @@ public final class RobotSettings {
     public static final double DRIVE_RAMSETE_B = 3;
     public static final double DRIVE_RAMSETE_Z = 0.7;
 
-    public static final double DRIVE_ROTATE_KP = 0.06;
+    public static final double DRIVE_ROTATE_KP = 0.1;
     public static final double DRIVE_ROTATE_KI = 0.2;
-    public static final double DRIVE_ROTATE_KD = 0.0;
+    public static final double DRIVE_ROTATE_KD = 0.01;
 
 
     //Elevator Subsystem

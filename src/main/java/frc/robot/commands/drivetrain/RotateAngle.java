@@ -5,59 +5,48 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.verticalconveyor;
+package frc.robot.commands.drivetrain;
 
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.RobotSettings;
 import frc.robot.Vision;
-import frc.robot.subsystems.ShooterSub;
-import frc.robot.subsystems.VerticalConveyer;
+import frc.robot.subsystems.DriveSub;
 
-public class FeedWhenShooterReady extends CommandBase {
-  private double rpm = 0;
+public class RotateAngle extends CommandBase {
+  PIDController pid;
   /**
-   * Creates a new FeedWhenShooterReady.
+   * Creates a new RotateAngle.
    */
-  public FeedWhenShooterReady(VerticalConveyer subsystem, double rpm) {
+  private double angle;
+  public RotateAngle(DriveSub subsystem, double angle) {
     addRequirements(subsystem);
-    this.rpm = rpm;
+    pid = new PIDController(RobotSettings.DRIVE_ROTATE_KP,RobotSettings.DRIVE_ROTATE_KI,RobotSettings.DRIVE_ROTATE_KD);
+    this.angle = angle;
   }
 
-  public FeedWhenShooterReady(VerticalConveyer subsystem) {
-    addRequirements(subsystem);
-    this.rpm = 0;
-  }
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    pid.setSetpoint(angle);
+    pid.reset();
+    DriveSub.resetAngle();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double[] angDist = Vision.getAngleDistance();
-    double errorAllowed = angDist[1]*(-0.1)+500.0;
-
-    if (rpm == 0) {
-      if (Math.abs(ShooterSub.getAveragedSpeed() - ShooterSub.getDesiredRPM()) < errorAllowed) {
-        VerticalConveyer.set(1);
-      } else {
-        VerticalConveyer.set(0);
-      }
-    } else {
-      if (Math.abs(ShooterSub.getAveragedSpeed() - rpm) < errorAllowed) {
-        VerticalConveyer.set(1);
-      } else {
-        VerticalConveyer.set(0);
-      }
-    }
-
+    double rot = pid.calculate(DriveSub.getGyroAngle());
+    if (rot > 0.4) rot = 0.4;
+    if (rot < -0.4) rot = -0.4;
+    DriveSub.set(0, rot);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    VerticalConveyer.set(0);
+    DriveSub.set(0, 0);
   }
 
   // Returns true when the command should end.
