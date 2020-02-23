@@ -27,6 +27,7 @@ import frc.robot.commands.drivetrain.JoystickDrive;
 public class DriveSub extends SubsystemBase {
   public static DifferentialDriveKinematics driveKinematics = new DifferentialDriveKinematics(RobotSettings.DRIVEBASE_WIDTH);
   static DifferentialDriveOdometry driveOdometry;
+  private static double gyroOffset = 0;
 
   /**
    * Creates a new DriveSub.
@@ -98,6 +99,10 @@ public class DriveSub extends SubsystemBase {
     driveOdometry.resetPosition(pose, Rotation2d.fromDegrees(getGyroAngle()));
   }
 
+  public static void setGyroAngle(double angle) {
+    gyroOffset = angle - getGyroAngleRaw();
+  }
+
   public static double getLeftDistance() {
     return RobotIO.leftEncoder.getDistance();
   }
@@ -131,6 +136,10 @@ public class DriveSub extends SubsystemBase {
   }
 
   public static double getGyroAngle() {
+    return RobotIO.imu.getAngle() + gyroOffset;
+  }
+
+  public static double getGyroAngleRaw() {
     return RobotIO.imu.getAngle();
   }
 

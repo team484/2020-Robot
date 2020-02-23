@@ -51,7 +51,7 @@ public final class RobotSettings {
     public static final int VISION_LED_PORT = 0;
 
     // Control Panel Spinner Subsystem
-    public static final double CONTROL_PANEL_MOTOR_SPEED = 1.0;
+    public static final double CONTROL_PANEL_MOTOR_SPEED = 0.5;
 
 
     //Drivetrain Subsystem
@@ -67,14 +67,14 @@ public final class RobotSettings {
 
     public static final double DRIVE_KP = 0.0;
 
-    public static final double DRIVE_MAX_SPEED = 3.0; // meters per second
-    public static final double DRIVE_MAX_ACCEL = 1.0; // meters/second^2
+    public static final double DRIVE_MAX_SPEED = 1.5; // meters per second
+    public static final double DRIVE_MAX_ACCEL = 1.5; // meters/second^2
 
     public static final double DRIVE_RAMSETE_B = 3;
     public static final double DRIVE_RAMSETE_Z = 0.7;
 
     public static final double DRIVE_ROTATE_KP = 0.1;
-    public static final double DRIVE_ROTATE_KI = 0.2;
+    public static final double DRIVE_ROTATE_KI = 0.5;
     public static final double DRIVE_ROTATE_KD = 0.01;
 
 
@@ -96,21 +96,21 @@ public final class RobotSettings {
     public static final double INTAKE_KP = 0.05;
     public static final double INTAKE_KI = 0.0;
     public static final double INTAKE_KD = 0.04;
-    public static final double INTAKE_ARM_ANGLE_ERROR = 3;
-    public static final double INTAKE_ARM_VELOCITY_ERROR = 3;
-    public static final int INTAKE_ARM_MAX_CURRENT = 6; //amps
-    public static final double INTAKE_ARM_VERT_HOLD_POWER = 0.02;
-    public static final double INTAKE_ARM_HORIZ_HOLD_POWER = -0.02;
+    public static final double INTAKE_ARM_ANGLE_ERROR = 1;
+    public static final double INTAKE_ARM_VELOCITY_ERROR = 1;
+    public static final int INTAKE_ARM_MAX_CURRENT = 7; //amps
+    public static final double INTAKE_ARM_VERT_HOLD_POWER = 0.03;
+    public static final double INTAKE_ARM_HORIZ_HOLD_POWER = -0.03;
 
     // Intake Wheel Subsystem
     public static final double INTAKE_WHEELS_MOTOR_SPEED = 1.0;
 
     // Shooter subsystem
     public static final double SHOOTER_TARGET_RPM = 13300; //13300 for far 11500 for close 8000 for lob
-    public static final double SHOOTER_KP = 100.0;
-    public static final double SHOOTER_KI = 0.06;
+    public static final double SHOOTER_KP = 10.0; //100
+    public static final double SHOOTER_KI = 0.0; //0.06
     public static final double SHOOTER_KD = 0.0;
-    public static final double SHOOTER_KF = 21.0;//20
+    public static final double SHOOTER_KF = 29;//20
     public static final int SHOOTER_IZ = 4;
     public static final int SHOOTER_SLOT = 0;
     public static final double ALLOWABLE_ERROR = 250; //250 for far 700 for close

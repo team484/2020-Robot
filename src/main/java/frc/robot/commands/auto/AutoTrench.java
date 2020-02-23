@@ -7,6 +7,9 @@
 
 package frc.robot.commands.auto;
 
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -15,6 +18,7 @@ import frc.robot.RobotContainer;
 import frc.robot.RobotSettings;
 import frc.robot.commands.drivetrain.RotateAngle;
 import frc.robot.commands.drivetrain.RotateToTarget;
+import frc.robot.commands.drivetrain.SetOdometry;
 import frc.robot.commands.horizontalconveyor.HorizontalConveyorDoNothing;
 import frc.robot.commands.horizontalconveyor.HorizontalConveyorSpin;
 import frc.robot.commands.intake.IntakeSpin;
@@ -42,11 +46,11 @@ public class AutoTrench extends SequentialCommandGroup {
   public AutoTrench(DriveSub driveSub, IntakeArmSub intakeArmSub, IntakeSub intakeSub, HorizontalConveyorSub horizontalConveyerSub, VerticalConveyer verticalConveyer, ShooterSub shooterSub) {
     super(
 
+    new SetOdometry(driveSub, new Pose2d(new Translation2d(3.8, -0.75), new Rotation2d(Math.toRadians(0))), 0),
     //Drive over and pick up balls
       new ParallelRaceGroup(
-        RobotContainer.generateTrajectoryCommand("trench", driveSub),
+        RobotContainer.generateTrajectoryCommand("Trench", driveSub),
         new SequentialCommandGroup(
-          new WaitCommand(1),
           new ParallelCommandGroup(
             new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_DOWN_SETPOINT, false),
             new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED),
@@ -65,26 +69,28 @@ public class AutoTrench extends SequentialCommandGroup {
 
       //Now rotate -160 degrees to face target
       new ParallelRaceGroup(
-        new RotateAngle(driveSub, -160),
-        new WaitCommand(2.0) //cancel after 2 seconds
+        new RotateAngle(driveSub, -166),
+        new WaitCommand(1.5) //cancel after 2 seconds
       ),
 
 
       //Now adjust robot to perfectly face target
       new ParallelRaceGroup(
         new RotateToTarget(driveSub),
-        new WaitCommand(3.0)
+        new SequentialCommandGroup(
+          new WaitCommand(0.5),
+          new SpinShooterUntilRPM(shooterSub)
+        )
       ),
 
-      //Spin up wheels
-      new SpinShooterUntilRPM(shooterSub),
 
       //FIRE
       new ParallelRaceGroup(
         new PIDShooter(shooterSub),
+        new RotateToTarget(driveSub),
         new HorizontalConveyorSpin(horizontalConveyerSub),
         new FeedWhenShooterReady(verticalConveyer),
-        new WaitCommand(7)
+        new WaitCommand(10)
       ),
 
       //Clean-up

@@ -74,7 +74,7 @@ public class Vision {
             frameAngle -= 180.0;
         }
         double gyroAngleChange = DriveSub.getGyroAngle() - Vision.zeroFrameOldAngle;
-        return frameAngle+gyroAngleChange;
+        return frameAngle+gyroAngleChange-0.7;
     }
 
     public static boolean isTarget() {
@@ -87,7 +87,7 @@ public class Vision {
             frameAngle -= 180.0;
         }
         double gyroAngleChange = DriveSub.getGyroAngle() - Vision.oneFrameOldAngle;
-        double[] result = {frameAngle+gyroAngleChange, Vision.targetTVec[2]};
+        double[] result = {frameAngle+gyroAngleChange-0.7, Vision.targetTVec[2]};
         return result;
     }
 

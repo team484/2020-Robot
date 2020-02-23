@@ -57,14 +57,18 @@ public class ShooterSub extends SubsystemBase {
     RobotIO.shooterMotor1.configVelocityMeasurementWindow(16);
 
     RobotIO.shooterMotor1.configNominalOutputForward(0.3);
+    RobotIO.shooterMotor1.configVoltageCompSaturation(12);
+    RobotIO.shooterMotor2.configVoltageCompSaturation(12);
+    RobotIO.shooterMotor1.enableVoltageCompensation(true);
+    RobotIO.shooterMotor2.enableVoltageCompensation(true);
   }
 
   
-  private static double[] lastNSpeeds = new double[5];
+  private static double[] lastNSpeeds = new double[7];
   private static int lastNSpeedPos = 0;
   private static double lastSpeed = 0;
   private static double desiredRPM = 0;
-  private static double[] lastNDesiredRPMs = new double[5];
+  private static double[] lastNDesiredRPMs = new double[7];
   private static int lastNDesiredRPMsPos = 0;
   @Override
   public void periodic() {
@@ -76,7 +80,7 @@ public class ShooterSub extends SubsystemBase {
     lastNSpeeds[lastNSpeedPos] = lastSpeed;
     SmartDashboard.putNumber("RPM", getAveragedSpeed());
 
-    double visionRPM = Vision.getAngleDistance()[1]*10.9+8900;
+    double visionRPM = Vision.getAngleDistance()[1]*9.9+9000;
     lastNDesiredRPMsPos++;
     if (lastNDesiredRPMsPos >= lastNDesiredRPMs.length) {
       lastNDesiredRPMsPos = 0;

@@ -36,7 +36,7 @@ public class FeedWhenShooterReady extends CommandBase {
   @Override
   public void execute() {
     double[] angDist = Vision.getAngleDistance();
-    double errorAllowed = angDist[1]*(-0.1)+500.0;
+    double errorAllowed = angDist[1]*(-0.18)+500.0;
 
     if (rpm == 0) {
       if (Math.abs(ShooterSub.getAveragedSpeed() - ShooterSub.getDesiredRPM()) < errorAllowed) {
