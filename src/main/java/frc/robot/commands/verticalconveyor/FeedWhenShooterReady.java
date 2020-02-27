@@ -8,7 +8,6 @@
 package frc.robot.commands.verticalconveyor;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotSettings;
 import frc.robot.Vision;
 import frc.robot.subsystems.ShooterSub;
 import frc.robot.subsystems.VerticalConveyer;

@@ -39,42 +39,44 @@ import frc.robot.subsystems.VerticalConveyer;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AutoTrench extends SequentialCommandGroup {
+public class AutoShield extends SequentialCommandGroup {
   /**
-   * Creates a new AutoTrench.
+   * Creates a new AutoShield.
    */
-  public AutoTrench(DriveSub driveSub, IntakeArmSub intakeArmSub, IntakeSub intakeSub, HorizontalConveyorSub horizontalConveyerSub, VerticalConveyer verticalConveyer, ShooterSub shooterSub) {
+  public AutoShield(DriveSub driveSub, IntakeArmSub intakeArmSub, IntakeSub intakeSub, HorizontalConveyorSub horizontalConveyerSub, VerticalConveyer verticalConveyer, ShooterSub shooterSub) {
+    // Add your commands in the super() call, e.g.
+    // super(new FooCommand(), new BarCommand());
     super(
+    new SetOdometry(driveSub, new Pose2d(new Translation2d(6.184, -2.664), new Rotation2d(Math.toRadians(0))), 0),
 
-    new SetOdometry(driveSub, new Pose2d(new Translation2d(3.8, -0.75), new Rotation2d(Math.toRadians(0))), 0),
-    //Drive over and pick up balls
-      new ParallelRaceGroup(
-        RobotContainer.generateTrajectoryCommand("Trench Auto", driveSub),
-        new SequentialCommandGroup(
-          new ParallelCommandGroup(
-            new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_DOWN_SETPOINT, false),
-            new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED),
-            new HorizontalConveyorSpin(horizontalConveyerSub)
-          )
+    new ParallelRaceGroup(
+      RobotContainer.generateTrajectoryCommand("Shield Auto", driveSub),
+      
+      
+      new SequentialCommandGroup(
+        new ParallelCommandGroup(
+          new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_DOWN_SETPOINT, false),
+          new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED),
+          new HorizontalConveyorSpin(horizontalConveyerSub)
+          )          
         )
       ),
-
-      //Sit there for another second after driving to make sure you get all the balls
+      
+      
       new ParallelRaceGroup(
         new IntakeArmSetPower(intakeArmSub, RobotSettings.INTAKE_ARM_HORIZ_HOLD_POWER),
         new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED),
         new HorizontalConveyorSpin(horizontalConveyerSub),
         new WaitCommand(1)
       ),
-
-      //Now rotate -160 degrees to face target
+      
+      
       new ParallelRaceGroup(
-        new RotateAngle(driveSub, -166),
-        new WaitCommand(1.5) //cancel after 2 seconds
+        new RotateAngle(driveSub, 200),
+        new WaitCommand(1.5)
       ),
-
-
-      //Now adjust robot to perfectly face target
+      
+      
       new ParallelRaceGroup(
         new RotateToTarget(driveSub),
         new SequentialCommandGroup(
@@ -82,9 +84,8 @@ public class AutoTrench extends SequentialCommandGroup {
           new SpinShooterUntilRPM(shooterSub)
         )
       ),
-
-
-      //FIRE
+      
+      
       new ParallelRaceGroup(
         new PIDShooter(shooterSub),
         new RotateToTarget(driveSub),
@@ -92,16 +93,14 @@ public class AutoTrench extends SequentialCommandGroup {
         new FeedWhenShooterReady(verticalConveyer),
         new WaitCommand(10)
       ),
-
-      //Clean-up
+      
+      
       new ParallelCommandGroup(
         new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_UP_SETPOINT, true),
         new HorizontalConveyorDoNothing(horizontalConveyerSub),
         new VerticalConveyorRunWhenBall(verticalConveyer),
         new ShooterWheelsDoNothing(shooterSub)
-      )
-
+      ) 
     );
-
   }
 }

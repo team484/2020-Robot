@@ -20,7 +20,8 @@ public class LEDSub extends SubsystemBase {
 
   private static final int SEGMENT_1_END = 59;
   private static final int SECGMENT_2_END = 118;
-  private static final int SECGMENT_3_END = 177;
+  // Wasn't being used, but didn't want to delete
+  //private static final int SECGMENT_3_END = 177;
   /**
    * Creates a new LEDSub.
    */
