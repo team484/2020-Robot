@@ -46,7 +46,7 @@ public class AutoFarSide extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-      new SetOdometry(driveSub, new Pose2d(new Translation2d(6.184, -2.664), new Rotation2d(Math.toRadians(0))), 0),
+      new SetOdometry(driveSub, new Pose2d(new Translation2d(3.762, -5.968), new Rotation2d(Math.toRadians(0))), 0),
 
       new ParallelRaceGroup(
         RobotContainer.generateTrajectoryCommand("Far Side Auto", driveSub),
