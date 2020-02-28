@@ -143,4 +143,6 @@ public final class RobotSettings {
         public static final int ROTATION_CONTROL_BUTTON = 12;  
         public static final int EJECT_BUTTON = 3;
         public static final int SPIT_BUTTON = 5;
+        public static final int VERT_CONVEYOR_UP = 6;
+        public static final int VERT_CONVEYOR_DOWN = 4;
 }

@@ -52,7 +52,6 @@ public class DriveSub extends SubsystemBase {
     RobotIO.rightMotor1.configMotorCommutation(MotorCommutation.Trapezoidal, RobotSettings.CAN_TIMEOUT_INTERVAL);
     RobotIO.rightMotor2.configMotorCommutation(MotorCommutation.Trapezoidal, RobotSettings.CAN_TIMEOUT_INTERVAL);
     RobotIO.rightMotor3.configMotorCommutation(MotorCommutation.Trapezoidal, RobotSettings.CAN_TIMEOUT_INTERVAL);
-    setBrakeMode(true);
     RobotIO.leftEncoder.setDistancePerPulse(RobotSettings.LEFT_ENCODER_DPP);
     RobotIO.rightEncoder.setDistancePerPulse(RobotSettings.RIGHT_ENCODER_DPP);
     RobotIO.difDrive.setDeadband(0);

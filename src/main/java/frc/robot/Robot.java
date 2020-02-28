@@ -73,6 +73,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     RobotIO.visionLEDs.set(Value.kOff);
+    DriveSub.setBrakeMode(false);
   }
 
   @Override
@@ -84,6 +85,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    DriveSub.setBrakeMode(true);
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     DriveSub.resetLeftDistance();
     DriveSub.resetRightDistance();
@@ -102,6 +104,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    DriveSub.setBrakeMode(true);
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove

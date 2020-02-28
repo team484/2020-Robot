@@ -196,6 +196,16 @@ public class RobotContainer {
     .whenPressed(new FeedWhenShooterReady(verticalConveyerSub, 8000, 1000))
     .whenReleased(new ShooterWheelsDoNothing(shooterSub))
     .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub));
+
+    //-----VERTICAL CONVEYOR UP-----
+    new JoystickButton(RobotIO.operatorStick, RobotSettings.VERT_CONVEYOR_UP)
+    .whenPressed(new VerticalConveyorSpin(verticalConveyerSub, 0.5))
+    .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub));
+
+    //-----VERTICAL CONVEYOR DOWN-----
+    new JoystickButton(RobotIO.operatorStick, RobotSettings.VERT_CONVEYOR_DOWN)
+    .whenPressed(new VerticalConveyorSpin(verticalConveyerSub, -0.5))
+    .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub));
   }
 
 
