@@ -7,6 +7,7 @@
 
 package frc.robot.commands.elevator;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ElevatorSub;
 
@@ -26,7 +27,9 @@ public class OpenClutch extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ElevatorSub.openClutch();
+    if (DriverStation.getInstance().getMatchTime() < 31) {
+      ElevatorSub.openClutch();
+    }
   }
 
   // Called once the command ends or is interrupted.

@@ -77,6 +77,8 @@ public class RobotContainer {
     autoChooser.addOption("Example Auto", new DriveExamplePath(driveSub));
     autoChooser.addOption("Characterize Drivetrain", new CharacterizeDrivetrain(driveSub));
     autoChooser.addOption("(1) Trench", new AutoTrench(driveSub, intakeArmSub, intakeSub, horizontalConveyerSub, verticalConveyerSub, shooterSub));
+    autoChooser.addOption("(2) Shield Generator", new AutoShield(driveSub, intakeArmSub, intakeSub, horizontalConveyerSub, verticalConveyerSub, shooterSub));
+    autoChooser.addOption("(3) Back up and shoot", new AutoBackupShoot(driveSub, intakeArmSub, intakeSub, horizontalConveyerSub, verticalConveyerSub, shooterSub));
     SmartDashboard.putData(autoChooser);
   }
   
@@ -114,12 +116,22 @@ public class RobotContainer {
     new JoystickButton(RobotIO.driveStick, RobotSettings.DRIVER_AIM_BUTTON)
     .whenPressed(new RotateToTarget(driveSub))
     .whenReleased(new JoystickDrive(driveSub));
-    
+
+    //-----ELEVATOR UP-----
+    new JoystickButton(RobotIO.driveStick, RobotSettings.ELEVATOR_UP_BUTTON)
+    .whenPressed(new ElevatorSpeed(elevatorSub, 1.0))
+    .whenReleased(new ElevatorDoNothing(elevatorSub));
+
+    //-----ELEVATOR DOWN-----
+    new JoystickButton(RobotIO.driveStick, RobotSettings.ELEVATOR_DOWN_BUTTON)
+    .whenPressed(new ElevatorSpeed(elevatorSub, -1.0))
+    .whenReleased(new ElevatorDoNothing(elevatorSub));
+
     //Operator Commands
     //-----shoot ball-----
     new JoystickButton(RobotIO.operatorStick, RobotSettings.BALL_SHOOTER_BUTTON)
     .whenPressed(new ShooterShootBalls(shooterSub))
-    .whenPressed(new FeedWhenShooterReady(verticalConveyerSub))
+    .whenPressed(new ConstantFeedWhenShooterReady(verticalConveyerSub)) //.whenPressed(new FeedWhenShooterReady(verticalConveyerSub))
     .whenPressed(new HorizontalConveyorSpin(horizontalConveyerSub))
     .whenReleased(new ShooterWheelsDoNothing(shooterSub))
     .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub))
@@ -181,7 +193,7 @@ public class RobotContainer {
     //-----SPIT BALLS-----
     new JoystickButton(RobotIO.operatorStick, RobotSettings.SPIT_BUTTON)
     .whenPressed(new PIDShooter(shooterSub, 8000))
-    .whenPressed(new FeedWhenShooterReady(verticalConveyerSub, 8000))
+    .whenPressed(new FeedWhenShooterReady(verticalConveyerSub, 8000, 1000))
     .whenReleased(new ShooterWheelsDoNothing(shooterSub))
     .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub));
   }

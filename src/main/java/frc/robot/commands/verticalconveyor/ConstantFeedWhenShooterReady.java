@@ -12,32 +12,37 @@ import frc.robot.Vision;
 import frc.robot.subsystems.ShooterSub;
 import frc.robot.subsystems.VerticalConveyer;
 
-public class FeedWhenShooterReady extends CommandBase {
+public class ConstantFeedWhenShooterReady extends CommandBase {
   private double rpm = 0;
   private double error = 0;
+  private boolean feedLock = false;
+  private int feedLockCounter = 0;
 
-  public FeedWhenShooterReady(VerticalConveyer subsystem, double rpm, double error) {
+  public ConstantFeedWhenShooterReady(VerticalConveyer subsystem, double rpm, double error) {
     addRequirements(subsystem);
     this.rpm = rpm;
     this.error = error;
   }
-  public FeedWhenShooterReady(VerticalConveyer subsystem, double rpm) {
+  public ConstantFeedWhenShooterReady(VerticalConveyer subsystem, double rpm) {
     addRequirements(subsystem);
     this.rpm = rpm;
   }
 
-  public FeedWhenShooterReady(VerticalConveyer subsystem) {
+  public ConstantFeedWhenShooterReady(VerticalConveyer subsystem) {
     addRequirements(subsystem);
     this.rpm = 0;
   }
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    feedLock = false;
+    feedLockCounter = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    System.out.println(feedLockCounter);
     double[] angDist = Vision.getAngleDistance();
     double errorAllowed = angDist[1]*(-0.18)+500.0;
     if (error > 0) {
@@ -45,16 +50,20 @@ public class FeedWhenShooterReady extends CommandBase {
     }
     if (rpm == 0) {
       if (Math.abs(ShooterSub.getAveragedSpeed() - ShooterSub.getDesiredRPM()) < errorAllowed) {
-        VerticalConveyer.set(1);
-      } else {
-        VerticalConveyer.set(0);
+        feedLockCounter++;
       }
     } else {
       if (Math.abs(ShooterSub.getAveragedSpeed() - rpm) < errorAllowed) {
-        VerticalConveyer.set(1);
-      } else {
-        VerticalConveyer.set(0);
+        feedLockCounter++;
       }
+    }
+
+    if (feedLockCounter > 10) {
+      feedLock = true;
+    }
+
+    if (feedLock) {
+      VerticalConveyer.set(errorAllowed/1700.0);
     }
 
   }

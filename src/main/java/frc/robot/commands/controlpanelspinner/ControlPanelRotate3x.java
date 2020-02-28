@@ -57,6 +57,6 @@ public class ControlPanelRotate3x extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return colorsSeen > 8*3;
+    return colorsSeen > 8*3+3;
   }
 }

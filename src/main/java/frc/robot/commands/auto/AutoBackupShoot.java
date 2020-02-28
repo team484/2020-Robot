@@ -7,22 +7,15 @@
 
 package frc.robot.commands.auto;
 
-import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.RobotContainer;
 import frc.robot.RobotSettings;
-import frc.robot.commands.drivetrain.RotateAngle;
+import frc.robot.commands.drivetrain.DriveUntilDistance;
 import frc.robot.commands.drivetrain.RotateToTarget;
-import frc.robot.commands.drivetrain.SetOdometry;
 import frc.robot.commands.horizontalconveyor.HorizontalConveyorDoNothing;
 import frc.robot.commands.horizontalconveyor.HorizontalConveyorSpin;
-import frc.robot.commands.intake.IntakeSpin;
-import frc.robot.commands.intakearm.IntakeArmSetPower;
 import frc.robot.commands.intakearm.IntakeArmToAngle;
 import frc.robot.commands.shooter.PIDShooter;
 import frc.robot.commands.shooter.ShooterWheelsDoNothing;
@@ -39,41 +32,15 @@ import frc.robot.subsystems.VerticalConveyer;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AutoTrench extends SequentialCommandGroup {
+public class AutoBackupShoot extends SequentialCommandGroup {
   /**
-   * Creates a new AutoTrench.
+   * Creates a new AutoBackupShoot.
    */
-  public AutoTrench(DriveSub driveSub, IntakeArmSub intakeArmSub, IntakeSub intakeSub, HorizontalConveyorSub horizontalConveyerSub, VerticalConveyer verticalConveyer, ShooterSub shooterSub) {
+  public AutoBackupShoot(DriveSub driveSub, IntakeArmSub intakeArmSub, IntakeSub intakeSub, HorizontalConveyorSub horizontalConveyerSub, VerticalConveyer verticalConveyer, ShooterSub shooterSub) {
+    // Add your commands in the super() call, e.g.
+    // super(new FooCommand(), new BarCommand());
     super(
-
-    new SetOdometry(driveSub, new Pose2d(new Translation2d(3.8, -0.75), new Rotation2d(Math.toRadians(0))), 0),
-    //Drive over and pick up balls
-      new ParallelRaceGroup(
-        RobotContainer.generateTrajectoryCommand("Trench Auto", driveSub),
-        new SequentialCommandGroup(
-          new ParallelCommandGroup(
-            new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_DOWN_SETPOINT, false),
-            new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED),
-            new HorizontalConveyorSpin(horizontalConveyerSub)
-          )
-        )
-      ),
-
-      //Sit there for another second after driving to make sure you get all the balls
-      new ParallelRaceGroup(
-        new IntakeArmSetPower(intakeArmSub, RobotSettings.INTAKE_ARM_HORIZ_HOLD_POWER),
-        new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED),
-        new HorizontalConveyorSpin(horizontalConveyerSub),
-        new WaitCommand(1)
-      ),
-
-      //Now rotate -160 degrees to face target
-      new ParallelRaceGroup(
-        new RotateAngle(driveSub, -166),
-        new WaitCommand(2.5) //cancel after 2 seconds
-      ),
-
-
+      new DriveUntilDistance(-0.4, -2.2),
       //Now adjust robot to perfectly face target
       new ParallelRaceGroup(
         new RotateToTarget(driveSub),
@@ -102,6 +69,5 @@ public class AutoTrench extends SequentialCommandGroup {
       )
 
     );
-
   }
 }

@@ -80,7 +80,7 @@ public class ShooterSub extends SubsystemBase {
     lastNSpeeds[lastNSpeedPos] = lastSpeed;
     SmartDashboard.putNumber("RPM", getAveragedSpeed());
 
-    double visionRPM = Vision.getAngleDistance()[1]*9.9+9000;
+    double visionRPM = Vision.getAngleDistance()[1]*9.95+9000;
     lastNDesiredRPMsPos++;
     if (lastNDesiredRPMsPos >= lastNDesiredRPMs.length) {
       lastNDesiredRPMsPos = 0;

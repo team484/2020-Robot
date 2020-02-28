@@ -30,14 +30,15 @@ public class RotateAngle extends CommandBase {
     pid.setSetpoint(angle);
     pid.reset();
     DriveSub.resetAngle();
+    DriveSub.setGyroAngle(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     double rot = pid.calculate(DriveSub.getGyroAngle());
-    if (rot > 0.4) rot = 0.4;
-    if (rot < -0.4) rot = -0.4;
+    if (rot > 0.38) rot = 0.38;
+    if (rot < -0.38) rot = -0.38;
     DriveSub.set(0, rot);
   }
 

@@ -47,7 +47,7 @@ public class AutoShield extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-    new SetOdometry(driveSub, new Pose2d(new Translation2d(6.184, -2.664), new Rotation2d(Math.toRadians(0))), 0),
+    new SetOdometry(driveSub, new Pose2d(new Translation2d(3.8, -2), new Rotation2d(Math.toRadians(0))), 0),
 
     new ParallelRaceGroup(
       RobotContainer.generateTrajectoryCommand("Shield Auto", driveSub),
@@ -70,10 +70,14 @@ public class AutoShield extends SequentialCommandGroup {
         new WaitCommand(1)
       ),
       
+      new ParallelRaceGroup(
+        new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_UP_SETPOINT, true),
+        new WaitCommand(1)
+      ),
       
       new ParallelRaceGroup(
-        new RotateAngle(driveSub, 200),
-        new WaitCommand(1.5)
+        new RotateAngle(driveSub, -110),
+        new WaitCommand(2.5)
       ),
       
       

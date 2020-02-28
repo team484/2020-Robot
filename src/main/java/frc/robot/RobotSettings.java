@@ -107,8 +107,8 @@ public final class RobotSettings {
 
     // Shooter subsystem
     public static final double SHOOTER_TARGET_RPM = 13300; //13300 for far 11500 for close 8000 for lob
-    public static final double SHOOTER_KP = 10.0; //100
-    public static final double SHOOTER_KI = 0.0; //0.06
+    public static final double SHOOTER_KP = 20.0; //100
+    public static final double SHOOTER_KI = 0.15; //0.06
     public static final double SHOOTER_KD = 0.0;
     public static final double SHOOTER_KF = 29;//20
     public static final int SHOOTER_IZ = 4;
@@ -129,6 +129,8 @@ public final class RobotSettings {
         public static final int ELEVATOR_CONTROLS_BUTTON = 2;
         public static final int OPEN_CLUTCH_BUTTON = 6;
         public static final int DRIVER_AIM_BUTTON = 1;
+        public static final int ELEVATOR_UP_BUTTON = 11;
+        public static final int ELEVATOR_DOWN_BUTTON = 10;
 
         //Operator Stick Buttons
         public static final int BALL_SHOOTER_BUTTON = 1;

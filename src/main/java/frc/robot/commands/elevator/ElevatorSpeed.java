@@ -5,47 +5,44 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.drivetrain;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveSub;
+import frc.robot.RobotSettings;
+import frc.robot.subsystems.ElevatorSub;
 
-public class DriveUntilDistance extends CommandBase {
-  /**
-   * Creates a new DriveUntilDistance.
-   */
+public class ElevatorSpeed extends CommandBase {
   private double speed;
-  private double distance;
-  public DriveUntilDistance(double speed, double distance){
-  this.speed = speed;
-  this.distance = distance;
-  }
-  public DriveUntilDistance(DriveSub subsystem) {
-    addRequirements(subsystem);
-    // Use addRequirements() here to declare subsystem dependencies.
+  /**
+   * Creates a new ElevatorSpeed.
+   */
+  public ElevatorSpeed(ElevatorSub elevatorSub, double speed) {
+    addRequirements(elevatorSub);
+    this.speed = speed;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    DriveSub.resetLeftDistance();
-    DriveSub.resetRightDistance();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    DriveSub.set(speed, 0);
+    double dist = Math.min(ElevatorSub.getHeight(), RobotSettings.ELEVATOR_MAX_HEIGHT-ElevatorSub.getHeight());
+
+    ElevatorSub.set(Math.min(speed, speed * dist / 15.0 + 0.1));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    ElevatorSub.set(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (DriveSub.getDistance() > distance && speed > 0) || (DriveSub.getDistance() < distance && speed < 0);
+    return false;
   }
 }
