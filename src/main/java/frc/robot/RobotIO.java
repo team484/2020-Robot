@@ -17,6 +17,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -55,7 +57,9 @@ public class RobotIO {
    public static final CANSparkMax rightElevatorMotor = new CANSparkMax(RobotSettings.RIGHT_ELEVATOR_MOTOR_ID, MotorType.kBrushless);
    public static final CANPIDController intakeArmPID = intakeArm.getPIDController();
 
-   public static final DifferentialDrive difDrive = new DifferentialDrive(leftMotor1, rightMotor1);
+   public static final SpeedController leftMotors = new SpeedControllerGroup(leftMotor1, leftMotor2, leftMotor3);
+   public static final SpeedController rightMotors = new SpeedControllerGroup(rightMotor1, rightMotor2, rightMotor3);
+   public static final DifferentialDrive difDrive = new DifferentialDrive(leftMotors, rightMotors);
 
    public static final Servo clutchServo = new Servo(RobotSettings.CLUTCH_SERVO_PORT);
 

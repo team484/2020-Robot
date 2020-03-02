@@ -22,18 +22,29 @@ import frc.robot.commands.shooter.ShooterWheelsDoNothing;
 public class ShooterSub extends SubsystemBase {
   /**
    * Creates a new Shooter.
+   * 
+   * @throws InterruptedException
    */
-  public ShooterSub() {
+  public ShooterSub() throws InterruptedException {
     setDefaultCommand(new ShooterWheelsDoNothing(this));
     RobotIO.shooterMotor1.setInverted(InvertType.InvertMotorOutput);
+    Thread.sleep(100);
     RobotIO.shooterMotor2.follow(RobotIO.shooterMotor1);
+    Thread.sleep(1);
     RobotIO.shooterMotor2.setInverted(InvertType.FollowMaster);
+    Thread.sleep(1);
     RobotIO.shooterMotor1.setNeutralMode(NeutralMode.Coast);
+    Thread.sleep(1);
     RobotIO.shooterMotor2.setNeutralMode(NeutralMode.Coast);
+    Thread.sleep(1);
     RobotIO.shooterMotor1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotSettings.CAN_TIMEOUT_INTERVAL);
+    Thread.sleep(1);
     RobotIO.shooterMotor1.setSensorPhase(true);
+    Thread.sleep(1);
     RobotIO.shooterMotor1.configPeakOutputForward(+1.0, RobotSettings.CAN_TIMEOUT_INTERVAL);
+    Thread.sleep(1);
     RobotIO.shooterMotor1.configPeakOutputReverse(-1.0, RobotSettings.CAN_TIMEOUT_INTERVAL);
+    Thread.sleep(1);
     RobotIO.shooterMotor1.configSelectedFeedbackCoefficient( 1.0/1024.0, 0, RobotSettings.CAN_TIMEOUT_INTERVAL);
     RobotIO.shooterMotor1.config_kP(RobotSettings.SHOOTER_SLOT, RobotSettings.SHOOTER_KP, RobotSettings.CAN_TIMEOUT_INTERVAL);
     RobotIO.shooterMotor1.config_kI(RobotSettings.SHOOTER_SLOT, RobotSettings.SHOOTER_KI, RobotSettings.CAN_TIMEOUT_INTERVAL);
@@ -80,7 +91,7 @@ public class ShooterSub extends SubsystemBase {
     lastNSpeeds[lastNSpeedPos] = lastSpeed;
     SmartDashboard.putNumber("RPM", getAveragedSpeed());
 
-    double visionRPM = Vision.getAngleDistance()[1]*9.95+9000;
+    double visionRPM = Vision.getAngleDistance()[1]*9.95+8200.0 - (RobotIO.operatorStick.getRawAxis(3) * 500.0 - 500.0);
     lastNDesiredRPMsPos++;
     if (lastNDesiredRPMsPos >= lastNDesiredRPMs.length) {
       lastNDesiredRPMsPos = 0;

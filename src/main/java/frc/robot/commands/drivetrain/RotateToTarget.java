@@ -10,6 +10,7 @@ package frc.robot.commands.drivetrain;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.RobotIO;
 import frc.robot.RobotSettings;
 import frc.robot.Vision;
 import frc.robot.subsystems.DriveSub;
@@ -38,7 +39,7 @@ public class RotateToTarget extends CommandBase {
     double rot = pid.calculate(Vision.getAngle());
     if (rot > 0.3) rot = 0.3;
     if (rot < -0.3) rot = -0.3;
-    DriveSub.set(0, rot);
+    DriveSub.set(-RobotIO.driveStick.getY() / 3.0, rot);
   }
 
   // Called once the command ends or is interrupted.

@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -52,7 +53,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    if (driveSubVision || shooterSubVision) {
+    if (driveSubVision || shooterSubVision || DriverStation.getInstance().isTest()) {
       RobotIO.visionLEDs.set(Value.kForward);
     } else {
       RobotIO.visionLEDs.set(Value.kOff);

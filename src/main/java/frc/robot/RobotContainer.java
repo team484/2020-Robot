@@ -55,15 +55,15 @@ import frc.robot.subsystems.VerticalConveyer;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ControlPanelSpinnerSub controlPanelSpinner = new ControlPanelSpinnerSub();
-  private final DriveSub driveSub = new DriveSub();
-  private final ElevatorSub elevatorSub = new ElevatorSub();
-  private final HorizontalConveyorSub horizontalConveyerSub = new HorizontalConveyorSub();
-  private final IntakeArmSub intakeArmSub = new IntakeArmSub();
-  private final IntakeSub intakeSub = new IntakeSub();
-  private final ShooterSub shooterSub = new ShooterSub();
-  private final VerticalConveyer verticalConveyerSub = new VerticalConveyer();
-  private final LEDSub ledSub = new LEDSub();
+  private ControlPanelSpinnerSub controlPanelSpinner;
+  private DriveSub driveSub;
+  private ElevatorSub elevatorSub;
+  private HorizontalConveyorSub horizontalConveyerSub;
+  private IntakeArmSub intakeArmSub;
+  private IntakeSub intakeSub;
+  private ShooterSub shooterSub;
+  private VerticalConveyer verticalConveyerSub;
+  private LEDSub ledSub;
 
   public static final Vision vision = new Vision();
   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -71,6 +71,28 @@ public class RobotContainer {
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+
+    try {
+      controlPanelSpinner = new ControlPanelSpinnerSub();
+      Thread.sleep(50);
+      driveSub = new DriveSub();
+      Thread.sleep(50);
+      elevatorSub = new ElevatorSub();
+      Thread.sleep(50);
+      horizontalConveyerSub = new HorizontalConveyorSub();
+      Thread.sleep(50);
+      intakeArmSub = new IntakeArmSub();
+      Thread.sleep(50);
+      intakeSub = new IntakeSub();
+      Thread.sleep(50);
+      shooterSub = new ShooterSub();
+      Thread.sleep(50);
+      verticalConveyerSub = new VerticalConveyer();
+      Thread.sleep(50);
+      ledSub = new LEDSub();
+    } catch (Exception e) {
+      return;
+    }
     // Configure the button bindings
     configureButtonBindings();
     autoChooser.setDefaultOption("Do Nothing", new DoNothing());
@@ -124,8 +146,18 @@ public class RobotContainer {
 
     //-----ELEVATOR DOWN-----
     new JoystickButton(RobotIO.driveStick, RobotSettings.ELEVATOR_DOWN_BUTTON)
-    .whenPressed(new ElevatorSpeed(elevatorSub, -1.0))
+    .whenPressed(new ElevatorSpeed(elevatorSub, -0.5))
     .whenReleased(new ElevatorDoNothing(elevatorSub));
+
+    //-----shoot ball far-----
+    new JoystickButton(RobotIO.operatorStick, RobotSettings.POSITION_CONTROL_BUTTON)
+    .whenPressed(new ShooterShootBalls(shooterSub, 13300))
+    .whenPressed(new ConstantFeedWhenShooterReady(verticalConveyerSub, 13300)) //.whenPressed(new FeedWhenShooterReady(verticalConveyerSub))
+    .whenPressed(new HorizontalConveyorSpin(horizontalConveyerSub))
+    .whenReleased(new ShooterWheelsDoNothing(shooterSub))
+    .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub))
+    .whenReleased(new HorizontalConveyorDoNothing(horizontalConveyerSub));
+
 
     //Operator Commands
     //-----shoot ball-----
@@ -177,9 +209,9 @@ public class RobotContainer {
     .whenReleased(new ControlPanelSpinDoNothing(controlPanelSpinner));
 
     //-----Rotate Control Panel to color-----
-    new JoystickButton(RobotIO.operatorStick, RobotSettings.POSITION_CONTROL_BUTTON)
+    /*new JoystickButton(RobotIO.operatorStick, RobotSettings.POSITION_CONTROL_BUTTON)
     .whenPressed(new ControlPanelFindColor(controlPanelSpinner))
-    .whenReleased(new ControlPanelSpinDoNothing(controlPanelSpinner));
+    .whenReleased(new ControlPanelSpinDoNothing(controlPanelSpinner));*/
 
     //-----EJECT BALLS-----
     new JoystickButton(RobotIO.operatorStick, RobotSettings.EJECT_BUTTON)

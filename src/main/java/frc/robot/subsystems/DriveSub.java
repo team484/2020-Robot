@@ -41,11 +41,6 @@ public class DriveSub extends SubsystemBase {
     RobotIO.rightMotor2.configFactoryDefault();
     RobotIO.rightMotor3.configFactoryDefault();
 
-    RobotIO.rightMotor2.follow(RobotIO.rightMotor1);
-    RobotIO.rightMotor3.follow(RobotIO.rightMotor1);
-
-    RobotIO.leftMotor2.follow(RobotIO.leftMotor1);
-    RobotIO.leftMotor3.follow(RobotIO.leftMotor1);
     RobotIO.leftMotor1.configMotorCommutation(MotorCommutation.Trapezoidal, RobotSettings.CAN_TIMEOUT_INTERVAL);
     RobotIO.leftMotor2.configMotorCommutation(MotorCommutation.Trapezoidal, RobotSettings.CAN_TIMEOUT_INTERVAL);
     RobotIO.leftMotor3.configMotorCommutation(MotorCommutation.Trapezoidal, RobotSettings.CAN_TIMEOUT_INTERVAL);
@@ -84,7 +79,11 @@ public class DriveSub extends SubsystemBase {
 
   public static void tankDriveWithVolts(double leftVolts, double rightVolts) {
     RobotIO.leftMotor1.setVoltage(leftVolts);
+    RobotIO.leftMotor2.setVoltage(leftVolts);
+    RobotIO.leftMotor3.setVoltage(leftVolts);
     RobotIO.rightMotor1.setVoltage(-rightVolts);
+    RobotIO.rightMotor2.setVoltage(-rightVolts);
+    RobotIO.rightMotor3.setVoltage(-rightVolts);
     RobotIO.difDrive.feed();
   }
 

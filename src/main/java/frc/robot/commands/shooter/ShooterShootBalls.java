@@ -20,4 +20,8 @@ public class ShooterShootBalls extends SequentialCommandGroup {
   public ShooterShootBalls(ShooterSub shooterSub) {
     super(new SpinShooterUntilRPM(shooterSub), new PIDShooter(shooterSub));
   }
+
+  public ShooterShootBalls(ShooterSub shooterSub, double rpm) {
+    super(new SpinShooterUntilRPM(shooterSub, rpm), new PIDShooter(shooterSub, rpm));
+  }
 }

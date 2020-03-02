@@ -114,8 +114,8 @@ public final class RobotSettings {
     public static final int SHOOTER_IZ = 4;
     public static final int SHOOTER_SLOT = 0;
     public static final double ALLOWABLE_ERROR = 250; //250 for far 700 for close
-    public static final int SHOOTER_MAX_PEAK_CURRENT = 70;
-    public static final int SHOOTER_MAX_CONTINUOUS_CURRENT = 50;
+    public static final int SHOOTER_MAX_PEAK_CURRENT = 60;
+    public static final int SHOOTER_MAX_CONTINUOUS_CURRENT = 40;
     
     // Vertical Conveyor Subsystem
     public static final double VERTICAL_CONVEYOR_SPEED = 0.5;

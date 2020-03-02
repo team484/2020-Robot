@@ -63,7 +63,7 @@ public class ConstantFeedWhenShooterReady extends CommandBase {
     }
 
     if (feedLock) {
-      VerticalConveyer.set(errorAllowed/1700.0);
+      VerticalConveyer.set(errorAllowed/2000.0);
     }
 
   }

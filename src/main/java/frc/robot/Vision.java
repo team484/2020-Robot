@@ -32,10 +32,6 @@ public class Vision {
         NetworkTableEntry entry = Vision.table.getEntry("tvec");
 
         entry.addListener(event -> {
-            if (!Vision.isTarget()) {
-                Vision.isTarget = false;
-                return;
-            }
             double[] eventVal = event.value.getDoubleArray();
             if (eventVal.length < 3) {
                 Vision.isTarget = false;
@@ -74,7 +70,7 @@ public class Vision {
             frameAngle -= 180.0;
         }
         double gyroAngleChange = DriveSub.getGyroAngle() - Vision.zeroFrameOldAngle;
-        return frameAngle+gyroAngleChange-0.7;
+        return frameAngle+gyroAngleChange-0.3;
     }
 
     public static boolean isTarget() {

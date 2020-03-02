@@ -89,7 +89,7 @@ public class AutoTrench extends SequentialCommandGroup {
         new PIDShooter(shooterSub),
         new RotateToTarget(driveSub),
         new HorizontalConveyorSpin(horizontalConveyerSub),
-        new FeedWhenShooterReady(verticalConveyer),
+        new FeedWhenShooterReady(verticalConveyer, true),
         new WaitCommand(10)
       ),
 

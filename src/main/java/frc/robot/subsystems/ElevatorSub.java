@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -48,6 +49,7 @@ public class ElevatorSub extends SubsystemBase {
   public static void openClutch() {
     wasClutchEverOpen = true;
     RobotIO.clutchServo.set(RobotSettings.CLUTCH_OPEN_ANGLE);
+    RobotIO.intakeArm.setIdleMode(IdleMode.kBrake);
   }
 
   public static void closeClutch() {

@@ -183,13 +183,6 @@ public class LEDSub extends SubsystemBase {
 
     //-----Give Drivetrain aligned-----//
     if (Robot.driveSubVision) {
-      if (!Vision.isTargetTracked()) { //Flash LEDs if cannot find vision target
-        if ((int) (timeLeft*3) % 2 == 0) {
-          return new LedStruct(1.0,0);
-        } else {
-          return new LedStruct(0,0);
-        }
-      }
       double height = Math.max(1- Math.abs(Vision.getAngle())/5.0, 0);
       
       if (height < 0.9) {

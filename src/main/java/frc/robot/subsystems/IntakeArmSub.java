@@ -19,9 +19,6 @@ import frc.robot.commands.intakearm.IntakeArmSetPower;
  * Add your docs here.
  */
 public class IntakeArmSub extends SubsystemBase {
-  private static boolean lastRunSpeed = true;
-  private static double lastAngle = -1;
-  private static double lastSpeed = -2;
   private static CANEncoder encoder;
 
   public IntakeArmSub() {
@@ -43,15 +40,10 @@ public class IntakeArmSub extends SubsystemBase {
   }
 
   public static void setAngle(double angle){
-    if (angle == lastAngle && !lastRunSpeed) return;
-    lastRunSpeed = false;
     RobotIO.intakeArmPID.setReference(angle, ControlType.kPosition);
   }
 
   public static void setSpeed(double speed) {
-    if (speed == lastSpeed && lastRunSpeed) return;
-    lastSpeed = speed;
-    lastRunSpeed = true;
     RobotIO.intakeArmPID.setReference(speed, ControlType.kDutyCycle);
     RobotIO.intakeArm.set(speed);
   }

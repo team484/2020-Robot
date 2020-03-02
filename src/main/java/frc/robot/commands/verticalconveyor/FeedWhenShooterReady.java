@@ -15,6 +15,7 @@ import frc.robot.subsystems.VerticalConveyer;
 public class FeedWhenShooterReady extends CommandBase {
   private double rpm = 0;
   private double error = 0;
+  private boolean onlyForTarget = false;
 
   public FeedWhenShooterReady(VerticalConveyer subsystem, double rpm, double error) {
     addRequirements(subsystem);
@@ -30,6 +31,13 @@ public class FeedWhenShooterReady extends CommandBase {
     addRequirements(subsystem);
     this.rpm = 0;
   }
+
+  public FeedWhenShooterReady(VerticalConveyer subsystem, boolean onlyForTarget) {
+    addRequirements(subsystem);
+    this.rpm = 0;
+    this.onlyForTarget = onlyForTarget;
+  }
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -44,14 +52,14 @@ public class FeedWhenShooterReady extends CommandBase {
       errorAllowed = error;
     }
     if (rpm == 0) {
-      if (Math.abs(ShooterSub.getAveragedSpeed() - ShooterSub.getDesiredRPM()) < errorAllowed) {
-        VerticalConveyer.set(1);
+      if (Math.abs(ShooterSub.getAveragedSpeed() - ShooterSub.getDesiredRPM()) < errorAllowed && (!onlyForTarget || Math.abs(Vision.getAngle()) < 5)) {        
+        VerticalConveyer.set(0.8);
       } else {
         VerticalConveyer.set(0);
       }
     } else {
       if (Math.abs(ShooterSub.getAveragedSpeed() - rpm) < errorAllowed) {
-        VerticalConveyer.set(1);
+        VerticalConveyer.set(0.8);
       } else {
         VerticalConveyer.set(0);
       }
