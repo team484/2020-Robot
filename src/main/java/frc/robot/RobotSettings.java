@@ -107,10 +107,10 @@ public final class RobotSettings {
 
     // Shooter subsystem
     public static final double SHOOTER_TARGET_RPM = 13300; //13300 for far 11500 for close 8000 for lob
-    public static final double SHOOTER_KP = 20.0; //100
-    public static final double SHOOTER_KI = 0.15; //0.06
+    public static final double SHOOTER_KP = 20.0;
+    public static final double SHOOTER_KI = 0.0;
     public static final double SHOOTER_KD = 0.0;
-    public static final double SHOOTER_KF = 29;//20
+    public static final double SHOOTER_KF = 30.6;
     public static final int SHOOTER_IZ = 4;
     public static final int SHOOTER_SLOT = 0;
     public static final double ALLOWABLE_ERROR = 250; //250 for far 700 for close
