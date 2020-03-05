@@ -14,6 +14,7 @@ import frc.robot.Robot;
 import frc.robot.RobotIO;
 import frc.robot.RobotSettings;
 import frc.robot.Vision;
+import frc.robot.commands.drivetrain.RotateToTarget;
 
 public class LEDSub extends SubsystemBase {
   int FRONT_LED_LENGTH = 236;
@@ -183,7 +184,7 @@ public class LEDSub extends SubsystemBase {
 
     //-----Give Drivetrain aligned-----//
     if (Robot.driveSubVision) {
-      double height = Math.max(1- Math.abs(Vision.getAngle())/5.0, 0);
+      double height = Math.max(1.0- Math.abs(RotateToTarget.angleError)/5.0, 0);
       
       if (height < 0.9) {
         return new LedStruct(height, 0); //red when <90% of desired RPM

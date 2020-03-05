@@ -83,7 +83,7 @@ public class Vision {
             frameAngle -= 180.0;
         }
         double gyroAngleChange = DriveSub.getGyroAngle() - Vision.oneFrameOldAngle;
-        double[] result = {frameAngle+gyroAngleChange-0.7, Vision.targetTVec[2]};
+        double[] result = {frameAngle+gyroAngleChange-0.3, Vision.targetTVec[2]};
         return result;
     }
 
