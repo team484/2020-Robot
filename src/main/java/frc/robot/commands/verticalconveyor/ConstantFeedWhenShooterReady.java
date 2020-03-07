@@ -59,14 +59,18 @@ public class ConstantFeedWhenShooterReady extends CommandBase {
       }
     }
 
-    if (feedLockCounter > 20) {
+    if (feedLockCounter > 30) {
       feedLock = true;
+    }
+
+    if (feedLockCounter > 20) {
+      VerticalConveyer.set(0.7);
     }
 
     if (feedLock) {
       //VerticalConveyer.set(errorAllowed/2000.0);
       RobotIO.shooterMotor3.config_kF(RobotSettings.SHOOTER_SLOT, RobotSettings.SHOOTER_KF *1.4, RobotSettings.CAN_TIMEOUT_INTERVAL);
-      VerticalConveyer.set(1.0);
+      VerticalConveyer.set(0.7);
     }
 
   }

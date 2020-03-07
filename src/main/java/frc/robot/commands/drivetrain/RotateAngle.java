@@ -14,6 +14,8 @@ import frc.robot.subsystems.DriveSub;
 
 public class RotateAngle extends CommandBase {
   PIDController pid;
+  private boolean curve = false;
+  private int side = 1;
   /**
    * Creates a new RotateAngle.
    */
@@ -22,6 +24,21 @@ public class RotateAngle extends CommandBase {
     addRequirements(subsystem);
     pid = new PIDController(RobotSettings.DRIVE_ROTATE_KP,RobotSettings.DRIVE_ROTATE_KI,RobotSettings.DRIVE_ROTATE_KD);
     this.angle = angle;
+  }
+
+  public RotateAngle(DriveSub subsystem, double angle, boolean curve) {
+    addRequirements(subsystem);
+    pid = new PIDController(RobotSettings.DRIVE_ROTATE_KP,RobotSettings.DRIVE_ROTATE_KI,RobotSettings.DRIVE_ROTATE_KD);
+    this.angle = angle;
+    this.curve = curve;
+  }
+
+  public RotateAngle(DriveSub subsystem, double angle, boolean curve, int side) {
+    addRequirements(subsystem);
+    pid = new PIDController(RobotSettings.DRIVE_ROTATE_KP,RobotSettings.DRIVE_ROTATE_KI,RobotSettings.DRIVE_ROTATE_KD);
+    this.angle = angle;
+    this.curve = curve;
+    this.side = side;
   }
 
   // Called when the command is initially scheduled.
@@ -37,9 +54,17 @@ public class RotateAngle extends CommandBase {
   @Override
   public void execute() {
     double rot = pid.calculate(DriveSub.getGyroAngle());
-    if (rot > 0.38) rot = 0.38;
-    if (rot < -0.38) rot = -0.38;
-    DriveSub.set(0, rot);
+    if (rot > 0.4) rot = 0.4;
+    if (rot < -0.4) rot = -0.4;
+    if (curve) {
+      if (side == 1) {
+        DriveSub.tankDriveWithVolts(-rot * 7, -rot);
+      } else {
+        DriveSub.tankDriveWithVolts(rot, rot * 7);
+      }
+    } else {
+      DriveSub.set(0, rot);
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -51,6 +76,6 @@ public class RotateAngle extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Math.abs(DriveSub.getGyroAngle() - angle) < 5;
   }
 }

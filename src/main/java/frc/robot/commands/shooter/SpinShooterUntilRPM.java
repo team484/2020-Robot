@@ -49,7 +49,7 @@ public class SpinShooterUntilRPM extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    double acceleration = (16000-ShooterSub.getInstantSpeed()) / 100;
+    double acceleration = (16000-ShooterSub.getInstantSpeed()) / 30;
     double speed = ShooterSub.getInstantSpeed() + acceleration;
     if (m_rpm > 0) {
       if (speed >= m_rpm) {

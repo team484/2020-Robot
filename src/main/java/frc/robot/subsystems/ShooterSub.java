@@ -121,11 +121,13 @@ public class ShooterSub extends SubsystemBase {
     double dist = Vision.getAngleDistance()[1];
     double visionRPM = 13000;
     if (dist < 150) {
-      visionRPM = 13800;
+      visionRPM = 14000;
     } else if (dist < 175) {
-      visionRPM = 13500.0 - (dist-150.0)/25.0 * 1000.0;
+      visionRPM = 12500;
+    } else if (dist < 280) {
+      visionRPM = 12000;
     } else {
-      visionRPM = 12500.0 + (dist-175.0)/65.0 * 500.0;
+      visionRPM = 12000.0 + (dist-175.0)/65.0 * 500.0;
     }
     //double visionRPM = Vision.getAngleDistance()[1]*9.95+8300.0 - (RobotIO.operatorStick.getRawAxis(3) * 500.0 - 500.0);
     lastNDesiredRPMsPos++;

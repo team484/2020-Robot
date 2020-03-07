@@ -93,22 +93,22 @@ public final class RobotSettings {
     // Intake Arm Subsystem
     public static final double INTAKE_UP_SETPOINT = 0;
     public static final double INTAKE_MID_SETPOINT = -20;
-    public static final double INTAKE_DOWN_SETPOINT = -46;
-    public static final double INTAKE_KP = 0.05;
+    public static final double INTAKE_DOWN_SETPOINT = -48;
+    public static final double INTAKE_KP = 0.07;
     public static final double INTAKE_KI = 0.0;
     public static final double INTAKE_KD = 0.04;
     public static final double INTAKE_ARM_ANGLE_ERROR = 1;
     public static final double INTAKE_ARM_VELOCITY_ERROR = 1;
     public static final int INTAKE_ARM_MAX_CURRENT = 7; //amps
     public static final double INTAKE_ARM_VERT_HOLD_POWER = 0.03;
-    public static final double INTAKE_ARM_HORIZ_HOLD_POWER = -0.03;
+    public static final double INTAKE_ARM_HORIZ_HOLD_POWER = -0.05;
 
     // Intake Wheel Subsystem
     public static final double INTAKE_WHEELS_MOTOR_SPEED = 1.0;
 
     // Shooter subsystem
     public static final double SHOOTER_TARGET_RPM = 13300; //13300 for far 11500 for close 8000 for lob
-    public static final double SHOOTER_KP = 200.0; //60
+    public static final double SHOOTER_KP = 300.0; //60
     public static final double SHOOTER_KI = 0.0; //0.01
     public static final double SHOOTER_KD = 0.0;
     public static final double SHOOTER_KF = 27.7; //30.6 for 2 redlines

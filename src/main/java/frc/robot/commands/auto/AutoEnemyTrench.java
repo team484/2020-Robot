@@ -74,7 +74,7 @@ public class AutoEnemyTrench extends SequentialCommandGroup {
         ),
 
         new ParallelRaceGroup(
-          new DriveUntilDistance(.50, 1.564),
+          new DriveUntilDistance(.50, 1.564, driveSub),
           new WaitCommand(2.0)
         ),
           

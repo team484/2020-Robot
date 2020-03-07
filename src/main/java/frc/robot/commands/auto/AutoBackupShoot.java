@@ -40,7 +40,7 @@ public class AutoBackupShoot extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-      new DriveUntilDistance(-0.4, -1.5),
+      new DriveUntilDistance(-0.4, -1.5, driveSub),
       //Now adjust robot to perfectly face target
       new ParallelRaceGroup(
         new RotateToTarget(driveSub),

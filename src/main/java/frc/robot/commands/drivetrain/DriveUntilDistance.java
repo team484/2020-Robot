@@ -16,7 +16,8 @@ public class DriveUntilDistance extends CommandBase {
    */
   private double speed;
   private double distance;
-  public DriveUntilDistance(double speed, double distance){
+  public DriveUntilDistance(double speed, double distance, DriveSub driveSub){
+    addRequirements(driveSub);
   this.speed = speed;
   this.distance = distance;
   }

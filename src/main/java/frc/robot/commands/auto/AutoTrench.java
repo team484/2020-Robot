@@ -49,7 +49,11 @@ public class AutoTrench extends SequentialCommandGroup {
     new SetOdometry(driveSub, new Pose2d(new Translation2d(3.8, -0.75), new Rotation2d(Math.toRadians(0))), 0),
     //Drive over and pick up balls
       new ParallelRaceGroup(
-        RobotContainer.generateTrajectoryCommand("Trench Auto", driveSub),
+        new SequentialCommandGroup(
+          RobotContainer.generateTrajectoryCommand("Trench Auto", driveSub),
+          new SetOdometry(driveSub, new Pose2d(new Translation2d(5.7, -0.75), new Rotation2d(Math.toRadians(0))), 0),
+          RobotContainer.generateTrajectoryCommand("Trench Auto2", driveSub)
+        ),
         new SequentialCommandGroup(
           new ParallelCommandGroup(
             new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_DOWN_SETPOINT, false),
@@ -69,13 +73,15 @@ public class AutoTrench extends SequentialCommandGroup {
 
       //Now rotate -160 degrees to face target
       new ParallelRaceGroup(
-        new RotateAngle(driveSub, -166),
-        new WaitCommand(2.5) //cancel after 2 seconds
+        new IntakeArmSetPower(intakeArmSub, RobotSettings.INTAKE_ARM_HORIZ_HOLD_POWER),
+        new RotateAngle(driveSub, -166, true),
+        new WaitCommand(5) //cancel after 2 seconds
       ),
 
 
       //Now adjust robot to perfectly face target
       new ParallelRaceGroup(
+        new IntakeArmSetPower(intakeArmSub, RobotSettings.INTAKE_ARM_HORIZ_HOLD_POWER),
         new RotateToTarget(driveSub),
         new SequentialCommandGroup(
           new WaitCommand(0.5),
@@ -86,11 +92,12 @@ public class AutoTrench extends SequentialCommandGroup {
 
       //FIRE
       new ParallelRaceGroup(
+        new IntakeArmSetPower(intakeArmSub, RobotSettings.INTAKE_ARM_HORIZ_HOLD_POWER),
         new PIDShooter(shooterSub),
         new RotateToTarget(driveSub),
         new HorizontalConveyorSpin(horizontalConveyerSub),
         new FeedWhenShooterReady(verticalConveyer, true),
-        new WaitCommand(10)
+        new WaitCommand(5)
       ),
 
       //Clean-up

@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
 import frc.robot.RobotSettings;
+import frc.robot.commands.drivetrain.DriveUntilDistance;
 import frc.robot.commands.drivetrain.RotateAngle;
 import frc.robot.commands.drivetrain.RotateToTarget;
 import frc.robot.commands.drivetrain.SetOdometry;
@@ -71,18 +72,29 @@ public class AutoShield extends SequentialCommandGroup {
       ),
       
       new ParallelRaceGroup(
+        new DriveUntilDistance(-0.4, -0.4, driveSub),
+        new IntakeArmSetPower(intakeArmSub, RobotSettings.INTAKE_ARM_HORIZ_HOLD_POWER),
+        new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED * 0.7)
+      ),
+     /* new ParallelRaceGroup(
         new IntakeArmToAngle(intakeArmSub, RobotSettings.INTAKE_UP_SETPOINT, true),
         new WaitCommand(1)
-      ),
+      ),*/
       
       new ParallelRaceGroup(
-        new RotateAngle(driveSub, -110),
+        new IntakeArmSetPower(intakeArmSub, RobotSettings.INTAKE_ARM_HORIZ_HOLD_POWER),
+        new RotateAngle(driveSub, -100, true, 2),
+        new HorizontalConveyorSpin(horizontalConveyerSub),
+        new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED),
         new WaitCommand(2.5)
       ),
       
       
       new ParallelRaceGroup(
+        new IntakeArmSetPower(intakeArmSub, RobotSettings.INTAKE_ARM_HORIZ_HOLD_POWER),
         new RotateToTarget(driveSub),
+        new HorizontalConveyorSpin(horizontalConveyerSub),
+        new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED),
         new SequentialCommandGroup(
           new WaitCommand(0.5),
           new SpinShooterUntilRPM(shooterSub)
@@ -95,7 +107,8 @@ public class AutoShield extends SequentialCommandGroup {
         new RotateToTarget(driveSub),
         new HorizontalConveyorSpin(horizontalConveyerSub),
         new FeedWhenShooterReady(verticalConveyer),
-        new WaitCommand(10)
+        new IntakeSpin(intakeSub, RobotSettings.INTAKE_WHEELS_MOTOR_SPEED),
+        new WaitCommand(6)
       ),
       
       
