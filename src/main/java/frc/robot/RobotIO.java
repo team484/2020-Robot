@@ -46,6 +46,7 @@ public class RobotIO {
 
    public static final WPI_TalonSRX shooterMotor1 = new WPI_TalonSRX(RobotSettings.SHOOTER_MOTOR_1_ID);
    public static final WPI_TalonSRX shooterMotor2 = new WPI_TalonSRX(RobotSettings.SHOOTER_MOTOR_2_ID);
+   public static final WPI_TalonFX shooterMotor3 = new WPI_TalonFX(RobotSettings.SHOOTER_FALCON_ID);
 
    public static final WPI_VictorSPX ballConveyerHorizontal = new WPI_VictorSPX(RobotSettings.HORIZONTAL_BALL_CONVEYOR_MOTOR_ID);
    public static final WPI_VictorSPX ballConveyerVertical = new WPI_VictorSPX(RobotSettings.VERTICAL_BALL_CONVEYOR_MOTOR_ID);

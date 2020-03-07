@@ -31,6 +31,7 @@ public final class RobotSettings {
     public static final int INTAKE_ARM_MOTOR_ID = 13;
     public static final int LEFT_ELEVATOR_MOTOR_ID = 14;
     public static final int RIGHT_ELEVATOR_MOTOR_ID = 15;
+    public static final int SHOOTER_FALCON_ID = 16;
     public static final int CAN_TIMEOUT_INTERVAL = 50;
 
 
@@ -107,10 +108,10 @@ public final class RobotSettings {
 
     // Shooter subsystem
     public static final double SHOOTER_TARGET_RPM = 13300; //13300 for far 11500 for close 8000 for lob
-    public static final double SHOOTER_KP = 20.0;
-    public static final double SHOOTER_KI = 0.0;
+    public static final double SHOOTER_KP = 200.0; //60
+    public static final double SHOOTER_KI = 0.0; //0.01
     public static final double SHOOTER_KD = 0.0;
-    public static final double SHOOTER_KF = 30.6;
+    public static final double SHOOTER_KF = 27.7; //30.6 for 2 redlines
     public static final int SHOOTER_IZ = 4;
     public static final int SHOOTER_SLOT = 0;
     public static final double ALLOWABLE_ERROR = 250; //250 for far 700 for close

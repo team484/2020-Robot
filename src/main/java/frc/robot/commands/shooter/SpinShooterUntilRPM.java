@@ -30,8 +30,7 @@ public class SpinShooterUntilRPM extends CommandBase {
   @Override
   public void initialize() {
     Robot.shooterSubVision = true;
-    lastRPM = 0;
-    twoRPMsAgo = 0;
+    count = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -46,18 +45,24 @@ public class SpinShooterUntilRPM extends CommandBase {
     Robot.shooterSubVision = false;
   }
 
-  private double lastRPM = 0;
-  private double twoRPMsAgo = 0;
+  private double count = 0;
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    double speed = ShooterSub.getInstantSpeed();
-    double rpmDelta = speed - twoRPMsAgo;
-    twoRPMsAgo = lastRPM;
-    lastRPM = speed;
+    double acceleration = (16000-ShooterSub.getInstantSpeed()) / 100;
+    double speed = ShooterSub.getInstantSpeed() + acceleration;
     if (m_rpm > 0) {
-      return (speed+rpmDelta >= m_rpm);
+      if (speed >= m_rpm) {
+        count++;
+      } else {
+        count = 0;
+      }
     }
-    return (speed+rpmDelta >= ShooterSub.getDesiredRPM());
+    if (speed >= ShooterSub.getDesiredRPM()) {
+      count++;
+    } else {
+      count = 0;
+    }
+    return (count > 3);
   }
 }

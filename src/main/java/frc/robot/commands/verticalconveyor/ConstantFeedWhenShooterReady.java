@@ -8,6 +8,8 @@
 package frc.robot.commands.verticalconveyor;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotIO;
+import frc.robot.RobotSettings;
 import frc.robot.Vision;
 import frc.robot.subsystems.ShooterSub;
 import frc.robot.subsystems.VerticalConveyer;
@@ -42,9 +44,8 @@ public class ConstantFeedWhenShooterReady extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println(feedLockCounter);
     double[] angDist = Vision.getAngleDistance();
-    double errorAllowed = angDist[1]*(-0.18)+500.0;
+    double errorAllowed = angDist[1]*(-0.05)+400.0;
     if (error > 0) {
       errorAllowed = error;
     }
@@ -58,12 +59,14 @@ public class ConstantFeedWhenShooterReady extends CommandBase {
       }
     }
 
-    if (feedLockCounter > 10) {
+    if (feedLockCounter > 20) {
       feedLock = true;
     }
 
     if (feedLock) {
-      VerticalConveyer.set(errorAllowed/2000.0);
+      //VerticalConveyer.set(errorAllowed/2000.0);
+      RobotIO.shooterMotor3.config_kF(RobotSettings.SHOOTER_SLOT, RobotSettings.SHOOTER_KF *1.4, RobotSettings.CAN_TIMEOUT_INTERVAL);
+      VerticalConveyer.set(1.0);
     }
 
   }
@@ -72,6 +75,8 @@ public class ConstantFeedWhenShooterReady extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     VerticalConveyer.set(0);
+    RobotIO.shooterMotor3.config_kF(RobotSettings.SHOOTER_SLOT, RobotSettings.SHOOTER_KF, RobotSettings.CAN_TIMEOUT_INTERVAL);
+
   }
 
   // Returns true when the command should end.

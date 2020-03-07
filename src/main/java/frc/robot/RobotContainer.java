@@ -151,8 +151,8 @@ public class RobotContainer {
 
     //-----shoot ball far-----
     new JoystickButton(RobotIO.operatorStick, RobotSettings.POSITION_CONTROL_BUTTON)
-    .whenPressed(new ShooterShootBalls(shooterSub, 13300))
-    .whenPressed(new ConstantFeedWhenShooterReady(verticalConveyerSub, 13300)) //.whenPressed(new FeedWhenShooterReady(verticalConveyerSub))
+    .whenPressed(new ShooterShootBalls(shooterSub, 12500))
+    .whenPressed(new ConstantFeedWhenShooterReady(verticalConveyerSub, 12500)) //.whenPressed(new FeedWhenShooterReady(verticalConveyerSub))
     .whenPressed(new HorizontalConveyorSpin(horizontalConveyerSub))
     .whenReleased(new ShooterWheelsDoNothing(shooterSub))
     .whenReleased(new VerticalConveyorRunWhenBall(verticalConveyerSub))
